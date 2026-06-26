@@ -1,0 +1,18 @@
+{
+  "name": "intelligent-emergency-management",
+  "version": "1.0.0",
+  "private": true,
+  "description": "智能应急管理智能体 - 融合AI能力的安全生产应急管理平台",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,magenta \"pnpm --filter @iem/api dev\" \"pnpm --filter @iem/web dev\"",
+    "dev:api": "pnpm --filter @iem/api dev",
+    "dev:web": "pnpm --filter @iem/web dev",
+    "build": "pnpm --filter @iem/api build && pnpm --filter @iem/web build",
+    "start": "pnpm --filter @iem/api start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "packageManager": "pnpm@10.11.0"
+}
