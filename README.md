@@ -1,6 +1,6 @@
 # 智能应急管理智能体
 
-融合AI能力的安全生产应急管理平台，提供事件监测、任务管理、GIS地图可视化、知识库管理等核心功能。
+融合AI能力的安全生产应急管理平台，提供事件监测、任务管理、GIS地图可视化、RAG知识库管理等核心功能。
 
 ## 项目结构
 
@@ -8,11 +8,18 @@
 intelligent_emergency_management/
 ├── api/                 # 后端API服务
 │   ├── src/
-│   │   ├── ai/          # AI相关功能（RAG）
+│   │   ├── ai/          # AI相关功能（RAG向量检索）
 │   │   ├── db/          # 数据库操作（SQLite）
 │   │   ├── routes/      # API路由
+│   │   │   ├── ai/      # AI方案生成
+│   │   │   ├── analysis/# 数据分析（关联分析、根因分析）
+│   │   │   ├── config/  # 系统配置
+│   │   │   ├── events/  # 事件管理
+│   │   │   ├── knowledge/# 知识库
+│   │   │   ├── rag/     # RAG文档管理
+│   │   │   └── solutions/# 方案管理
 │   │   └── utils/       # 工具函数
-│   └── data/            # SQLite数据库文件
+│   └── data/            # SQLite数据库文件和FAISS索引
 ├── web/                 # 前端应用
 │   ├── public/          # 静态资源（地图数据）
 │   └── src/
@@ -33,6 +40,11 @@ intelligent_emergency_management/
 - **ORM**: 自定义DAO层
 - **验证**: Zod
 - **PDF解析**: pdf-parse 2.x
+- **Word解析**: mammoth
+- **Excel解析**: xlsx
+- **向量检索**: FAISS-node / SimpleVectorIndex（备选）
+- **嵌入模型**: BGE-M3（@xenova/transformers）
+- **重排序**: BGE-Reranker-v2-m3（@xenova/transformers）
 - **构建工具**: tsx（开发）/ tsc（生产）
 
 ### 前端（@iem/web）
@@ -65,11 +77,17 @@ intelligent_emergency_management/
 - 新建任务、指派人员、启动任务、完成任务、取消任务
 - 操作日志追溯，记录所有状态变更历史
 
-### 4. 知识库管理
-- PDF文档上传和解析，支持复杂结构（表格、图片）
-- 文档预览功能（基于kkfileview）
-- 文档列表和搜索
-- 文档状态管理（上传中/解析中/成功/失败）
+### 4. RAG知识库管理
+- 多格式文档上传（PDF、DOCX、TXT、Excel）
+- 三种分片策略：
+  - **固定长度**: 按字符数固定分割，智能切分在句子边界
+  - **层次分片**: 按章节标题分割，保持文档结构
+  - **语义分片**: 按段落分割，保持语义完整性
+- 向量检索（FAISS）和混合检索
+- 重排序优化（BGE-Reranker）
+- 文档预览（基于kkfileview）
+- Docker服务自动检测和启动
+- 文档分类筛选和搜索
 
 ### 5. 方案管理
 - AI智能生成处置方案
@@ -141,12 +159,20 @@ pnpm start     # 启动后端服务
 | `/api/tasks/:id/assign` | POST | 指派任务 |
 | `/api/tasks/:id/complete` | POST | 完成任务 |
 
-### 知识库
+### RAG知识库
 | 接口 | 方法 | 描述 |
 |------|------|------|
-| `/api/rag/upload` | POST | 上传文档 |
-| `/api/rag/list` | GET | 获取文档列表 |
-| `/api/rag/preview/:id` | GET | 获取预览地址 |
+| `/api/rag/upload` | POST | 上传文档（支持chunkStrategy参数） |
+| `/api/rag/documents` | GET | 获取文档列表（支持category筛选） |
+| `/api/rag/documents/:id` | GET | 获取文档详情 |
+| `/api/rag/documents/:id/chunks` | GET | 获取文档分片 |
+| `/api/rag/documents/:id/rechunk` | POST | 重新分片 |
+| `/api/rag/search` | GET | 智能检索（支持向量/混合检索） |
+| `/api/rag/preview/status` | GET | 获取预览服务状态 |
+| `/api/rag/preview/start` | POST | 启动预览服务 |
+| `/api/rag/preview/url/:id` | GET | 获取文档预览地址 |
+| `/api/rag/docker/status` | GET | 获取Docker服务状态 |
+| `/api/rag/docker/start` | POST | 启动Docker服务 |
 
 ### 配置管理
 | 接口 | 方法 | 描述 |
@@ -163,7 +189,8 @@ pnpm start     # 启动后端服务
 - `emergency_event_types` - 事件类型表
 - `emergency_resources` - 资源表
 - `emergency_organization` - 组织架构表
-- `rag_documents` - 知识库文档表
+- `rag_documents` - 知识库文档表（含charCount字段）
+- `rag_chunks` - 文档分片表（含embedding向量）
 
 ## 状态流转
 
@@ -181,18 +208,42 @@ pnpm start     # 启动后端服务
       └──────────→ 已取消(cancelled) ←──────────┘
 ```
 
+### 文档状态
+```
+上传中(uploading) → 处理中(processing) → 就绪(ready)
+                              ↓
+                          失败(failed)
+```
+
 ## 文档预览
 
 项目集成kkfileview实现文档预览功能：
 
-1. 启动kkfileview容器：
+1. **自动检测**: 系统会自动检测Docker和kkfileview服务状态
+2. **一键启动**: 点击"启动Docker服务"和"启动预览服务"按钮即可
+3. **手动启动（可选）**:
 ```bash
 docker run -d -p 8012:8080 --name kkfileview \
   -e KK_TRUST_HOST= \
   keking/kkfileview:4.2.0
 ```
 
-2. 系统会自动检测kkfileview服务状态，未启动时会提示用户。
+## 分片策略说明
+
+### 固定长度分片 (fixed_size)
+- 按指定字符数分割文档
+- 智能切分在句子边界（。！？\n）
+- 支持重叠字符设置（chunkOverlap）
+
+### 层次分片 (hierarchical)
+- 自动识别章节标题（Markdown、中文、编号格式）
+- 每个分片包含章节标题前缀
+- 大章节自动子分割
+
+### 语义分片 (semantic)
+- 按段落分割，保持语义完整性
+- 只有超大段落才进行二次分割
+- 支持段落间重叠
 
 ## 许可证
 
