@@ -59,7 +59,7 @@ export const ragApi = {
     title?: string;
     category?: string;
     tags?: string[];
-    chunkStrategy?: 'fixed_size' | 'semantic' | 'recursive';
+    chunkStrategy?: 'fixed_size' | 'hierarchical' | 'semantic';
     chunkSize?: number;
     chunkOverlap?: number;
   }): Promise<RagDocument> => {
@@ -112,7 +112,8 @@ export const ragApi = {
     chunkOverlap?: number;
   }): Promise<RagDocument> => {
     const result = await apiClient.post(`/rag/documents/${id}/rechunk`, params);
-    return (result as any).data;
+    const data = (result as any).data;
+    return data?.document || data;
   },
 
   getChunks: async (documentId: string, params?: {
@@ -151,12 +152,17 @@ export const ragApi = {
     };
   },
 
-  getPreviewStatus: async (): Promise<{ running: boolean; url: string }> => {
+  getPreviewStatus: async (): Promise<{ dockerRunning: boolean; running: boolean; url: string }> => {
     const result = await apiClient.get('/rag/preview/status');
     return (result as any).data;
   },
 
-  startPreviewService: async (): Promise<{ running: boolean; url: string }> => {
+  startDockerService: async (): Promise<{ running: boolean }> => {
+    const result = await apiClient.post('/rag/docker/start');
+    return (result as any).data;
+  },
+
+  startPreviewService: async (): Promise<{ running: boolean; dockerRunning: boolean }> => {
     const result = await apiClient.post('/rag/preview/start');
     return (result as any).data;
   },

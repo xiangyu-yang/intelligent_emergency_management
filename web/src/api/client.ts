@@ -20,19 +20,27 @@ async function request<T = any>(url: string, options: RequestOptions = {}): Prom
   const { params, ...restOptions } = options;
   const fullUrl = BASE_URL + buildUrl(url, params);
 
-  const response = await fetch(fullUrl, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...restOptions.headers,
-    },
-    ...restOptions,
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+  try {
+    const response = await fetch(fullUrl, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...restOptions.headers,
+      },
+      signal: controller.signal,
+      ...restOptions,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } finally {
+    clearTimeout(timeoutId);
   }
-
-  return response.json();
 }
 
 export const apiClient = {

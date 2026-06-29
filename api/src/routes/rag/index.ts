@@ -57,8 +57,10 @@ const upload = multer({
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'text/plain',
       'text/markdown',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     ];
-    const allowedExtensions = ['.pdf', '.doc', '.docx', '.txt', '.md'];
+    const allowedExtensions = ['.pdf', '.doc', '.docx', '.txt', '.md', '.xlsx', '.xls'];
 
     const fileName = fixFilenameEncoding(file.originalname);
     const lowerName = fileName.toLowerCase();
@@ -67,7 +69,7 @@ const upload = multer({
         allowedExtensions.some(ext => lowerName.endsWith(ext))) {
       cb(null, true);
     } else {
-      cb(new Error('只支持 PDF、Word、TXT、MD 文件'));
+      cb(new Error('只支持 PDF、Word、TXT、MD、Excel 文件'));
     }
   },
 });
@@ -76,7 +78,7 @@ const uploadSchema = z.object({
   title: z.string().optional(),
   category: z.string().optional(),
   tags: z.string().optional(),
-  chunkStrategy: z.enum(['fixed_size', 'semantic', 'recursive']).optional().default('fixed_size'),
+  chunkStrategy: z.enum(['fixed_size', 'hierarchical', 'semantic']).optional().default('fixed_size'),
   chunkSize: z.coerce.number().min(50).max(5000).optional().default(500),
   chunkOverlap: z.coerce.number().min(0).max(1000).optional().default(50),
   createdBy: z.string().optional(),
@@ -91,7 +93,7 @@ const documentQuerySchema = z.object({
 });
 
 const rechunkSchema = z.object({
-  chunkStrategy: z.enum(['fixed_size', 'semantic', 'recursive']).optional().default('fixed_size'),
+  chunkStrategy: z.enum(['fixed_size', 'hierarchical', 'semantic']).optional().default('fixed_size'),
   chunkSize: z.number().min(50).max(5000).optional().default(500),
   chunkOverlap: z.number().min(0).max(1000).optional().default(50),
 });
@@ -440,27 +442,15 @@ router.post('/context', async (req: Request, res: Response) => {
 });
 
 const KKFIVIEW_URL = process.env.KKFILEVIEW_URL || 'http://localhost:8012';
-let kkfileviewStatus: 'unknown' | 'running' | 'stopped' = 'unknown';
-let kkfileviewCheckTime = 0;
-const KKFIVIEW_CHECK_INTERVAL = 30000;
 
 async function checkKKFileView(): Promise<boolean> {
-  const now = Date.now();
-  if (now - kkfileviewCheckTime < KKFIVIEW_CHECK_INTERVAL && kkfileviewStatus !== 'unknown') {
-    return kkfileviewStatus === 'running';
-  }
-  
   try {
     const response = await fetch(`${KKFIVIEW_URL}`, {
       method: 'GET',
       signal: AbortSignal.timeout(3000),
     });
-    kkfileviewStatus = response.ok ? 'running' : 'stopped';
-    kkfileviewCheckTime = now;
     return response.ok;
   } catch (e) {
-    kkfileviewStatus = 'stopped';
-    kkfileviewCheckTime = now;
     return false;
   }
 }
@@ -480,8 +470,62 @@ async function getHostIP(): Promise<string> {
   });
 }
 
+async function checkDockerRunning(): Promise<boolean> {
+  try {
+    const { exec } = await import('child_process');
+    return new Promise((resolve) => {
+      exec('docker info', { timeout: 5000 }, (err: any) => {
+        resolve(!err);
+      });
+    });
+  } catch {
+    return false;
+  }
+}
+
+async function startDockerService(): Promise<boolean> {
+  try {
+    const { exec, spawn } = await import('child_process');
+    return new Promise((resolve) => {
+      exec('open -a Docker', (err: any) => {
+        if (!err) {
+          let waited = 0;
+          const interval = setInterval(async () => {
+            waited += 1000;
+            if (waited > 60000) {
+              clearInterval(interval);
+              resolve(false);
+              return;
+            }
+            const running = await checkDockerRunning();
+            if (running) {
+              clearInterval(interval);
+              resolve(true);
+            }
+          }, 1000);
+        } else {
+          resolve(false);
+        }
+      });
+    });
+  } catch {
+    return false;
+  }
+}
+
 async function startKKFileView(): Promise<boolean> {
   try {
+    const dockerRunning = await checkDockerRunning();
+    if (!dockerRunning) {
+      console.log('[KKFileView] Docker服务未运行，尝试启动...');
+      const started = await startDockerService();
+      if (!started) {
+        console.warn('[KKFileView] Docker启动失败');
+        return false;
+      }
+      console.log('[KKFileView] Docker服务已启动');
+    }
+    
     const { exec } = await import('child_process');
     const hostIP = await getHostIP();
     
@@ -508,7 +552,7 @@ async function startKKFileView(): Promise<boolean> {
                   resolve(isRunning);
                 }, 10000);
               } else {
-                console.warn('[KKFileView] Docker启动失败:', runErr);
+                console.warn('[KKFileView] Docker启动kkfileview失败:', runErr);
                 resolve(false);
               }
             });
@@ -524,8 +568,10 @@ async function startKKFileView(): Promise<boolean> {
 
 router.get('/preview/status', async (_req: Request, res: Response) => {
   try {
-    const isRunning = await checkKKFileView();
+    const dockerRunning = await checkDockerRunning();
+    const isRunning = dockerRunning ? await checkKKFileView() : false;
     res.json(successResponse({
+      dockerRunning,
       running: isRunning,
       url: KKFIVIEW_URL,
     }, '获取预览服务状态成功'));
@@ -534,19 +580,42 @@ router.get('/preview/status', async (_req: Request, res: Response) => {
   }
 });
 
+router.post('/docker/start', async (_req: Request, res: Response) => {
+  try {
+    const dockerRunning = await checkDockerRunning();
+    if (dockerRunning) {
+      res.json(successResponse({ running: true }, 'Docker已在运行'));
+      return;
+    }
+    
+    const started = await startDockerService();
+    res.json(successResponse({
+      running: started,
+    }, started ? 'Docker启动成功' : 'Docker启动失败，请手动启动Docker Desktop'));
+  } catch (err: any) {
+    res.json(errorResponse(err.message || '启动失败', 500));
+  }
+});
+
 router.post('/preview/start', async (_req: Request, res: Response) => {
   try {
+    const dockerRunning = await checkDockerRunning();
+    if (!dockerRunning) {
+      res.json(successResponse({ running: false, dockerRunning: false }, 'Docker未运行，请先启动Docker'));
+      return;
+    }
+    
     const isRunning = await checkKKFileView();
     if (isRunning) {
-      res.json(successResponse({ running: true, url: KKFIVIEW_URL }, '预览服务已在运行'));
+      res.json(successResponse({ running: true, dockerRunning: true }, '预览服务已在运行'));
       return;
     }
     
     const started = await startKKFileView();
     res.json(successResponse({
       running: started,
-      url: KKFIVIEW_URL,
-    }, started ? '预览服务启动成功' : '预览服务启动失败，请手动启动Docker'));
+      dockerRunning: true,
+    }, started ? '预览服务启动成功' : '预览服务启动失败'));
   } catch (err: any) {
     res.json(errorResponse(err.message || '启动失败', 500));
   }

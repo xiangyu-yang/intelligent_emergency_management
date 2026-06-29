@@ -4,11 +4,12 @@ import { Tiktoken, get_encoding } from '@dqbd/tiktoken';
 import { RagDocumentDAO, RagChunkDAO, type RagDocument, type RagChunk } from '../db/dao.js';
 import { nanoid } from 'nanoid';
 import { parseJSON, stringifyJSON } from '../utils/common.js';
+import * as XLSX from 'xlsx';
 
-export type ChunkStrategy = 'fixed_size' | 'semantic' | 'recursive';
+export type ChunkStrategy = 'fixed_size' | 'hierarchical' | 'semantic';
 export type SearchStrategy = 'vector' | 'hybrid';
 export type DocumentStatus = 'uploading' | 'processing' | 'ready' | 'failed';
-export type FileType = 'pdf' | 'txt' | 'md' | 'docx';
+export type FileType = 'pdf' | 'txt' | 'md' | 'docx' | 'xlsx' | 'xls';
 
 export interface ChunkConfig {
   strategy: ChunkStrategy;
@@ -61,6 +62,7 @@ export interface ParseResult {
     pageCount?: number;
     tableCount?: number;
     imageCount?: number;
+    sheetCount?: number;
     tables?: Array<{
       page: number;
       rows: number;
@@ -74,6 +76,7 @@ export interface ParseResult {
       description?: string;
     }>;
     sections?: string[];
+    sheets?: string[];
   };
 }
 
@@ -320,6 +323,64 @@ export async function parseDOCX(filePath: string): Promise<ParseResult> {
   }
 }
 
+export function parseXLSX(filePath: string): ParseResult {
+  try {
+    const workbook = XLSX.readFile(filePath);
+    const sheets = workbook.SheetNames;
+    const sheetCount = sheets.length;
+    
+    let text = '';
+    const tables: Array<{ page: number; rows: number; cols: number; content: string }> = [];
+    
+    for (let sheetIndex = 0; sheetIndex < sheets.length; sheetIndex++) {
+      const sheetName = sheets[sheetIndex];
+      text += `【工作表: ${sheetName}】\n\n`;
+      
+      const worksheet = workbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      
+      if (jsonData.length > 0) {
+        const maxCols = Math.max(...(jsonData as any[][]).map((row: any[]) => row.length));
+        
+        const tableLines: string[] = [];
+        for (const row of jsonData) {
+          const rowData = (row as any[]).map(cell => {
+            if (cell === null || cell === undefined) return '';
+            return String(cell);
+          });
+          tableLines.push('| ' + rowData.join(' | ') + ' |');
+        }
+        
+        text += tableLines.join('\n') + '\n\n';
+        
+        if (jsonData.length >= 2 && maxCols >= 2) {
+          tables.push({
+            page: sheetIndex + 1,
+            rows: jsonData.length,
+            cols: maxCols,
+            content: tableLines.join('\n')
+          });
+        }
+      }
+    }
+    
+    const cleanedContent = cleanText(text);
+    
+    return {
+      content: cleanedContent,
+      metadata: {
+        sheetCount,
+        tableCount: tables.length,
+        tables,
+        sheets,
+      }
+    };
+  } catch (e) {
+    console.warn('[RAG] XLSX parse error:', e);
+    return { content: '', metadata: {} };
+  }
+}
+
 function cleanText(text: string): string {
   text = text.replace(/\r\n/g, '\n');
   text = text.replace(/\r/g, '\n');
@@ -343,43 +404,250 @@ export async function parseDocument(filePath: string, fileName: string): Promise
       return parseMD(filePath);
     case 'docx':
       return await parseDOCX(filePath);
+    case 'xlsx':
+    case 'xls':
+      return parseXLSX(filePath);
     default:
       throw new Error(`不支持的文件类型: ${ext}`);
   }
 }
 
-export function chunkByToken(content: string, chunkSize: number = 500, chunkOverlap: number = 50): string[] {
+export function chunkByFixedSize(content: string, chunkSize: number = 500, chunkOverlap: number = 50): string[] {
   if (!content.trim()) return [];
 
-  const enc = getTokenizer();
-  const tokens = enc.encode(content);
   const chunks: string[] = [];
-
-  if (tokens.length <= chunkSize) {
-    chunks.push(content);
+  const text = content.trim();
+  
+  if (text.length <= chunkSize) {
+    chunks.push(text);
     return chunks;
   }
 
-  const step = chunkSize - chunkOverlap;
-  if (step <= 0) {
-    throw new Error('chunkSize must be greater than chunkOverlap');
-  }
-
-  for (let i = 0; i < tokens.length; i += step) {
-    const chunkTokens = tokens.slice(i, i + chunkSize);
-    const decoded = enc.decode(chunkTokens);
-    const chunkText = typeof decoded === 'string' ? decoded : new TextDecoder().decode(decoded as Uint8Array);
-    const trimmed = chunkText.trim();
-    if (trimmed) {
-      chunks.push(trimmed);
+  let start = 0;
+  while (start < text.length) {
+    let end = start + chunkSize;
+    
+    if (end < text.length) {
+      const lastPeriod = text.lastIndexOf('。', end);
+      const lastQuestion = text.lastIndexOf('？', end);
+      const lastExclamation = text.lastIndexOf('！', end);
+      const lastNewline = text.lastIndexOf('\n', end);
+      
+      const lastBreak = Math.max(lastPeriod, lastQuestion, lastExclamation, lastNewline);
+      
+      if (lastBreak > start + chunkSize / 2) {
+        end = lastBreak + 1;
+      } else {
+        end = start + chunkSize;
+      }
     }
+    
+    const chunk = text.slice(start, end).trim();
+    if (chunk) {
+      chunks.push(chunk);
+    }
+    
+    start = end - chunkOverlap;
+    if (start < 0) start = 0;
   }
 
   return chunks;
 }
 
+export function chunkByHierarchical(content: string, chunkSize: number = 500, chunkOverlap: number = 50): string[] {
+  if (!content.trim()) return [];
+
+  const chunks: string[] = [];
+  
+  let sections: Array<{ title: string; content: string; level: number }> = [];
+  let currentSection = { title: '前言', content: '', level: 0 };
+  
+  try {
+    const lines = content.split('\n');
+    for (const line of lines) {
+      const trimmedLine = line.trim();
+      
+      const headingMatch = trimmedLine.match(/^(#{1,6})\s+(.+)/);
+      if (headingMatch) {
+        if (currentSection.content.trim()) {
+          sections.push(currentSection);
+        }
+        currentSection = {
+          title: headingMatch[2],
+          content: line + '\n',
+          level: headingMatch[1].length
+        };
+        continue;
+      }
+      
+      const cnHeadingMatch = trimmedLine.match(/^(第[一二三四五六七八九十百千\d]+[章节篇讲])\s*(.*)/);
+      if (cnHeadingMatch) {
+        if (currentSection.content.trim()) {
+          sections.push(currentSection);
+        }
+        const level = trimmedLine.includes('篇') ? 1 : trimmedLine.includes('章') ? 2 : trimmedLine.includes('节') ? 3 : 4;
+        currentSection = {
+          title: cnHeadingMatch[1] + (cnHeadingMatch[2] || ''),
+          content: line + '\n',
+          level
+        };
+        continue;
+      }
+      
+      const numberedHeadingMatch = trimmedLine.match(/^(\d+(?:\.\d+)*)\s+[\u4e00-\u9fa5\w]+/);
+      if (numberedHeadingMatch) {
+        if (currentSection.content.trim()) {
+          sections.push(currentSection);
+        }
+        const level = numberedHeadingMatch[1].split('.').length;
+        currentSection = {
+          title: trimmedLine,
+          content: line + '\n',
+          level: Math.min(level, 6)
+        };
+        continue;
+      }
+      
+      currentSection.content += line + '\n';
+    }
+    
+    if (currentSection.content.trim()) {
+      sections.push(currentSection);
+    }
+  } catch (e) {
+    console.warn('[RAG] 层次分片解析失败，使用固定长度分片:', e);
+    return chunkByFixedSize(content, chunkSize, chunkOverlap);
+  }
+
+  if (sections.length === 0 || (sections.length === 1 && sections[0].level === 0)) {
+    return chunkByFixedSize(content, chunkSize, chunkOverlap);
+  }
+
+  for (const section of sections) {
+    const sectionContent = section.content.trim();
+    
+    if (sectionContent.length <= chunkSize) {
+      chunks.push(sectionContent);
+    } else {
+      const subChunks = chunkByFixedSize(sectionContent, chunkSize, chunkOverlap);
+      chunks.push(...subChunks);
+    }
+  }
+
+  return chunks.length > 0 ? chunks : chunkByFixedSize(content, chunkSize, chunkOverlap);
+}
+
+export function chunkBySemantic(content: string, chunkSize: number = 500, chunkOverlap: number = 50): string[] {
+  if (!content.trim()) return [];
+
+  const chunks: string[] = [];
+  
+  const sentences = content.split(/([。！？\n]+)/).filter(s => s.trim());
+  
+  let currentChunk = '';
+  for (let i = 0; i < sentences.length; i += 2) {
+    const sentence = sentences[i];
+    const separator = sentences[i + 1] || '';
+    
+    const tempChunk = currentChunk + sentence + separator;
+    
+    if (tempChunk.length <= chunkSize || currentChunk.length === 0) {
+      currentChunk = tempChunk;
+    } else {
+      if (currentChunk.trim()) {
+        chunks.push(currentChunk.trim());
+      }
+      
+      const overlapText = currentChunk.slice(-chunkOverlap).trim();
+      const overlapEnd = overlapText.lastIndexOf('。');
+      if (overlapEnd > 0) {
+        currentChunk = overlapText.slice(0, overlapEnd + 1) + sentence + separator;
+      } else {
+        currentChunk = sentence + separator;
+      }
+    }
+  }
+  
+  if (currentChunk.trim()) {
+    chunks.push(currentChunk.trim());
+  }
+
+  return chunks;
+}
+
+export function chunkContent(content: string, strategy: ChunkStrategy, chunkSize: number = 500, chunkOverlap: number = 50): string[] {
+  switch (strategy) {
+    case 'fixed_size':
+      return chunkByFixedSize(content, chunkSize, chunkOverlap);
+    case 'hierarchical':
+      return chunkByHierarchical(content, chunkSize, chunkOverlap);
+    case 'semantic':
+      return chunkBySemantic(content, chunkSize, chunkOverlap);
+    default:
+      return chunkByFixedSize(content, chunkSize, chunkOverlap);
+  }
+}
+
+let embeddingModel: any = null;
+let rerankerModel: any = null;
+
+async function loadEmbeddingModel(): Promise<any> {
+  if (embeddingModel) return embeddingModel;
+  
+  try {
+    const { pipeline } = await import('@xenova/transformers');
+    embeddingModel = await pipeline('feature-extraction', 'Xenova/bge-m3');
+    console.log('[RAG] BGE-M3 embedding model loaded');
+  } catch (e) {
+    console.warn('[RAG] Failed to load BGE-M3 model, using fallback:', e);
+    embeddingModel = 'fallback';
+  }
+  
+  return embeddingModel;
+}
+
+async function loadRerankerModel(): Promise<any> {
+  if (rerankerModel) return rerankerModel;
+  
+  try {
+    const { pipeline } = await import('@xenova/transformers');
+    rerankerModel = await pipeline('text-classification', 'Xenova/bge-reranker-v2-m3');
+    console.log('[RAG] BGE-Reranker-v2-m3 model loaded');
+  } catch (e) {
+    console.warn('[RAG] Failed to load BGE-Reranker model, using fallback:', e);
+    rerankerModel = 'fallback';
+  }
+  
+  return rerankerModel;
+}
+
+export async function generateEmbedding(text: string): Promise<number[]> {
+  const model = await loadEmbeddingModel();
+  
+  if (model === 'fallback') {
+    return simulateEmbedding(text);
+  }
+  
+  try {
+    const output = await model(text, {
+      pooling: 'mean',
+      normalize: true,
+    });
+    
+    if (Array.isArray(output) && output.length > 0) {
+      return Array.isArray(output[0]) ? output[0] : output;
+    }
+    
+    const embeddings = output.tolist ? output.tolist() : output;
+    return Array.isArray(embeddings) ? embeddings : simulateEmbedding(text);
+  } catch (e) {
+    console.warn('[RAG] Embedding generation failed, using fallback:', e);
+    return simulateEmbedding(text);
+  }
+}
+
 export function simulateEmbedding(text: string): number[] {
-  const dimension = 384;
+  const dimension = 1024;
   const embedding: number[] = new Array(dimension).fill(0);
 
   const normalizedText = text.trim().toLowerCase();
@@ -421,10 +689,6 @@ export function simulateEmbedding(text: string): number[] {
   return embedding;
 }
 
-export async function generateEmbedding(text: string): Promise<number[]> {
-  return simulateEmbedding(text);
-}
-
 export function cosineSimilarity(vec1: number[], vec2: number[]): number {
   let dotProduct = 0;
   let norm1 = 0;
@@ -439,6 +703,211 @@ export function cosineSimilarity(vec1: number[], vec2: number[]): number {
 
   if (norm1 === 0 || norm2 === 0) return 0;
   return dotProduct / (Math.sqrt(norm1) * Math.sqrt(norm2));
+}
+
+let faissIndex: any = null;
+let useNativeFAISS = false;
+const indexDir = path.join(process.cwd(), 'data', 'faiss');
+
+class SimpleVectorIndex {
+  private embeddings: number[][];
+  private chunkIds: string[];
+  private dimension: number;
+
+  constructor(dimension: number) {
+    this.dimension = dimension;
+    this.embeddings = [];
+    this.chunkIds = [];
+  }
+
+  add(embeddings: number[][], count: number): void {
+    for (let i = 0; i < count; i++) {
+      this.embeddings.push(embeddings[i]);
+    }
+  }
+
+  setChunkIds(ids: string[]): void {
+    this.chunkIds = ids;
+  }
+
+  search(query: number[], topK: number): { distances: number[]; indices: number[] } {
+    const results: Array<{ index: number; distance: number }> = [];
+    
+    for (let i = 0; i < this.embeddings.length; i++) {
+      let distance = 0;
+      for (let j = 0; j < this.dimension; j++) {
+        const diff = query[j] - this.embeddings[i][j];
+        distance += diff * diff;
+      }
+      results.push({ index: i, distance });
+    }
+    
+    results.sort((a, b) => a.distance - b.distance);
+    
+    const topResults = results.slice(0, topK);
+    return {
+      distances: topResults.map(r => r.distance),
+      indices: topResults.map(r => r.index),
+    };
+  }
+
+  save(path: string): void {
+    const data = {
+      dimension: this.dimension,
+      embeddings: this.embeddings,
+      chunkIds: this.chunkIds,
+    };
+    fs.writeFileSync(path, JSON.stringify(data));
+  }
+
+  static load(path: string): SimpleVectorIndex | null {
+    try {
+      const data = JSON.parse(fs.readFileSync(path, 'utf-8'));
+      const index = new SimpleVectorIndex(data.dimension);
+      index.embeddings = data.embeddings;
+      index.chunkIds = data.chunkIds;
+      return index;
+    } catch {
+      return null;
+    }
+  }
+}
+
+function getIndexPath(): string {
+  return path.join(indexDir, 'rag_index.faiss');
+}
+
+export async function initFAISSSearch(): Promise<void> {
+  if (!fs.existsSync(indexDir)) {
+    fs.mkdirSync(indexDir, { recursive: true });
+  }
+  
+  const indexPath = getIndexPath();
+  
+  if (fs.existsSync(indexPath)) {
+    try {
+      const { IndexFlatL2 } = await import('faiss-node');
+      faissIndex = IndexFlatL2.read(indexPath);
+      useNativeFAISS = true;
+      console.log('[RAG] FAISS index loaded from:', indexPath);
+    } catch (e) {
+      console.warn('[RAG] Failed to load native FAISS index, using simple index:', e);
+      faissIndex = SimpleVectorIndex.load(indexPath);
+      useNativeFAISS = false;
+    }
+  }
+}
+
+export async function buildFAISSIndex(): Promise<void> {
+  try {
+    const allChunks = RagChunkDAO.findAllChunks();
+    if (allChunks.length === 0) {
+      console.log('[RAG] No chunks to build index');
+      return;
+    }
+    
+    const embeddings: number[][] = [];
+    const chunkIds: string[] = [];
+    
+    for (const chunk of allChunks) {
+      const embedding = parseJSON<number[]>(chunk.embedding);
+      if (embedding && embedding.length > 0) {
+        embeddings.push(embedding);
+        chunkIds.push(chunk.id);
+      }
+    }
+    
+    if (embeddings.length === 0) {
+      console.log('[RAG] No valid embeddings to build index');
+      return;
+    }
+    
+    const dimension = embeddings[0].length;
+    
+    try {
+      const { IndexFlatL2 } = await import('faiss-node');
+      faissIndex = new IndexFlatL2(dimension);
+      
+      const floatArray = new Float32Array(embeddings.length * dimension);
+      for (let i = 0; i < embeddings.length; i++) {
+        floatArray.set(embeddings[i], i * dimension);
+      }
+      
+      faissIndex.add(floatArray, embeddings.length);
+      
+      const indexPath = getIndexPath();
+      faissIndex.write(indexPath);
+      useNativeFAISS = true;
+      console.log('[RAG] Native FAISS index built and saved:', indexPath);
+    } catch (e) {
+      console.warn('[RAG] Failed to build native FAISS index, using simple index:', e);
+      faissIndex = new SimpleVectorIndex(dimension);
+      faissIndex.add(embeddings, embeddings.length);
+      faissIndex.setChunkIds(chunkIds);
+      
+      const indexPath = getIndexPath();
+      faissIndex.save(indexPath);
+      useNativeFAISS = false;
+      console.log('[RAG] Simple vector index built and saved:', indexPath);
+    }
+    
+    const idPath = path.join(indexDir, 'chunk_ids.json');
+    fs.writeFileSync(idPath, JSON.stringify(chunkIds));
+  } catch (e) {
+    console.error('[RAG] Failed to build FAISS index:', e);
+    faissIndex = null;
+  }
+}
+
+export async function searchFAISS(queryEmbedding: number[], topK: number = 10): Promise<Array<{ chunkId: string; score: number; similarity: number }>> {
+  if (!faissIndex) {
+    await buildFAISSIndex();
+  }
+  
+  if (!faissIndex) {
+    return [];
+  }
+  
+  try {
+    let distances: number[];
+    let indices: number[];
+    
+    if (useNativeFAISS) {
+      const queryFloat = new Float32Array(queryEmbedding);
+      const result = faissIndex.search(Array.from(queryFloat), topK);
+      distances = result.distances;
+      indices = result.labels;
+    } else {
+      const result = faissIndex.search(queryEmbedding, topK);
+      distances = result.distances;
+      indices = result.indices;
+    }
+    
+    const idPath = path.join(indexDir, 'chunk_ids.json');
+    const chunkIds = fs.existsSync(idPath) 
+      ? JSON.parse(fs.readFileSync(idPath, 'utf-8')) 
+      : (faissIndex.chunkIds || []);
+    
+    const results: Array<{ chunkId: string; score: number; similarity: number }> = [];
+    
+    for (let i = 0; i < indices.length; i++) {
+      const idx = indices[i];
+      if (idx >= 0 && idx < chunkIds.length) {
+        const distance = distances[i];
+        const similarity = 1 / (1 + distance);
+        results.push({
+          chunkId: chunkIds[idx],
+          score: similarity,
+          similarity,
+        });
+      }
+    }
+    
+    return results;
+  } catch (e) {
+    console.error('[RAG] FAISS search failed:', e);
+    return [];
+  }
 }
 
 function keywordMatchScore(content: string, query: string): number {
@@ -491,11 +960,17 @@ export async function recall(options: SearchOptions): Promise<SearchResult[]> {
 
   const vectorResults: SearchResult[] = [];
 
+  const faissResults = await searchFAISS(queryEmbedding, Math.min(topK * 10, 100));
+  const faissMap = new Map(faissResults.map(r => [r.chunkId, r]));
+
   for (const chunk of allChunks) {
     const embedding = parseJSON<number[]>(chunk.embedding);
-    if (!embedding) continue;
-
-    const similarity = cosineSimilarity(queryEmbedding, embedding);
+    let similarity = 0;
+    
+    if (embedding) {
+      similarity = cosineSimilarity(queryEmbedding, embedding);
+    }
+    
     const keywordScore = keywordMatchScore(chunk.content, query);
 
     let score: number;
@@ -505,15 +980,21 @@ export async function recall(options: SearchOptions): Promise<SearchResult[]> {
       score = similarity * 0.6 + Math.min(keywordScore, 1) * 0.4;
     }
 
-    vectorResults.push({
-      chunkId: chunk.id,
-      documentId: chunk.documentId,
-      chunkIndex: chunk.chunkIndex,
-      content: chunk.content,
-      score,
-      similarity,
-      metadata: parseJSON<Record<string, any>>(chunk.metadata) || undefined,
-    });
+    if (faissMap.has(chunk.id)) {
+      score = Math.max(score, faissMap.get(chunk.id)!.score * 0.8 + keywordScore * 0.2);
+    }
+
+    if (score > 0.01 || keywordScore > 0.1) {
+      vectorResults.push({
+        chunkId: chunk.id,
+        documentId: chunk.documentId,
+        chunkIndex: chunk.chunkIndex,
+        content: chunk.content,
+        score,
+        similarity,
+        metadata: parseJSON<Record<string, any>>(chunk.metadata) || undefined,
+      });
+    }
   }
 
   vectorResults.sort((a, b) => b.score - a.score);
@@ -521,7 +1002,7 @@ export async function recall(options: SearchOptions): Promise<SearchResult[]> {
   let results = vectorResults.slice(0, topK * 2);
 
   if (useRerank) {
-    results = rerank(results, query);
+    results = await rerank(results, query);
   }
 
   results = results.slice(0, topK);
@@ -547,7 +1028,40 @@ export async function recall(options: SearchOptions): Promise<SearchResult[]> {
   return results;
 }
 
-export function rerank(results: SearchResult[], query: string): SearchResult[] {
+export async function rerank(results: SearchResult[], query: string): Promise<SearchResult[]> {
+  const model = await loadRerankerModel();
+  
+  if (model === 'fallback') {
+    return simpleRerank(results, query);
+  }
+  
+  try {
+    const pairs = results.map(r => ({ text: query, text_pair: r.content }));
+    const predictions = await model(pairs);
+    
+    const reranked = results.map((result, index) => {
+      const prediction = predictions[index];
+      let rerankScore = result.score * 0.5;
+      
+      if (prediction && typeof prediction.score === 'number') {
+        rerankScore += prediction.score * 0.5;
+      }
+      
+      return {
+        ...result,
+        score: rerankScore,
+      };
+    });
+    
+    reranked.sort((a, b) => b.score - a.score);
+    return reranked;
+  } catch (e) {
+    console.warn('[RAG] Reranking failed, using fallback:', e);
+    return simpleRerank(results, query);
+  }
+}
+
+function simpleRerank(results: SearchResult[], query: string): SearchResult[] {
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(/[\s\n，。！？、；：""''（）【】《》]+/).filter(Boolean);
 
@@ -633,15 +1147,7 @@ export async function processDocument(
 
     RagChunkDAO.deleteByDocumentId(documentId);
 
-    let chunks: string[];
-    switch (config.strategy) {
-      case 'fixed_size':
-      case 'semantic':
-      case 'recursive':
-      default:
-        chunks = chunkByToken(content, config.chunkSize, config.chunkOverlap);
-        break;
-    }
+    const chunks = chunkContent(content, config.strategy, config.chunkSize, config.chunkOverlap);
 
     const pageCount = parseResult.metadata.pageCount || Math.ceil(chunks.length / 3);
 
@@ -671,6 +1177,8 @@ export async function processDocument(
 
     RagDocumentDAO.updateStatus(documentId, 'ready', chunks.length);
 
+    await buildFAISSIndex();
+
     console.log(`[RAG] 文档处理完成: ${documentId}, 共 ${chunks.length} 个分片`);
   } catch (error) {
     console.error('[RAG] 文档处理失败:', error);
@@ -683,57 +1191,67 @@ export async function rechunkDocument(
   filePath: string,
   config: ChunkConfig
 ): Promise<{ totalChunks: number }> {
-  const doc = RagDocumentDAO.findById(documentId);
-  if (!doc) {
-    throw new Error('文档不存在');
-  }
+  try {
+    const doc = RagDocumentDAO.findById(documentId);
+    if (!doc) {
+      throw new Error('文档不存在');
+    }
 
-  RagDocumentDAO.update(documentId, {
-    chunkStrategy: config.strategy,
-    chunkSize: config.chunkSize,
-    chunkOverlap: config.chunkOverlap,
-    status: 'processing',
-  });
-
-  const parseResult = await parseDocument(filePath, doc.fileName || '');
-  const content = parseResult.content;
-
-  if (!content.trim()) {
-    RagDocumentDAO.updateStatus(documentId, 'failed');
-    throw new Error('文档内容为空');
-  }
-
-  RagChunkDAO.deleteByDocumentId(documentId);
-
-  const chunks = chunkByToken(content, config.chunkSize, config.chunkOverlap);
-  
-  const pageCount = parseResult.metadata.pageCount || Math.ceil(chunks.length / 3);
-
-  for (let i = 0; i < chunks.length; i++) {
-    const chunkContent = chunks[i];
-    const tokenCount = countTokens(chunkContent);
-    const embedding = await generateEmbedding(chunkContent);
-
-    const metadata = {
-      chunkIndex: i,
-      totalChunks: chunks.length,
-      charLength: chunkContent.length,
-      page: Math.floor(i / Math.max(1, Math.ceil(chunks.length / pageCount))) + 1,
-      section: parseResult.metadata.sections?.[Math.floor(i / Math.max(1, Math.ceil(chunks.length / (parseResult.metadata.sections?.length || 1))))] || `第${i + 1}节`,
-      ...parseResult.metadata,
-    };
-
-    RagChunkDAO.create({
-      documentId,
-      chunkIndex: i,
-      content: chunkContent,
-      tokenCount,
-      embedding: stringifyJSON(embedding) ?? undefined,
-      metadata: stringifyJSON(metadata) ?? undefined,
+    RagDocumentDAO.update(documentId, {
+      chunkStrategy: config.strategy,
+      chunkSize: config.chunkSize,
+      chunkOverlap: config.chunkOverlap,
+      status: 'processing',
     });
+
+    const parseResult = await parseDocument(filePath, doc.fileName || '');
+    const content = parseResult.content;
+
+    if (!content.trim()) {
+      RagDocumentDAO.updateStatus(documentId, 'failed');
+      throw new Error('文档内容为空');
+    }
+
+    RagChunkDAO.deleteByDocumentId(documentId);
+
+    const chunks = chunkContent(content, config.strategy, config.chunkSize, config.chunkOverlap);
+    
+    const pageCount = parseResult.metadata.pageCount || Math.ceil(chunks.length / 3);
+
+    for (let i = 0; i < chunks.length; i++) {
+      const chunkContent = chunks[i];
+      const tokenCount = countTokens(chunkContent);
+      const embedding = await generateEmbedding(chunkContent);
+
+      const metadata = {
+        chunkIndex: i,
+        totalChunks: chunks.length,
+        charLength: chunkContent.length,
+        page: Math.floor(i / Math.max(1, Math.ceil(chunks.length / pageCount))) + 1,
+        section: parseResult.metadata.sections?.[Math.floor(i / Math.max(1, Math.ceil(chunks.length / (parseResult.metadata.sections?.length || 1))))] || `第${i + 1}节`,
+        ...parseResult.metadata,
+      };
+
+      RagChunkDAO.create({
+        documentId,
+        chunkIndex: i,
+        content: chunkContent,
+        tokenCount,
+        embedding: stringifyJSON(embedding) ?? undefined,
+        metadata: stringifyJSON(metadata) ?? undefined,
+      });
+    }
+
+    RagDocumentDAO.updateStatus(documentId, 'ready', chunks.length);
+    
+    await buildFAISSIndex();
+
+    return { totalChunks: chunks.length };
+  } catch (error) {
+    console.error('[RAG] 重新分片失败:', error);
+    RagDocumentDAO.updateStatus(documentId, 'failed');
+    throw error;
   }
-
-  RagDocumentDAO.updateStatus(documentId, 'ready', chunks.length);
-
-  return { totalChunks: chunks.length };
 }
+
+initFAISSSearch().catch(console.error);

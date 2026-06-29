@@ -28,14 +28,28 @@ import {
   CheckCircle,
   Loader2,
   Hash,
+  Dock,
 } from 'lucide-react';
 import { ragApi, RagDocument, RagChunk, SearchResult as ApiSearchResult } from '../api/rag';
 
-type DocType = 'pdf' | 'txt' | 'md' | 'docx';
+type DocType = 'pdf' | 'txt' | 'md' | 'docx' | 'xlsx';
 type DocStatus = 'uploading' | 'processing' | 'ready' | 'failed';
 type ViewMode = 'grid' | 'list';
 type TabType = 'documents' | 'search';
 type SearchStrategy = 'vector' | 'hybrid';
+type ChunkStrategy = 'fixed_size' | 'hierarchical' | 'semantic';
+
+interface ChunkStrategyOption {
+  id: ChunkStrategy;
+  name: string;
+  description: string;
+}
+
+const chunkStrategies: ChunkStrategyOption[] = [
+  { id: 'fixed_size', name: '固定长度', description: '按字符数均匀分割，适合结构化文档' },
+  { id: 'hierarchical', name: '父子层次', description: '先按章节分割，再细分，保持文档结构' },
+  { id: 'semantic', name: '语义向量', description: '按句子边界分割，保持语义完整性' },
+];
 
 interface DocumentChunk {
   id: string;
@@ -53,6 +67,7 @@ interface SearchResultItem {
   chunkIndex: number;
   content: string;
   similarity: number;
+  score: number;
   page?: number;
   section?: string;
 }
@@ -95,6 +110,7 @@ const getDocType = (fileType: string): DocType => {
   const type = fileType.toLowerCase();
   if (type.includes('pdf')) return 'pdf';
   if (type.includes('docx') || type.includes('word')) return 'docx';
+  if (type.includes('xlsx') || type.includes('xls') || type.includes('excel')) return 'xlsx';
   if (type.includes('markdown') || type.includes('md')) return 'md';
   return 'txt';
 };
@@ -105,6 +121,8 @@ const getDocIcon = (type: DocType) => {
       return <FileText className="text-red-500" size={24} />;
     case 'docx':
       return <FileSpreadsheet className="text-blue-500" size={24} />;
+    case 'xlsx':
+      return <FileSpreadsheet className="text-green-500" size={24} />;
     case 'md':
       return <FileCode className="text-purple-500" size={24} />;
     case 'txt':
@@ -158,6 +176,7 @@ const mapApiSearchResult = (result: ApiSearchResult): SearchResultItem => ({
   chunkIndex: result.chunkIndex,
   content: result.content,
   similarity: result.similarity,
+  score: result.score,
   page: result.metadata?.page,
   section: result.metadata?.section,
 });
@@ -183,11 +202,13 @@ function KnowledgeBasePage() {
   const [uploadTitle, setUploadTitle] = useState('');
   const [uploadCategory, setUploadCategory] = useState('1-1');
   const [uploadTags, setUploadTags] = useState<string[]>([]);
+  const [uploadChunkStrategy, setUploadChunkStrategy] = useState<ChunkStrategy>('fixed_size');
   const [uploadChunkSize, setUploadChunkSize] = useState(500);
   const [uploadChunkOverlap, setUploadChunkOverlap] = useState(50);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadFile, setUploadFile] = useState<File | null>(null);
 
+  const [rechunkStrategy, setRechunkStrategy] = useState<ChunkStrategy>('fixed_size');
   const [rechunkSize, setRechunkSize] = useState(500);
   const [rechunkOverlap, setRechunkOverlap] = useState(50);
   const [isRechunking, setIsRechunking] = useState(false);
@@ -196,9 +217,10 @@ function KnowledgeBasePage() {
   const [topK, setTopK] = useState(5);
   const [searchStrategy, setSearchStrategy] = useState<SearchStrategy>('hybrid');
   const [enableRerank, setEnableRerank] = useState(true);
-  const [minSimilarity, setMinSimilarity] = useState(0.6);
+  const [minSimilarity, setMinSimilarity] = useState(0.2);
   const [searchResults, setSearchResults] = useState<SearchResultItem[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
   const [contextChunks, setContextChunks] = useState<SearchResultItem[]>([]);
   const [copied, setCopied] = useState(false);
   const [contextText, setContextText] = useState('');
@@ -210,6 +232,9 @@ function KnowledgeBasePage() {
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewServiceRunning, setPreviewServiceRunning] = useState(false);
   const [startingPreviewService, setStartingPreviewService] = useState(false);
+  const [dockerRunning, setDockerRunning] = useState(false);
+  const [startingDocker, setStartingDocker] = useState(false);
+  const [previewDocId, setPreviewDocId] = useState<string | null>(null);
 
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -225,7 +250,10 @@ function KnowledgeBasePage() {
         params.keyword = searchText.trim();
       }
       if (selectedCategory !== 'all') {
-        params.category = selectedCategory;
+        const categoryName = categories.find((c) => c.id === selectedCategory)?.name;
+        if (categoryName) {
+          params.category = categoryName;
+        }
       }
       const result = await ragApi.getDocuments(params);
       setDocuments(result.list);
@@ -354,7 +382,7 @@ function KnowledgeBasePage() {
         title: uploadTitle,
         category: categoryName,
         tags: uploadTags,
-        chunkStrategy: 'fixed_size',
+        chunkStrategy: uploadChunkStrategy,
         chunkSize: uploadChunkSize,
         chunkOverlap: uploadChunkOverlap,
       });
@@ -392,16 +420,28 @@ function KnowledgeBasePage() {
 
     try {
       const updatedDoc = await ragApi.rechunkDocument(selectedDoc.id, {
+        chunkStrategy: rechunkStrategy,
         chunkSize: rechunkSize,
         chunkOverlap: rechunkOverlap,
       });
 
-      setDocuments((prev) =>
-        prev.map((d) => (d.id === selectedDoc.id ? updatedDoc : d))
-      );
-      setSelectedDoc(updatedDoc);
-      startPolling();
+      console.log('[Rechunk] Updated doc:', updatedDoc);
+
+      if (updatedDoc && updatedDoc.id) {
+        setDocuments((prev) =>
+          prev.map((d) => (d.id === selectedDoc.id ? updatedDoc : d))
+        );
+        setSelectedDoc(updatedDoc);
+        startPolling();
+        
+        if (updatedDoc.status === 'ready') {
+          fetchChunks(updatedDoc.id);
+        }
+      } else {
+        throw new Error('重新分片失败：返回数据格式错误');
+      }
     } catch (err: any) {
+      console.error('[Rechunk] Error:', err);
       setError(err.message || '重新分片失败');
     } finally {
       setIsRechunking(false);
@@ -414,6 +454,7 @@ function KnowledgeBasePage() {
     setIsSearching(true);
     setSearchResults([]);
     setError(null);
+    setHasSearched(true);
 
     try {
       const results = await ragApi.search({
@@ -423,14 +464,20 @@ function KnowledgeBasePage() {
         searchStrategy,
       });
 
+      console.log('[Search] API results:', results);
+
       const mapped = results
         .map(mapApiSearchResult)
-        .filter((r) => r.similarity >= minSimilarity);
+        .filter((r) => r.score >= minSimilarity);
+
+      console.log('[Search] Mapped results:', mapped);
+      console.log('[Search] minSimilarity:', minSimilarity);
 
       setSearchResults(mapped);
       setContextChunks(mapped);
       setTotalTokens(mapped.reduce((sum, c) => sum + Math.floor(c.content.length / 2), 0));
     } catch (err: any) {
+      console.error('[Search] Error:', err);
       setError(err.message || '检索失败');
     } finally {
       setIsSearching(false);
@@ -497,6 +544,7 @@ function KnowledgeBasePage() {
 
   const openRechunkModal = () => {
     if (selectedDoc) {
+      setRechunkStrategy(selectedDoc.chunkStrategy as ChunkStrategy || 'fixed_size');
       setRechunkSize(selectedDoc.chunkSize);
       setRechunkOverlap(selectedDoc.chunkOverlap);
       setShowRechunkModal(true);
@@ -519,14 +567,17 @@ function KnowledgeBasePage() {
     }
   };
 
-  const checkPreviewService = async () => {
+  const startDockerService = async () => {
+    setStartingDocker(true);
     try {
-      const status = await ragApi.getPreviewStatus();
-      setPreviewServiceRunning(status.running);
-      return status.running;
-    } catch (err) {
-      console.error('检查预览服务状态失败:', err);
+      const result = await ragApi.startDockerService();
+      setDockerRunning(result.running);
+      return result.running;
+    } catch (err: any) {
+      setError(err.message || '启动Docker失败');
       return false;
+    } finally {
+      setStartingDocker(false);
     }
   };
 
@@ -534,7 +585,16 @@ function KnowledgeBasePage() {
     setStartingPreviewService(true);
     try {
       const result = await ragApi.startPreviewService();
+      if (result.dockerRunning !== undefined) {
+        setDockerRunning(result.dockerRunning);
+      }
       setPreviewServiceRunning(result.running);
+      
+      if (result.running && previewDocId) {
+        const preview = await ragApi.getPreviewUrl(previewDocId);
+        setPreviewUrl(preview.previewUrl);
+      }
+      
       return result.running;
     } catch (err: any) {
       setError(err.message || '启动预览服务失败');
@@ -549,21 +609,27 @@ function KnowledgeBasePage() {
       setError('文档尚未处理完成，无法预览');
       return;
     }
-    
+
     setPreviewLoading(true);
     setShowPreviewModal(true);
-    
+    setPreviewUrl(null);
+    setPreviewDocId(doc.id);
+
     try {
-      const isRunning = await checkPreviewService();
-      
-      if (!isRunning) {
-        const started = await startPreviewService();
-        if (!started) {
-          setPreviewLoading(false);
-          return;
-        }
+      const status = await ragApi.getPreviewStatus();
+      setDockerRunning(status.dockerRunning);
+      setPreviewServiceRunning(status.running);
+
+      if (!status.dockerRunning) {
+        setPreviewLoading(false);
+        return;
       }
-      
+
+      if (!status.running) {
+        setPreviewLoading(false);
+        return;
+      }
+
       const preview = await ragApi.getPreviewUrl(doc.id);
       setPreviewUrl(preview.previewUrl);
     } catch (err: any) {
@@ -1046,7 +1112,7 @@ function KnowledgeBasePage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    最小相似度: {minSimilarity.toFixed(2)}
+                    最小相关度: {minSimilarity.toFixed(2)}
                   </label>
                   <input
                     type="range"
@@ -1100,11 +1166,11 @@ function KnowledgeBasePage() {
                               <div className="relative w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                                 <div
                                   className="absolute left-0 top-0 h-full bg-gradient-to-r from-primary-500 to-green-500 rounded-full"
-                                  style={{ width: `${result.similarity * 100}%` }}
+                                  style={{ width: `${Math.min(result.score * 100, 100)}%` }}
                                 ></div>
                               </div>
                               <span className="text-sm font-semibold text-primary-600">
-                                {(result.similarity * 100).toFixed(1)}%
+                                {(Math.min(result.score * 100, 100)).toFixed(1)}%
                               </span>
                             </div>
                             <button
@@ -1155,7 +1221,9 @@ function KnowledgeBasePage() {
                 ) : (
                   <div className="text-center py-12 bg-gray-50 rounded-lg">
                     <Search size={48} className="mx-auto mb-3 text-gray-300" />
-                    <p className="text-gray-500">输入查询开始检索</p>
+                    <p className="text-gray-500">
+                      {hasSearched ? '未找到相关结果，请尝试调整关键词或降低最小相关度' : '输入查询开始检索'}
+                    </p>
                   </div>
                 )}
               </div>
@@ -1256,7 +1324,7 @@ function KnowledgeBasePage() {
                 <input
                   ref={fileInputRef}
                   type="file"
-                  accept=".pdf,.txt,.md,.docx"
+                  accept=".pdf,.txt,.md,.docx,.xlsx,.xls"
                   onChange={handleFileSelect}
                   className="hidden"
                 />
@@ -1273,7 +1341,7 @@ function KnowledgeBasePage() {
                   <div>
                     <p className="font-medium text-gray-900">拖拽文件到此处，或点击选择</p>
                     <p className="text-sm text-gray-500 mt-1">
-                      支持 PDF、TXT、MD、DOCX 格式
+                      支持 PDF、TXT、MD、DOCX、Excel 格式
                     </p>
                   </div>
                 )}
@@ -1338,14 +1406,20 @@ function KnowledgeBasePage() {
                 </h4>
                 <div className="space-y-4">
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <label className="text-sm font-medium text-gray-700">
-                        分片策略
-                      </label>
-                      <span className="text-sm text-primary-600 bg-primary-100 px-2 py-0.5 rounded">
-                        固定大小分片
-                      </span>
-                    </div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      分片策略
+                    </label>
+                    <select
+                      value={uploadChunkStrategy}
+                      onChange={(e) => setUploadChunkStrategy(e.target.value as ChunkStrategy)}
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
+                    >
+                      {chunkStrategies.map((strategy) => (
+                        <option key={strategy.id} value={strategy.id}>
+                          {strategy.name} - {strategy.description}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-2">
@@ -1455,7 +1529,13 @@ function KnowledgeBasePage() {
             <div className="p-6 space-y-6">
               <div className="bg-gray-50 rounded-lg p-4">
                 <h4 className="font-medium text-gray-900 mb-3">当前分片策略</h4>
-                <div className="grid grid-cols-3 gap-3 text-sm">
+                <div className="grid grid-cols-4 gap-3 text-sm">
+                  <div>
+                    <p className="text-gray-500">策略类型</p>
+                    <p className="font-medium text-gray-900">
+                      {chunkStrategies.find(s => s.id === selectedDoc.chunkStrategy)?.name || selectedDoc.chunkStrategy}
+                    </p>
+                  </div>
                   <div>
                     <p className="text-gray-500">分片大小</p>
                     <p className="font-medium text-gray-900">{selectedDoc.chunkSize} 字符</p>
@@ -1472,6 +1552,22 @@ function KnowledgeBasePage() {
               </div>
 
               <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    分片策略
+                  </label>
+                  <select
+                    value={rechunkStrategy}
+                    onChange={(e) => setRechunkStrategy(e.target.value as ChunkStrategy)}
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
+                  >
+                    {chunkStrategies.map((strategy) => (
+                      <option key={strategy.id} value={strategy.id}>
+                        {strategy.name} - {strategy.description}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-sm font-medium text-gray-700">
@@ -1558,7 +1654,20 @@ function KnowledgeBasePage() {
                 )}
               </div>
               <div className="flex items-center gap-2">
-                {!previewServiceRunning && (
+                {!dockerRunning ? (
+                  <button
+                    onClick={startDockerService}
+                    disabled={startingDocker}
+                    className="px-3 py-1.5 text-sm bg-amber-100 text-amber-700 rounded-lg hover:bg-amber-200 transition-colors flex items-center gap-1 disabled:opacity-50"
+                  >
+                    {startingDocker ? (
+                      <Loader2 size={14} className="animate-spin" />
+                    ) : (
+                      <Dock size={14} />
+                    )}
+                    {startingDocker ? '启动中...' : '启动Docker服务'}
+                  </button>
+                ) : !previewServiceRunning ? (
                   <button
                     onClick={startPreviewService}
                     disabled={startingPreviewService}
@@ -1571,8 +1680,7 @@ function KnowledgeBasePage() {
                     )}
                     {startingPreviewService ? '启动中...' : '启动预览服务'}
                   </button>
-                )}
-                {previewServiceRunning && (
+                ) : (
                   <span className="px-3 py-1.5 text-xs bg-green-100 text-green-700 rounded-full flex items-center gap-1">
                     <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                     预览服务运行中
@@ -1605,17 +1713,24 @@ function KnowledgeBasePage() {
                   title="文档预览"
                   sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                 />
+              ) : !dockerRunning ? (
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center max-w-md">
+                    <Dock size={48} className="mx-auto mb-4 text-amber-500" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">Docker服务未启动</h3>
+                    <p className="text-sm text-gray-500 mb-4">
+                      文档预览功能需要 Docker 服务支持。请点击上方"启动Docker服务"按钮启动 Docker。
+                    </p>
+                  </div>
+                </div>
               ) : !previewServiceRunning ? (
                 <div className="h-full flex items-center justify-center">
                   <div className="text-center max-w-md">
                     <AlertCircle size={48} className="mx-auto mb-4 text-amber-500" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">预览服务未启动</h3>
                     <p className="text-sm text-gray-500 mb-4">
-                      文档预览功能需要 kkfileview 服务支持。请点击上方按钮启动服务，或手动运行 Docker 容器：
+                      文档预览功能需要 kkfileview 服务支持。请点击上方"启动预览服务"按钮启动服务。
                     </p>
-                    <code className="block bg-gray-800 text-green-400 text-xs p-3 rounded-lg text-left">
-                      docker run -d --name kkfileview -p 8012:8012 keking/kkfileview:latest
-                    </code>
                   </div>
                 </div>
               ) : (
