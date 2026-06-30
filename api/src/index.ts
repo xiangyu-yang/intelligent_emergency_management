@@ -8,6 +8,7 @@ import path from 'path';
 import eventMonitorRouter from './routes/events/monitor.js';
 import taskRouter from './routes/events/tasks.js';
 import aiSolutionRouter from './routes/ai/solution.js';
+import aiAssistantRouter from './routes/ai/assistant.js';
 import correlationRouter from './routes/analysis/correlation.js';
 import selfLearningRouter from './routes/analysis/selfLearning.js';
 import knowledgeRouter from './routes/knowledge/base.js';
@@ -18,6 +19,7 @@ import solutionTemplatesRouter from './routes/config/solutionTemplates.js';
 import organizationRouter from './routes/config/organization.js';
 import resourcesRouter from './routes/config/resources.js';
 import solutionsRouter from './routes/solutions/index.js';
+import skillsRouter from './routes/skills/index.js';
 
 async function startServer() {
   const dataDir = path.join(process.cwd(), 'data');
@@ -51,6 +53,7 @@ async function startServer() {
   app.use('/api/tasks', taskRouter);
   app.use('/api/solutions', solutionsRouter);
   app.use('/api/ai', aiSolutionRouter);
+  app.use('/api/ai/assistant', aiAssistantRouter);
 
   app.use('/api/config/event-types', eventTypesRouter);
   app.use('/api/config/plan-templates', planTemplatesRouter);
@@ -62,6 +65,7 @@ async function startServer() {
   app.use('/api/self-learning', selfLearningRouter);
   app.use('/api/knowledge', knowledgeRouter);
   app.use('/api/rag', ragRouter);
+  app.use('/api/skills', skillsRouter);
 
   app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     console.error('[api error]', err);

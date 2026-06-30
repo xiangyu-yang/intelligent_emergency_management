@@ -539,7 +539,8 @@ function KnowledgeBasePage() {
     if (!selectedDoc) return 0;
     const avgCharPerChunk = size - overlap;
     if (avgCharPerChunk <= 0) return 0;
-    return Math.ceil(selectedDoc.fileSize / 100 / avgCharPerChunk * 10);
+    const contentLength = selectedDoc.charCount || selectedDoc.fileSize;
+    return Math.max(1, Math.ceil(contentLength / avgCharPerChunk));
   };
 
   const openRechunkModal = () => {

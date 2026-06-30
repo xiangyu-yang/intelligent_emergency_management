@@ -17,6 +17,8 @@ import {
   Search,
   ClipboardList,
   Lightbulb,
+  Bot,
+  Briefcase,
 } from 'lucide-react';
 import { useAppStore } from '../stores/appStore';
 import { classNames } from '../utils';
@@ -121,6 +123,24 @@ const menuItems: MenuItem[] = [
     label: '应急知识库',
     icon: <BookOpen size={20} />,
     path: '/knowledge-base',
+  },
+  {
+    key: 'skill-library',
+    label: '应急技能库',
+    icon: <Briefcase size={20} />,
+    path: '/skill-library',
+  },
+  {
+    key: 'ai-assistant',
+    label: '智能应急助手',
+    icon: <Bot size={20} />,
+    path: '/ai-assistant',
+  },
+  {
+    key: 'model-config',
+    label: '应急模型配置',
+    icon: <Settings size={20} />,
+    path: '/model-config',
   },
 ];
 

@@ -1,0 +1,58 @@
+{
+  "policy_template": {
+    "basic_info": {
+      "title": "",
+      "document_number": "",
+      "version": "1.0",
+      "issue_date": "",
+      "effective_date": "",
+      "status": "effective",
+      "source": "",
+      "authority": ""
+    },
+    "classification": {
+      "level1": "",
+      "level2": "",
+      "level3": "",
+      "tags": []
+    },
+    "content": {
+      "summary": "",
+      "chapters": [],
+      "attachments": []
+    },
+    "compliance": {
+      "compliant": true,
+      "review_date": "",
+      "reviewer": "",
+      "comments": ""
+    }
+  },
+  "categories": {
+    "level1": [
+      { "id": "law", "name": "法律", "description": "由全国人民代表大会及其常务委员会制定的法律" },
+      { "id": "regulation", "name": "法规", "description": "由国务院制定的行政法规" },
+      { "id": "rule", "name": "规章", "description": "由国务院各部门制定的部门规章" },
+      { "id": "normative", "name": "规范性文件", "description": "由各级政府及部门发布的规范性文件" }
+    ],
+    "level2": [
+      { "id": "overall_plan", "name": "总体预案", "parent_id": "regulation" },
+      { "id": "special_plan", "name": "专项预案", "parent_id": "regulation" },
+      { "id": "department_plan", "name": "部门预案", "parent_id": "rule" },
+      { "id": "grassroots_plan", "name": "基层预案", "parent_id": "normative" }
+    ],
+    "level3": [
+      { "id": "natural_disaster", "name": "自然灾害", "parent_id": "overall_plan" },
+      { "id": "accident_disaster", "name": "事故灾难", "parent_id": "special_plan" },
+      { "id": "public_health", "name": "公共卫生事件", "parent_id": "department_plan" },
+      { "id": "social_security", "name": "社会安全事件", "parent_id": "grassroots_plan" }
+    ]
+  },
+  "status_options": [
+    { "value": "effective", "label": "生效" },
+    { "value": "draft", "label": "草案" },
+    { "value": "revised", "label": "修订中" },
+    { "value": "expired", "label": "已过期" },
+    { "value": "abolished", "label": "已废止" }
+  ]
+}

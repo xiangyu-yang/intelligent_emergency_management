@@ -13,6 +13,9 @@ import CorrelationAnalysisPage from './pages/analysis/CorrelationAnalysisPage';
 import RootCausePage from './pages/analysis/RootCausePage';
 import EvaluationPage from './pages/analysis/EvaluationPage';
 import KnowledgeBasePage from './pages/KnowledgeBasePage';
+import SkillLibraryPage from './pages/SkillLibraryPage';
+import AIAssistantPage from './pages/AIAssistantPage';
+import ModelConfigPage from './pages/ModelConfigPage';
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
         <Route path="analysis/root-cause" element={<RootCausePage />} />
         <Route path="analysis/evaluation" element={<EvaluationPage />} />
         <Route path="knowledge-base" element={<KnowledgeBasePage />} />
+        <Route path="skill-library" element={<SkillLibraryPage />} />
+        <Route path="ai-assistant" element={<AIAssistantPage />} />
+        <Route path="model-config" element={<ModelConfigPage />} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Menu, Bell, User } from 'lucide-react';
 import Nav from './Nav';
+import FloatingAssistant from './FloatingAssistant';
 import { useAppStore } from '../stores/appStore';
 
 function Layout() {
@@ -51,6 +52,8 @@ function Layout() {
           <Outlet />
         </main>
       </div>
+
+      <FloatingAssistant />
     </div>
   );
 }

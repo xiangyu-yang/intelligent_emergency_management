@@ -13,6 +13,7 @@ export interface RagDocument {
   chunkSize: number;
   chunkOverlap: number;
   totalChunks: number;
+  charCount?: number;
   status: 'uploading' | 'processing' | 'ready' | 'failed';
   createdBy?: string;
   createdAt: string;

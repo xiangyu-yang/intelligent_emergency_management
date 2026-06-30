@@ -459,78 +459,77 @@ export function chunkByHierarchical(content: string, chunkSize: number = 500, ch
 
   const chunks: string[] = [];
   
+  const lines = content.split('\n');
   let sections: Array<{ title: string; content: string; level: number }> = [];
-  let currentSection = { title: '前言', content: '', level: 0 };
+  let currentSection = { title: '', content: '', level: 0 };
   
-  try {
-    const lines = content.split('\n');
-    for (const line of lines) {
-      const trimmedLine = line.trim();
-      
-      const headingMatch = trimmedLine.match(/^(#{1,6})\s+(.+)/);
-      if (headingMatch) {
+  const cnNumerals = '一二三四五六七八九十';
+  const headingPatterns = [
+    { regex: /^(#{1,6})\s+(.+)/, levelFn: (m: RegExpMatchArray) => m[1].length },
+    { regex: /^(第[一二三四五六七八九十百千\d]+[章节篇讲部卷])\s*(.*)/, 
+      levelFn: (m: RegExpMatchArray) => {
+        const h = m[1];
+        if (h.includes('篇') || h.includes('部') || h.includes('卷')) return 1;
+        if (h.includes('章')) return 2;
+        if (h.includes('节') || h.includes('讲')) return 3;
+        return 4;
+      }
+    },
+    { regex: /^(\d+(?:\.\d+)*)\s+[\u4e00-\u9fa5\w]+/, 
+      levelFn: (m: RegExpMatchArray) => Math.min(m[1].split('.').length, 6)
+    },
+    { regex: /^(【[^】]+】)/, levelFn: () => 3 },
+    { regex: /^([A-Z]\.)/, levelFn: () => 4 },
+  ];
+
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+    let matched = false;
+
+    for (const { regex, levelFn } of headingPatterns) {
+      const match = trimmedLine.match(regex);
+      if (match) {
         if (currentSection.content.trim()) {
           sections.push(currentSection);
         }
         currentSection = {
-          title: headingMatch[2],
+          title: match[2] || match[1],
           content: line + '\n',
-          level: headingMatch[1].length
+          level: levelFn(match)
         };
-        continue;
+        matched = true;
+        break;
       }
-      
-      const cnHeadingMatch = trimmedLine.match(/^(第[一二三四五六七八九十百千\d]+[章节篇讲])\s*(.*)/);
-      if (cnHeadingMatch) {
-        if (currentSection.content.trim()) {
-          sections.push(currentSection);
-        }
-        const level = trimmedLine.includes('篇') ? 1 : trimmedLine.includes('章') ? 2 : trimmedLine.includes('节') ? 3 : 4;
-        currentSection = {
-          title: cnHeadingMatch[1] + (cnHeadingMatch[2] || ''),
-          content: line + '\n',
-          level
-        };
-        continue;
+    }
+
+    if (!matched) {
+      if (trimmedLine.length > 0 && currentSection.level === 0) {
+        currentSection.title = '正文';
       }
-      
-      const numberedHeadingMatch = trimmedLine.match(/^(\d+(?:\.\d+)*)\s+[\u4e00-\u9fa5\w]+/);
-      if (numberedHeadingMatch) {
-        if (currentSection.content.trim()) {
-          sections.push(currentSection);
-        }
-        const level = numberedHeadingMatch[1].split('.').length;
-        currentSection = {
-          title: trimmedLine,
-          content: line + '\n',
-          level: Math.min(level, 6)
-        };
-        continue;
-      }
-      
       currentSection.content += line + '\n';
     }
-    
-    if (currentSection.content.trim()) {
-      sections.push(currentSection);
-    }
-  } catch (e) {
-    console.warn('[RAG] 层次分片解析失败，使用固定长度分片:', e);
-    return chunkByFixedSize(content, chunkSize, chunkOverlap);
+  }
+  
+  if (currentSection.content.trim()) {
+    sections.push(currentSection);
   }
 
-  if (sections.length === 0 || (sections.length === 1 && sections[0].level === 0)) {
+  if (sections.length === 0) {
     return chunkByFixedSize(content, chunkSize, chunkOverlap);
   }
 
   for (const section of sections) {
     const sectionContent = section.content.trim();
     
+    if (!sectionContent) continue;
+
     if (sectionContent.length <= chunkSize) {
-      chunks.push(sectionContent);
+      chunks.push(`【${section.title}】\n${sectionContent}`);
     } else {
       const subChunks = chunkByFixedSize(sectionContent, chunkSize, chunkOverlap);
-      chunks.push(...subChunks);
+      for (const subChunk of subChunks) {
+        chunks.push(`【${section.title}】\n${subChunk}`);
+      }
     }
   }
 
@@ -542,28 +541,34 @@ export function chunkBySemantic(content: string, chunkSize: number = 500, chunkO
 
   const chunks: string[] = [];
   
-  const sentences = content.split(/([。！？\n]+)/).filter(s => s.trim());
+  const paragraphs = content.split(/\n\s*\n/).filter(p => p.trim());
   
+  if (paragraphs.length === 0) {
+    return chunkByFixedSize(content, chunkSize, chunkOverlap);
+  }
+
   let currentChunk = '';
-  for (let i = 0; i < sentences.length; i += 2) {
-    const sentence = sentences[i];
-    const separator = sentences[i + 1] || '';
+  
+  for (const paragraph of paragraphs) {
+    const trimmedParagraph = paragraph.trim();
     
-    const tempChunk = currentChunk + sentence + separator;
+    if (!trimmedParagraph) continue;
+
+    const tempChunk = currentChunk ? currentChunk + '\n\n' + trimmedParagraph : trimmedParagraph;
     
-    if (tempChunk.length <= chunkSize || currentChunk.length === 0) {
+    if (tempChunk.length <= chunkSize) {
       currentChunk = tempChunk;
     } else {
       if (currentChunk.trim()) {
         chunks.push(currentChunk.trim());
       }
       
-      const overlapText = currentChunk.slice(-chunkOverlap).trim();
-      const overlapEnd = overlapText.lastIndexOf('。');
-      if (overlapEnd > 0) {
-        currentChunk = overlapText.slice(0, overlapEnd + 1) + sentence + separator;
+      if (trimmedParagraph.length <= chunkSize) {
+        currentChunk = trimmedParagraph;
       } else {
-        currentChunk = sentence + separator;
+        const subChunks = chunkByFixedSize(trimmedParagraph, chunkSize, chunkOverlap);
+        chunks.push(...subChunks.slice(0, -1));
+        currentChunk = subChunks[subChunks.length - 1] || '';
       }
     }
   }
@@ -572,7 +577,27 @@ export function chunkBySemantic(content: string, chunkSize: number = 500, chunkO
     chunks.push(currentChunk.trim());
   }
 
-  return chunks;
+  for (let i = 1; i < chunks.length; i++) {
+    const prevChunk = chunks[i - 1];
+    const currChunk = chunks[i];
+    
+    if (chunkOverlap > 0 && prevChunk.length > chunkOverlap) {
+      const overlapText = prevChunk.slice(-chunkOverlap).trim();
+      const sentenceEnd = overlapText.lastIndexOf('。');
+      const questionEnd = overlapText.lastIndexOf('？');
+      const exclamationEnd = overlapText.lastIndexOf('！');
+      const lastBreak = Math.max(sentenceEnd, questionEnd, exclamationEnd);
+      
+      if (lastBreak > 0) {
+        const overlap = overlapText.slice(lastBreak + 1);
+        if (overlap.trim()) {
+          chunks[i] = overlap.trim() + '\n\n' + currChunk;
+        }
+      }
+    }
+  }
+
+  return chunks.length > 0 ? chunks : chunkByFixedSize(content, chunkSize, chunkOverlap);
 }
 
 export function chunkContent(content: string, strategy: ChunkStrategy, chunkSize: number = 500, chunkOverlap: number = 50): string[] {
@@ -1176,6 +1201,7 @@ export async function processDocument(
     }
 
     RagDocumentDAO.updateStatus(documentId, 'ready', chunks.length);
+    RagDocumentDAO.update(documentId, { charCount: content.length });
 
     await buildFAISSIndex();
 
@@ -1243,6 +1269,7 @@ export async function rechunkDocument(
     }
 
     RagDocumentDAO.updateStatus(documentId, 'ready', chunks.length);
+    RagDocumentDAO.update(documentId, { charCount: content.length });
     
     await buildFAISSIndex();
 

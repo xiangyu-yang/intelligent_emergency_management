@@ -25,11 +25,11 @@ export class BaseDAO<T extends BaseEntity> {
     this.fields = fields;
   }
 
-  private get db() {
+  protected get db() {
     return getDb();
   }
 
-  private now(): string {
+  protected now(): string {
     return dayjs().toISOString();
   }
 
@@ -351,6 +351,7 @@ export interface RagDocument extends BaseEntity {
   chunkSize?: number;
   chunkOverlap?: number;
   totalChunks?: number;
+  charCount?: number;
   status?: string;
   createdBy?: string;
 }
@@ -367,7 +368,7 @@ export interface RagChunk extends BaseEntity {
 const ragDocumentFields = [
   'id', 'title', 'fileName', 'fileType', 'fileSize', 'fileUrl',
   'category', 'tags', 'chunkStrategy', 'chunkSize', 'chunkOverlap',
-  'totalChunks', 'status', 'createdBy', 'createdAt', 'updatedAt'
+  'totalChunks', 'charCount', 'status', 'createdBy', 'createdAt', 'updatedAt'
 ];
 
 const ragChunkFields = [
@@ -433,3 +434,169 @@ class RagChunkDAOImpl extends BaseDAO<RagChunk> {
 }
 
 export const RagChunkDAO = new RagChunkDAOImpl();
+
+export interface SystemConfig {
+  id: string;
+  configKey: string;
+  configValue: string;
+  description?: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+const systemConfigFields = [
+  'id', 'configKey', 'configValue', 'description', 'createdAt', 'updatedAt'
+];
+
+class SystemConfigDAOImpl extends BaseDAO<SystemConfig> {
+  constructor() {
+    super('system_config', systemConfigFields);
+  }
+
+  findByKey(configKey: string): SystemConfig | null {
+    const result = this.db.prepare(
+      `SELECT * FROM ${this.tableName} WHERE configKey = ?`
+    ).get(configKey);
+    return result ? (result as SystemConfig) : null;
+  }
+
+  getOrCreate(configKey: string, defaultValue: string, description?: string): SystemConfig {
+    let config = this.findByKey(configKey);
+    if (!config) {
+      config = this.create({
+        configKey,
+        configValue: defaultValue,
+        description,
+      });
+    }
+    return config;
+  }
+
+  updateByKey(configKey: string, configValue: string, description?: string): SystemConfig | null {
+    const config = this.findByKey(configKey);
+    if (!config) {
+      return this.create({ configKey, configValue, description });
+    }
+    
+    this.db.prepare(
+      `UPDATE ${this.tableName} SET configValue = ?, description = ?, updatedAt = ? WHERE configKey = ?`
+    ).run(configValue, description || config.description, dayjs().toISOString(), configKey);
+    
+    return { ...config, configValue, description: description || config.description };
+  }
+
+  getAllConfigs(): Record<string, string> {
+    const results = this.findAll();
+    const configs: Record<string, string> = {};
+    results.forEach((r) => {
+      configs[r.configKey] = r.configValue;
+    });
+    return configs;
+  }
+}
+
+export const SystemConfigDAO = new SystemConfigDAOImpl();
+
+export interface ChatSession extends BaseEntity {
+  title: string;
+  scenario: string;
+  status: string;
+  lastMessageAt?: string;
+  messageCount: number;
+}
+
+export interface ChatMessage extends BaseEntity {
+  sessionId: string;
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+const chatSessionFields = [
+  'id', 'title', 'scenario', 'status', 'lastMessageAt', 'messageCount', 'createdAt', 'updatedAt'
+];
+
+class ChatSessionDAOImpl extends BaseDAO<ChatSession> {
+  constructor() {
+    super('chat_sessions', chatSessionFields);
+  }
+
+  findByStatus(status: string): ChatSession[] {
+    const result = this.db.prepare(
+      `SELECT * FROM ${this.tableName} WHERE status = ? ORDER BY updatedAt DESC`
+    ).all(status);
+    return result as ChatSession[];
+  }
+
+  findById(id: string): ChatSession | null {
+    const result = this.db.prepare(
+      `SELECT * FROM ${this.tableName} WHERE id = ?`
+    ).get(id);
+    return result ? (result as ChatSession) : null;
+  }
+
+  update(id: string, data: Partial<ChatSession>): ChatSession | null {
+    const session = this.findById(id);
+    if (!session) return null;
+
+    const updateData = { ...data, updatedAt: this.now() };
+    const fieldList = Object.keys(updateData).filter(f => f !== 'id' && f !== 'createdAt');
+    const placeholders = fieldList.map(f => `${f} = ?`).join(', ');
+    const values = fieldList.map(f => updateData[f as keyof typeof updateData]);
+
+    this.db.prepare(
+      `UPDATE ${this.tableName} SET ${placeholders} WHERE id = ?`
+    ).run(...values, id);
+
+    return { ...session, ...updateData };
+  }
+
+  deleteById(id: string): boolean {
+    const result = this.db.prepare(
+      `DELETE FROM ${this.tableName} WHERE id = ?`
+    ).run(id);
+    return result.changes > 0;
+  }
+
+  incrementMessageCount(sessionId: string, lastMessageAt?: string): void {
+    const updateFields: string[] = ['messageCount = messageCount + 1'];
+    const values: any[] = [];
+
+    if (lastMessageAt) {
+      updateFields.push('lastMessageAt = ?');
+      values.push(lastMessageAt);
+    }
+
+    updateFields.push('updatedAt = ?');
+    values.push(this.now());
+
+    this.db.prepare(
+      `UPDATE ${this.tableName} SET ${updateFields.join(', ')} WHERE id = ?`
+    ).run(...values, sessionId);
+  }
+}
+
+const chatMessageFields = [
+  'id', 'sessionId', 'role', 'content', 'createdAt'
+];
+
+class ChatMessageDAOImpl extends BaseDAO<ChatMessage> {
+  constructor() {
+    super('chat_messages', chatMessageFields);
+  }
+
+  findBySessionId(sessionId: string): ChatMessage[] {
+    const result = this.db.prepare(
+      `SELECT * FROM ${this.tableName} WHERE sessionId = ? ORDER BY createdAt ASC`
+    ).all(sessionId);
+    return result as ChatMessage[];
+  }
+
+  deleteBySessionId(sessionId: string): void {
+    this.db.prepare(
+      `DELETE FROM ${this.tableName} WHERE sessionId = ?`
+    ).run(sessionId);
+  }
+}
+
+export const ChatSessionDAO = new ChatSessionDAOImpl();
+export const ChatMessageDAO = new ChatMessageDAOImpl();

@@ -20,6 +20,7 @@ export function initDatabase() {
   db.pragma('foreign_keys = ON');
 
   createTables();
+  addMissingColumns();
 
   console.log('[DB] Database initialized successfully');
 }
@@ -194,6 +195,7 @@ function createTables() {
       chunkSize INTEGER,
       chunkOverlap INTEGER,
       totalChunks INTEGER,
+      charCount INTEGER,
       status TEXT,
       createdBy TEXT,
       createdAt TEXT NOT NULL,
@@ -225,6 +227,15 @@ function createTables() {
     CREATE INDEX IF NOT EXISTS idx_events_level ON emergency_events(level);
     CREATE INDEX IF NOT EXISTS idx_events_eventTypeId ON emergency_events(eventTypeId);
     CREATE INDEX IF NOT EXISTS idx_tasks_eventId ON emergency_tasks(eventId);
+    
+    CREATE TABLE IF NOT EXISTS system_config (
+      id TEXT PRIMARY KEY,
+      configKey TEXT UNIQUE NOT NULL,
+      configValue TEXT,
+      description TEXT,
+      createdAt TEXT NOT NULL,
+      updatedAt TEXT
+    );
     CREATE INDEX IF NOT EXISTS idx_tasks_status ON emergency_tasks(status);
     CREATE INDEX IF NOT EXISTS idx_tasks_assigneeId ON emergency_tasks(assigneeId);
     CREATE INDEX IF NOT EXISTS idx_knowledge_category ON emergency_knowledge(category);
@@ -236,7 +247,45 @@ function createTables() {
     CREATE INDEX IF NOT EXISTS idx_rag_documents_status ON rag_documents(status);
     CREATE INDEX IF NOT EXISTS idx_rag_documents_category ON rag_documents(category);
     CREATE INDEX IF NOT EXISTS idx_analysis_eventId ON event_analysis(eventId);
+
+    CREATE TABLE IF NOT EXISTS chat_sessions (
+      id TEXT PRIMARY KEY,
+      title TEXT NOT NULL,
+      scenario TEXT NOT NULL DEFAULT 'general',
+      status TEXT NOT NULL DEFAULT 'active',
+      lastMessageAt TEXT,
+      messageCount INTEGER NOT NULL DEFAULT 0,
+      createdAt TEXT NOT NULL,
+      updatedAt TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS chat_messages (
+      id TEXT PRIMARY KEY,
+      sessionId TEXT NOT NULL,
+      role TEXT NOT NULL,
+      content TEXT NOT NULL,
+      createdAt TEXT NOT NULL,
+      FOREIGN KEY (sessionId) REFERENCES chat_sessions(id) ON DELETE CASCADE
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_chat_sessions_status ON chat_sessions(status);
+    CREATE INDEX IF NOT EXISTS idx_chat_messages_sessionId ON chat_messages(sessionId);
   `);
+}
+
+function addMissingColumns() {
+  if (!db) return;
+
+  try {
+    db.prepare("SELECT charCount FROM rag_documents LIMIT 1").run();
+  } catch {
+    try {
+      db.exec("ALTER TABLE rag_documents ADD COLUMN charCount INTEGER");
+      console.log('[DB] Added charCount column to rag_documents');
+    } catch (e) {
+      console.warn('[DB] Failed to add charCount column:', e);
+    }
+  }
 }
 
 export function getDb(): Database.Database {
