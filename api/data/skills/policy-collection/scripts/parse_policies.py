@@ -2,143 +2,218 @@
 # -*- coding: utf-8 -*-
 """
 应急政策文件解析脚本
-
-功能：解析下载的政策文件，提取关键信息
+解析HTML和PDF文件内容
 """
 
-import argparse
 import json
-import os
+import argparse
 import re
-from typing import List, Dict
+from pathlib import Path
+from bs4 import BeautifulSoup
+from typing import Dict, List
 
-
-def parse_text_file(filepath: str) -> Dict:
-    """
-    解析文本文件
+class PolicyParser:
+    def __init__(self):
+        pass
     
-    Args:
-        filepath: 文件路径
+    def _clean_text(self, text: str) -> str:
+        """清理文本内容"""
+        text = re.sub(r'\s+', ' ', text)
+        text = text.strip()
+        return text
     
-    Returns:
-        解析结果
-    """
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        # 提取标题
-        title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
-        title = title_match.group(1) if title_match else os.path.basename(filepath)
-        
-        # 提取日期
-        date_pattern = r'\d{4}[-/]\d{2}[-/]\d{2}'
-        dates = re.findall(date_pattern, content)
-        
-        # 提取关键词
-        keywords = set()
-        keyword_pattern = r'(应急|预案|安全|灾害|事故|救援)'
-        for match in re.finditer(keyword_pattern, content):
-            keywords.add(match.group(1))
-        
-        # 提取章节
-        sections = []
-        section_pattern = r'^(#{2,3})\s+(.+)$'
-        for match in re.finditer(section_pattern, content):
-            sections.append({
-                'level': len(match.group(1)),
-                'title': match.group(2)
-            })
-        
-        return {
-            'filename': os.path.basename(filepath),
-            'filepath': filepath,
-            'title': title,
-            'dates': dates,
-            'keywords': list(keywords),
-            'sections': sections,
-            'content_length': len(content),
-            'success': True
-        }
-    except Exception as e:
-        return {
-            'filename': os.path.basename(filepath),
-            'filepath': filepath,
-            'title': None,
-            'dates': [],
-            'keywords': [],
-            'sections': [],
-            'content_length': 0,
-            'success': False,
-            'error': str(e)
-        }
-
-
-def parse_policies(input_dir: str, output_dir: str = './parsed') -> List[Dict]:
-    """
-    批量解析政策文件
-    
-    Args:
-        input_dir: 输入目录
-        output_dir: 输出目录
-    
-    Returns:
-        解析结果列表
-    """
-    results = []
-    os.makedirs(output_dir, exist_ok=True)
-    
-    for root, dirs, files in os.walk(input_dir):
-        for file in files:
-            filepath = os.path.join(root, file)
+    def parse_html(self, file_path: str) -> Dict:
+        """解析HTML文件"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
             
-            if file.endswith('.md') or file.endswith('.txt') or file.endswith('.json'):
-                print(f"正在解析: {file}")
-                result = parse_text_file(filepath)
-                results.append(result)
-                
-                if result['success']:
-                    output_file = os.path.join(output_dir, f"{os.path.splitext(file)[0]}.json")
-                    with open(output_file, 'w', encoding='utf-8') as f:
-                        json.dump(result, f, ensure_ascii=False, indent=2)
-                    print(f"  ✓ 解析成功")
-                else:
-                    print(f"  ✗ 解析失败: {result['error']}")
-            else:
-                print(f"  跳过不支持的格式: {file}")
+            soup = BeautifulSoup(content, 'html.parser')
+            
+            title_selectors = ['h1.title', 'div.article h1', 'h1', '.article-title']
+            title = ""
+            for selector in title_selectors:
+                element = soup.select_one(selector)
+                if element:
+                    title = element.get_text(strip=True)
+                    break
+            
+            content_selectors = ['div.content', 'div.article_content', 'div.TRS_Editor', '.article-content', 'article']
+            body_content = ""
+            for selector in content_selectors:
+                element = soup.select_one(selector)
+                if element:
+                    body_content = self._clean_text(element.get_text())
+                    break
+            
+            if not body_content:
+                body_content = self._clean_text(soup.get_text())
+            
+            info_selectors = ['span.source', 'div.info', 'span.origin']
+            source = ""
+            for selector in info_selectors:
+                element = soup.select_one(selector)
+                if element:
+                    source = element.get_text(strip=True)
+                    break
+            
+            date_selectors = ['span.time', 'span.date', 'div.info span']
+            publish_date = ""
+            for selector in date_selectors:
+                element = soup.select_one(selector)
+                if element:
+                    date_match = re.search(r'(\d{4}-\d{2}-\d{2}|\d{4}年\d{1,2}月\d{1,2}日)', element.get_text())
+                    if date_match:
+                        publish_date = date_match.group(1)
+                    break
+            
+            return {
+                "title": title,
+                "content": body_content[:10000] if body_content else "",
+                "source": source,
+                "publishDate": publish_date,
+                "documentType": "html",
+                "success": True
+            }
+            
+        except Exception as e:
+            return {
+                "title": "",
+                "content": "",
+                "source": "",
+                "publishDate": "",
+                "documentType": "html",
+                "success": False,
+                "error": str(e)
+            }
     
-    return results
-
+    def parse_pdf(self, file_path: str) -> Dict:
+        """解析PDF文件"""
+        try:
+            import pdfplumber
+            
+            with pdfplumber.open(file_path) as pdf:
+                text = ""
+                for page in pdf.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        text += page_text
+                
+                text = self._clean_text(text)
+                
+                title = text[:200].split('\n')[0] if text else ""
+                
+                return {
+                    "title": title,
+                    "content": text[:20000] if text else "",
+                    "source": "应急管理部公报",
+                    "publishDate": "",
+                    "documentType": "pdf",
+                    "success": True
+                }
+                
+        except ImportError:
+            return {
+                "title": "",
+                "content": "",
+                "source": "",
+                "publishDate": "",
+                "documentType": "pdf",
+                "success": False,
+                "error": "请安装pdfplumber: pip install pdfplumber"
+            }
+        except Exception as e:
+            return {
+                "title": "",
+                "content": "",
+                "source": "",
+                "publishDate": "",
+                "documentType": "pdf",
+                "success": False,
+                "error": str(e)
+            }
+    
+    def parse_file(self, file_path: str) -> Dict:
+        """根据文件类型解析"""
+        path = Path(file_path)
+        
+        if path.suffix.lower() == '.pdf':
+            return self.parse_pdf(file_path)
+        elif path.suffix.lower() in ['.html', '.htm', '.shtml']:
+            return self.parse_html(file_path)
+        elif path.suffix.lower() in ['.txt', '.md']:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            return {
+                "title": path.stem,
+                "content": content,
+                "source": "",
+                "publishDate": "",
+                "documentType": "text",
+                "success": True
+            }
+        else:
+            return {
+                "title": path.name,
+                "content": "",
+                "source": "",
+                "publishDate": "",
+                "documentType": path.suffix[1:],
+                "success": False,
+                "error": f"不支持的文件类型: {path.suffix}"
+            }
+    
+    def parse_directory(self, input_dir: str) -> List[Dict]:
+        """解析目录中的所有文件"""
+        input_path = Path(input_dir)
+        
+        if not input_path.exists():
+            return []
+        
+        results = []
+        
+        for file_path in input_path.rglob('*'):
+            if file_path.is_file():
+                print(f"正在解析: {file_path.name}")
+                result = self.parse_file(str(file_path))
+                result["filePath"] = str(file_path)
+                results.append(result)
+        
+        return results
 
 def main():
-    parser = argparse.ArgumentParser(description='解析应急政策文件')
-    parser.add_argument('--input', type=str, required=True, help='输入目录')
-    parser.add_argument('--output', type=str, default='./parsed', help='输出目录')
-    parser.add_argument('--output-json', type=str, default='parse_results.json', help='结果输出文件')
+    parser = argparse.ArgumentParser(description='应急政策文件解析脚本')
+    parser.add_argument('--input', type=str, required=True, help='输入文件或目录路径')
+    parser.add_argument('--output', type=str, default='parsed', help='输出目录')
     
     args = parser.parse_args()
     
-    print(f"开始解析目录: {args.input}")
+    print("🚀 开始解析应急政策文件...")
     
-    results = parse_policies(args.input, args.output)
+    policy_parser = PolicyParser()
+    
+    input_path = Path(args.input)
+    
+    if input_path.is_file():
+        results = [policy_parser.parse_file(str(input_path))]
+    else:
+        results = policy_parser.parse_directory(str(input_path))
     
     success_count = sum(1 for r in results if r['success'])
     
-    output = {
-        'total': len(results),
-        'success': success_count,
-        'failed': len(results) - success_count,
-        'input_dir': args.input,
-        'output_dir': args.output,
-        'results': results
-    }
+    output_path = Path(args.output)
+    output_path.mkdir(parents=True, exist_ok=True)
     
-    with open(args.output_json, 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
+    output_file = output_path / "parsed_results.json"
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump({
+            "totalCount": len(results),
+            "successCount": success_count,
+            "results": results
+        }, f, ensure_ascii=False, indent=2)
     
-    print(f"\n解析完成: {success_count}/{len(results)} 成功")
-    print(f"结果已保存到 {args.output_json}")
-
+    print(f"\n📊 解析完成，成功 {success_count}/{len(results)}")
+    print(f"✅ 解析结果已保存到: {output_file}")
 
 if __name__ == '__main__':
     main()

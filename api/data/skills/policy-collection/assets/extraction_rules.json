@@ -1,0 +1,178 @@
+{
+  "website": {
+    "name": "国家应急管理部",
+    "baseUrl": "https://www.mem.gov.cn",
+    "encoding": "UTF-8"
+  },
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Referer": "https://www.mem.gov.cn/gk/"
+  },
+  "requestDelay": {
+    "pageDelay": 2000,
+    "listDelay": 3000,
+    "pdfDelay": 5000
+  },
+  "categoryMapping": {
+    "bl": { "name": "部令", "code": "A1" },
+    "tb": { "name": "通报", "code": "A2" },
+    "yjbgg": { "name": "公告", "code": "A3" },
+    "tz": { "name": "通知", "code": "A4" },
+    "h": { "name": "函", "code": "A5" },
+    "yj": { "name": "意见", "code": "A6" },
+    "qt": { "name": "其他", "code": "A8" },
+    "yjglbgg": { "name": "公报", "code": "A7" },
+    "sgcc": { "name": "事故及灾害查处", "code": "C" },
+    "sggpdbqk": { "name": "挂牌督办", "code": "C1" },
+    "tbzdsgdcbg": { "name": "调查报告", "code": "C2" },
+    "ghjh": { "name": "计划规划", "code": "D" },
+    "tjsj": { "name": "统计数据", "code": "E" },
+    "zcjd": { "name": "政策解读", "code": "B" }
+  },
+  "listPageRules": {
+    "common": {
+      "listSelector": "div.list ul li, ul.list li, div.news_list li",
+      "titleSelector": "a",
+      "urlSelector": "a",
+      "dateSelector": "span.date, span.time",
+      "urlAttribute": "href",
+      "titleAttribute": "text",
+      "dateAttribute": "text"
+    },
+    "specific": {
+      "/gk/tzgg/bl/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/tzgg/tb/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/tzgg/yjbgg/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/tzgg/tz/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/tzgg/h/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/tzgg/yj/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/tzgg/yjglbgg/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/sgcc/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      },
+      "/gk/zcjd/": {
+        "listSelector": "div.list ul li",
+        "titleSelector": "a",
+        "urlSelector": "a",
+        "dateSelector": "span"
+      }
+    }
+  },
+  "detailPageRules": {
+    "html": {
+      "title": {
+        "selectors": ["h1.title", "div.article h1", "h1", ".article-title"]
+      },
+      "content": {
+        "selectors": ["div.content", "div.article_content", "div.TRS_Editor", ".article-content"]
+      },
+      "source": {
+        "selectors": ["span.source", "div.info", "span.origin"]
+      },
+      "publishDate": {
+        "selectors": ["span.time", "span.date", "div.info span"]
+      },
+      "author": {
+        "selectors": ["span.author", "div.author"]
+      }
+    },
+    "pdf": {
+      "extractMethod": "pdfplumber",
+      "textLayout": "raw"
+    }
+  },
+  "paginationRules": {
+    "pattern": "/index_(\\d+)\\.shtml",
+    "maxPages": 10,
+    "startPage": 2
+  },
+  "urlPatterns": {
+    "detail": {
+      "html": "^/gk/zfxxgkpt/fdzdgknr/\\d{6}/t\\d{8}_\\d+\\.shtml$",
+      "pdf": "^/gk/tzgg/yjglbgg/\\d{6}/P\\d+\\.pdf$",
+      "otherPdf": "^/gk/.+/P\\d+\\.pdf$"
+    },
+    "list": {
+      "base": "^/gk/tzgg/(bl|tb|yjbgg|tz|h|yj|qt|yjglbgg)(/index_\\d+)?\\.shtml?$",
+      "sgcc": "^/gk/sgcc/(sggpdbqk|tbzdsgdcbg)(/index_\\d+)?\\.shtml?$",
+      "zcjd": "^/gk/zcjd(/index_\\d+)?\\.shtml?$"
+    }
+  },
+  "datePatterns": [
+    "\\d{4}-\\d{2}-\\d{2}",
+    "\\d{4}年\\d{1,2}月\\d{1,2}日",
+    "\\d{4}/\\d{2}/\\d{2}"
+  ],
+  "cleanRules": {
+    "removeElements": ["script", "style", "iframe", "noscript", "nav", "footer", "header"],
+    "removeAttributes": ["style", "class", "id", "onclick", "onmouseover"],
+    "trimWhitespace": true,
+    "removeExtraNewlines": true
+  },
+  "validationRules": {
+    "minTitleLength": 5,
+    "minContentLength": 100,
+    "maxContentLength": 500000,
+    "validDateRequired": true,
+    "validUrlRequired": true
+  },
+  "outputFormat": {
+    "type": "json",
+    "encoding": "UTF-8",
+    "indent": 2
+  },
+  "storage": {
+    "database": {
+      "type": "sqlite",
+      "path": "./data/policies.db"
+    },
+    "files": {
+      "downloadDir": "./downloads",
+      "parsedDir": "./parsed",
+      "htmlDir": "./downloads/html",
+      "pdfDir": "./downloads/pdf"
+    }
+  }
+}

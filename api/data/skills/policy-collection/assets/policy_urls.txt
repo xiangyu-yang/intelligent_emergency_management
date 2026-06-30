@@ -1,0 +1,140 @@
+# 应急政策文件来源URL列表
+
+## 国家应急管理部官方网站
+
+### 一、通知公告栏目
+
+#### 1. 部令
+https://www.mem.gov.cn/gk/tzgg/bl/
+https://www.mem.gov.cn/gk/tzgg/bl/index_2.shtml
+https://www.mem.gov.cn/gk/tzgg/bl/index_3.shtml
+
+#### 2. 通报
+https://www.mem.gov.cn/gk/tzgg/tb/
+https://www.mem.gov.cn/gk/tzgg/tb/index_2.shtml
+
+#### 3. 公告（应急管理部公告）
+https://www.mem.gov.cn/gk/tzgg/yjbgg/
+https://www.mem.gov.cn/gk/tzgg/yjbgg/index_2.shtml
+
+#### 4. 通知
+https://www.mem.gov.cn/gk/tzgg/tz/
+https://www.mem.gov.cn/gk/tzgg/tz/index_2.shtml
+
+#### 5. 函
+https://www.mem.gov.cn/gk/tzgg/h/
+https://www.mem.gov.cn/gk/tzgg/h/index_2.shtml
+
+#### 6. 意见
+https://www.mem.gov.cn/gk/tzgg/yj/
+https://www.mem.gov.cn/gk/tzgg/yj/index_2.shtml
+
+#### 7. 其他
+https://www.mem.gov.cn/gk/tzgg/qt/
+https://www.mem.gov.cn/gk/tzgg/qt/index_2.shtml
+
+#### 8. 应急管理部公报（PDF）
+https://www.mem.gov.cn/gk/tzgg/yjglbgg/
+https://www.mem.gov.cn/gk/tzgg/yjglbgg/index_2.shtml
+
+### 二、政策解读栏目
+https://www.mem.gov.cn/gk/zcjd/
+https://www.mem.gov.cn/gk/zcjd/index_2.shtml
+
+### 三、事故及灾害查处栏目
+
+#### 1. 挂牌督办
+https://www.mem.gov.cn/gk/sgcc/sggpdbqk/
+https://www.mem.gov.cn/gk/sgcc/sggpdbqk/index_2.shtml
+
+#### 2. 调查报告
+https://www.mem.gov.cn/gk/sgcc/tbzdsgdcbg/
+https://www.mem.gov.cn/gk/sgcc/tbzdsgdcbg/index_2.shtml
+
+### 四、计划规划栏目
+https://www.mem.gov.cn/gk/ghjh/
+https://www.mem.gov.cn/gk/ghjh/index_2.shtml
+
+### 五、统计数据栏目
+https://www.mem.gov.cn/gk/tjsj/
+https://www.mem.gov.cn/gk/tjsj/index_2.shtml
+
+### 六、人事信息栏目
+https://www.mem.gov.cn/gk/rsxx/
+https://www.mem.gov.cn/gk/rsxx/index_2.shtml
+
+### 七、财务信息栏目
+https://www.mem.gov.cn/gk/cwxx/
+https://www.mem.gov.cn/gk/cwxx/index_2.shtml
+
+### 八、原国家安全监管总局文件栏目
+
+#### 1. 总局令
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/zjl_01/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/zjl_01/index_2.shtml
+
+#### 2. 通知
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/tz_01/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/tz_01/index_2.shtml
+
+#### 3. 通报
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/tb_01/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/tb_01/index_2.shtml
+
+#### 4. 决定
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/jd_01/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/jd_01/index_2.shtml
+
+#### 5. 公告
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/gg_01/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/gg_01/index_2.shtml
+
+#### 6. 函
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/han_01/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/han_01/index_2.shtml
+
+#### 7. 意见
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/yj_01/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/yj_01/index_2.shtml
+
+#### 8. 规范性文件
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/gfxwj/
+https://www.mem.gov.cn/gk/gwgg/agwzlfl/gfxwj/index_2.shtml
+
+## 示例详情页URL
+
+### 部令示例
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202605/t20260528_605335.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202605/t20260528_605334.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202512/t20251219_589179.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202512/t20251202_587134.shtml
+
+### 公告示例
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260622_608438.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260622_608437.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260610_607260.shtml
+
+### 通报示例
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260608_606757.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202604/t20260425_601768.shtml
+
+### 通知示例
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260623_608712.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260609_607138.shtml
+
+### 意见示例
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202601/t20260127_593136.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202410/t20241023_506225.shtml
+
+### PDF公报示例
+https://www.mem.gov.cn/gk/tzgg/yjglbgg/202605/P020260522357267263124.pdf
+https://www.mem.gov.cn/gk/tzgg/yjglbgg/202605/P020260522356638342956.pdf
+https://www.mem.gov.cn/gk/tzgg/yjglbgg/202605/P020260522356270993209.pdf
+
+### 调查报告示例
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260618_608227.shtml
+https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202605/t20260522_604598.shtml
+
+## 政策解读示例
+https://www.mem.gov.cn/gk/zcjd/202605/t20260529_605654.shtml
+https://www.mem.gov.cn/gk/zcjd/202605/t20260519_604115.shtml

@@ -2,178 +2,177 @@
 # -*- coding: utf-8 -*-
 """
 应急政策文件入库脚本
-
-功能：将解析后的政策文件导入数据库
+将解析后的政策文件存入SQLite数据库
 """
 
-import argparse
-import json
-import os
 import sqlite3
-from typing import List, Dict
+import json
+import argparse
+import uuid
+import time
+from pathlib import Path
+from typing import Dict, List
 
-
-def init_database(db_path: str) -> sqlite3.Connection:
-    """
-    初始化数据库
+class PolicyImporter:
+    def __init__(self, db_path: str):
+        self.db_path = db_path
+        self._init_database()
     
-    Args:
-        db_path: 数据库路径
+    def _init_database(self):
+        """初始化数据库"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS policies (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                content TEXT,
+                summary TEXT,
+                category TEXT,
+                source TEXT,
+                publishDate TEXT,
+                url TEXT,
+                documentType TEXT,
+                filePath TEXT,
+                keywords TEXT,
+                status TEXT DEFAULT 'active',
+                createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
+                updatedAt TEXT DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_policies_category ON policies(category)
+        ''')
+        
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_policies_publishDate ON policies(publishDate)
+        ''')
+        
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_policies_title ON policies(title)
+        ''')
+        
+        conn.commit()
+        conn.close()
     
-    Returns:
-        数据库连接
-    """
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
+    def _generate_id(self) -> str:
+        """生成唯一ID"""
+        return str(uuid.uuid4()).replace('-', '')[:16]
     
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS policies (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            filename TEXT NOT NULL,
-            filepath TEXT NOT NULL,
-            title TEXT,
-            dates TEXT,
-            keywords TEXT,
-            sections TEXT,
-            content_length INTEGER,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
+    def _extract_keywords(self, content: str, max_count: int = 10) -> str:
+        """提取关键词"""
+        if not content:
+            return ""
+        
+        keyword_patterns = [
+            r'(应急|安全|生产|事故|灾害|预案|救援|管理)',
+            r'(煤矿|危险化学品|烟花爆竹|矿山)',
+            r'(国家标准|行业标准|规范|规定)',
+            r'(通报|公告|通知|意见|函)',
+            r'(安全生产|应急预案|事故调查|隐患排查)'
+        ]
+        
+        keywords = []
+        for pattern in keyword_patterns:
+            matches = re.findall(pattern, content)
+            keywords.extend(matches)
+        
+        return ','.join(list(set(keywords))[:max_count])
     
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS policy_categories (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            category_name TEXT NOT NULL,
-            parent_id INTEGER,
-            level INTEGER DEFAULT 1,
-            description TEXT
-        )
-    ''')
+    def _generate_summary(self, content: str, max_length: int = 300) -> str:
+        """生成摘要"""
+        if not content:
+            return ""
+        return content[:max_length]
     
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS policy_category_mapping (
-            policy_id INTEGER,
-            category_id INTEGER,
-            FOREIGN KEY (policy_id) REFERENCES policies(id),
-            FOREIGN KEY (category_id) REFERENCES policy_categories(id),
-            PRIMARY KEY (policy_id, category_id)
-        )
-    ''')
+    def import_policy(self, policy: Dict) -> bool:
+        """导入单条政策"""
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            policy_id = self._generate_id()
+            summary = self._generate_summary(policy.get('content', ''))
+            
+            cursor.execute('''
+                INSERT OR REPLACE INTO policies 
+                (id, title, content, summary, category, source, publishDate, 
+                 url, documentType, filePath, keywords, createdAt, updatedAt)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                policy_id,
+                policy.get('title', ''),
+                policy.get('content', ''),
+                summary,
+                policy.get('category', ''),
+                policy.get('source', ''),
+                policy.get('publishDate', ''),
+                policy.get('url', ''),
+                policy.get('documentType', ''),
+                policy.get('filePath', ''),
+                self._extract_keywords(policy.get('content', '')),
+                time.strftime('%Y-%m-%d %H:%M:%S'),
+                time.strftime('%Y-%m-%d %H:%M:%S')
+            ))
+            
+            conn.commit()
+            conn.close()
+            return True
+            
+        except Exception as e:
+            print(f"❌ 入库失败: {policy.get('title', '')} - {str(e)}")
+            return False
     
-    conn.commit()
-    return conn
-
-
-def import_policy(conn: sqlite3.Connection, policy_data: Dict) -> int:
-    """
-    导入单个政策文件
+    def import_policies(self, policies: List[Dict]) -> int:
+        """批量导入政策"""
+        success_count = 0
+        
+        for i, policy in enumerate(policies, 1):
+            if policy.get('success', False):
+                print(f"[{i}/{len(policies)}] 正在入库: {policy.get('title', '')}")
+                if self.import_policy(policy):
+                    success_count += 1
+        
+        return success_count
     
-    Args:
-        conn: 数据库连接
-        policy_data: 政策文件数据
-    
-    Returns:
-        插入的记录ID
-    """
-    cursor = conn.cursor()
-    
-    cursor.execute('''
-        INSERT INTO policies (
-            filename, filepath, title, dates, keywords, sections, content_length
-        ) VALUES (?, ?, ?, ?, ?, ?, ?)
-    ''', (
-        policy_data['filename'],
-        policy_data['filepath'],
-        policy_data['title'],
-        json.dumps(policy_data['dates'], ensure_ascii=False),
-        json.dumps(policy_data['keywords'], ensure_ascii=False),
-        json.dumps(policy_data['sections'], ensure_ascii=False),
-        policy_data['content_length']
-    ))
-    
-    conn.commit()
-    return cursor.lastrowid
-
-
-def import_policies(input_dir: str, db_path: str) -> List[Dict]:
-    """
-    批量导入政策文件
-    
-    Args:
-        input_dir: 输入目录（包含解析后的JSON文件）
-        db_path: 数据库路径
-    
-    Returns:
-        导入结果列表
-    """
-    results = []
-    
-    conn = init_database(db_path)
-    
-    for root, dirs, files in os.walk(input_dir):
-        for file in files:
-            if file.endswith('.json'):
-                filepath = os.path.join(root, file)
-                
-                try:
-                    with open(filepath, 'r', encoding='utf-8') as f:
-                        policy_data = json.load(f)
-                    
-                    if policy_data.get('success'):
-                        policy_id = import_policy(conn, policy_data)
-                        results.append({
-                            'filename': file,
-                            'policy_id': policy_id,
-                            'success': True
-                        })
-                        print(f"  ✓ 导入成功: {file} -> ID: {policy_id}")
-                    else:
-                        results.append({
-                            'filename': file,
-                            'policy_id': None,
-                            'success': False,
-                            'error': '解析失败的文件'
-                        })
-                        print(f"  ✗ 跳过解析失败的文件: {file}")
-                except Exception as e:
-                    results.append({
-                        'filename': file,
-                        'policy_id': None,
-                        'success': False,
-                        'error': str(e)
-                    })
-                    print(f"  ✗ 导入失败: {file} - {e}")
-    
-    conn.close()
-    return results
-
+    def get_policy_count(self) -> int:
+        """获取政策总数"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute('SELECT COUNT(*) FROM policies')
+        count = cursor.fetchone()[0]
+        conn.close()
+        return count
 
 def main():
-    parser = argparse.ArgumentParser(description='导入应急政策文件到数据库')
-    parser.add_argument('--input', type=str, required=True, help='输入目录')
-    parser.add_argument('--db', type=str, default='policies.db', help='数据库文件')
+    parser = argparse.ArgumentParser(description='应急政策文件入库脚本')
+    parser.add_argument('--input', type=str, required=True, help='输入JSON文件路径')
+    parser.add_argument('--db', type=str, default='policies.db', help='数据库文件路径')
     
     args = parser.parse_args()
     
-    print(f"开始导入到数据库: {args.db}")
+    print("🚀 开始导入应急政策文件...")
     
-    results = import_policies(args.input, args.db)
+    importer = PolicyImporter(args.db)
     
-    success_count = sum(1 for r in results if r['success'])
+    with open(args.input, 'r', encoding='utf-8') as f:
+        data = json.load(f)
     
-    print(f"\n导入完成: {success_count}/{len(results)} 成功")
+    policies = data.get('results', data)
     
-    with open('import_results.json', 'w', encoding='utf-8') as f:
-        json.dump({
-            'total': len(results),
-            'success': success_count,
-            'failed': len(results) - success_count,
-            'results': results
-        }, f, ensure_ascii=False, indent=2)
+    if isinstance(policies, dict):
+        policies = [policies]
     
-    print("结果已保存到 import_results.json")
-
+    success_count = importer.import_policies(policies)
+    total_count = importer.get_policy_count()
+    
+    print(f"\n📊 入库完成，成功 {success_count}/{len(policies)}")
+    print(f"📚 数据库中共有 {total_count} 条政策记录")
+    
+    print("✅ 入库操作完成")
 
 if __name__ == '__main__':
+    import re
     main()

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X, FileText, FileCode, FileJson, File, Loader2, Download, Copy, Check, Eye } from 'lucide-react';
 import { apiClient } from '../api/client';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 interface FilePreviewProps {
   skillId: string;
@@ -101,53 +102,6 @@ function FilePreview({ skillId, filePath, fileName, onClose }: FilePreviewProps)
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   };
 
-  const renderMarkdownContent = (content: string) => {
-    const lines = content.split('\n');
-    const renderedLines = lines.map((line, index) => {
-      if (line.startsWith('### ')) {
-        return <h3 key={index} className="text-lg font-semibold text-gray-800 mt-4 mb-2">{line.slice(4)}</h3>;
-      }
-      if (line.startsWith('## ')) {
-        return <h2 key={index} className="text-xl font-bold text-gray-800 mt-5 mb-3">{line.slice(3)}</h2>;
-      }
-      if (line.startsWith('# ')) {
-        return <h1 key={index} className="text-2xl font-bold text-gray-800 mt-6 mb-4">{line.slice(2)}</h1>;
-      }
-      if (line.startsWith('- ') || line.startsWith('* ')) {
-        return <li key={index} className="ml-4 text-gray-700">{line.slice(2)}</li>;
-      }
-      if (line.startsWith('1. ') || line.startsWith('2. ') || /^\d+\./.test(line)) {
-        return <li key={index} className="ml-4 text-gray-700">{line}</li>;
-      }
-      if (line.startsWith('|')) {
-        const parts = line.split('|').map(p => p.trim()).filter(p => p);
-        if (parts.length > 1 && line.includes('---')) {
-          return (
-            <div key={index} className="border-b border-gray-200" />
-          );
-        }
-        return (
-          <div key={index} className="flex border-b border-gray-100">
-            {parts.map((part, i) => (
-              <div key={i} className="flex-1 px-3 py-2 text-sm text-gray-700">{part}</div>
-            ))}
-          </div>
-        );
-      }
-      if (line.startsWith('**') && line.endsWith('**')) {
-        return <p key={index} className="font-bold text-gray-800">{line.slice(2, -2)}</p>;
-      }
-      if (line.startsWith('`') && line.endsWith('`')) {
-        return <p key={index} className="font-mono bg-gray-100 px-2 py-1 rounded text-sm">{line.slice(1, -1)}</p>;
-      }
-      if (line.startsWith('```')) {
-        return <div key={index} className="font-mono bg-gray-900 text-gray-100 p-3 rounded-lg text-sm mb-2 mt-2">{lines.slice(index + 1).find(l => l.startsWith('```')) ? '' : line}</div>;
-      }
-      return <p key={index} className="text-gray-700 leading-relaxed">{line || '\u00A0'}</p>;
-    });
-    return renderedLines;
-  };
-
   const renderContent = () => {
     if (isLoading) {
       return (
@@ -191,9 +145,10 @@ function FilePreview({ skillId, filePath, fileName, onClose }: FilePreviewProps)
         );
       }
       return (
-        <div className="prose prose-sm max-w-none">
-          {renderMarkdownContent(content)}
-        </div>
+        <MarkdownPreview
+          source={content}
+          style={{ fontSize: '14px' }}
+        />
       );
     }
 
@@ -287,7 +242,7 @@ function FilePreview({ skillId, filePath, fileName, onClose }: FilePreviewProps)
             </button>
           </div>
         </div>
-        <div className="p-4 overflow-y-auto max-h-[calc(85vh-80px)] bg-white">
+        <div className="p-6 overflow-y-auto max-h-[calc(85vh-80px)] bg-white">
           {renderContent()}
         </div>
       </div>
