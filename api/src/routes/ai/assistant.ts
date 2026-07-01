@@ -4,6 +4,27 @@ import { chatWithLLM, checkLLMStatus, getSystemPrompt, llmConfig, getDefaultConf
 import { SystemConfigDAO, ChatSessionDAO, ChatMessageDAO } from '../../db/dao.js';
 import { successResponse, errorResponse } from '../../utils/common.js';
 import dayjs from 'dayjs';
+import fs from 'fs';
+import path from 'path';
+
+const SKILLS_DIR = path.join(process.cwd(), 'data', 'skills');
+
+function getSkillInstruction(skillId: string): string {
+  try {
+    const skillDir = path.join(SKILLS_DIR, skillId);
+    const skillMdPath = path.join(skillDir, 'skill.md');
+    
+    if (!fs.existsSync(skillMdPath)) {
+      return '';
+    }
+    
+    const content = fs.readFileSync(skillMdPath, 'utf-8');
+    const instructionMatch = content.match(/##\s*instruction\s*\n([\s\S]*?)(?=\n##\s*resource|$)/);
+    return instructionMatch ? instructionMatch[1].trim() : '';
+  } catch {
+    return '';
+  }
+}
 
 const router = Router();
 
@@ -20,6 +41,7 @@ const chatSchema = z.object({
   stream: z.boolean().optional().default(true),
   sessionId: z.string().optional(),
   enableDeepThinking: z.boolean().optional(),
+  skill: z.string().optional(),
 });
 
 router.get('/status', async (_req: Request, res: Response) => {
@@ -119,17 +141,24 @@ router.post('/chat', async (req: Request, res: Response) => {
       reasoning: h.reasoning,
     }));
 
-    messages.push({ role: 'user', content: body.message });
+    messages.push({ role: 'user', content: body.message, reasoning: undefined });
 
-    const systemPrompt = getSystemPrompt(body.scenario || 'general');
+    let systemPrompt = getSystemPrompt(body.scenario || 'general');
+    
+    if (body.skill) {
+      const skillInstruction = getSkillInstruction(body.skill);
+      if (skillInstruction) {
+        systemPrompt = `以下是你需要遵循的技能指令：\n\n${skillInstruction}\n\n${systemPrompt}`;
+      }
+    }
 
     const now = dayjs().toISOString();
     ChatMessageDAO.create({
-      sessionId,
+      sessionId: sessionId as string,
       role: 'user',
       content: body.message,
     });
-    ChatSessionDAO.incrementMessageCount(sessionId, now);
+    ChatSessionDAO.incrementMessageCount(sessionId as string, now);
 
     if (body.stream) {
       res.setHeader('Content-Type', 'text/event-stream');
@@ -147,43 +176,43 @@ router.post('/chat', async (req: Request, res: Response) => {
           if (chunk.reasoning) {
             assistantReasoning += chunk.reasoning;
           }
-          res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId, done: chunk.done })}\n\n`);
+          res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string, done: chunk.done })}\n\n`);
         }
         
         ChatMessageDAO.create({
-          sessionId,
+          sessionId: sessionId as string,
           role: 'assistant',
           content: assistantContent,
         });
-        ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+        ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
         const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
         if (session.messageCount === 1) {
-          ChatSessionDAO.update(sessionId, { title: sessionTitle });
+          ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
         
-        res.write(`data: ${JSON.stringify({ finished: true, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ finished: true, sessionId: sessionId as string })}\n\n`);
         res.end();
       } catch (err: any) {
-        res.write(`data: ${JSON.stringify({ error: err.message, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ error: err.message, sessionId: sessionId as string })}\n\n`);
         res.end();
       }
     } else {
       const response = await chatWithLLM(messages, false, systemPrompt, body.enableDeepThinking) as { content: string; reasoning?: string };
       
       ChatMessageDAO.create({
-        sessionId,
+        sessionId: sessionId as string,
         role: 'assistant',
         content: response.content,
       });
-      ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+      ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
       const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
       if (session.messageCount === 1) {
-        ChatSessionDAO.update(sessionId, { title: sessionTitle });
+        ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response.content, reasoning: response.reasoning, sessionId }));
+      res.json(successResponse({ content: response.content, reasoning: response.reasoning, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -216,19 +245,27 @@ router.post('/qna', async (req: Request, res: Response) => {
     const messages = history.map((h) => ({
       role: h.role as 'user' | 'assistant',
       content: h.content,
+      reasoning: h.reasoning,
     }));
 
-    messages.push({ role: 'user', content: body.message });
+    messages.push({ role: 'user', content: body.message, reasoning: undefined });
 
-    const systemPrompt = getSystemPrompt('qna');
+    let systemPrompt = getSystemPrompt('qna');
+    
+    if (body.skill) {
+      const skillInstruction = getSkillInstruction(body.skill);
+      if (skillInstruction) {
+        systemPrompt = `以下是你需要遵循的技能指令：\n\n${skillInstruction}\n\n${systemPrompt}`;
+      }
+    }
 
     const now = dayjs().toISOString();
     ChatMessageDAO.create({
-      sessionId,
+      sessionId: sessionId as string,
       role: 'user',
       content: body.message,
     });
-    ChatSessionDAO.incrementMessageCount(sessionId, now);
+    ChatSessionDAO.incrementMessageCount(sessionId as string, now);
 
     if (body.stream) {
       res.setHeader('Content-Type', 'text/event-stream');
@@ -236,49 +273,53 @@ router.post('/qna', async (req: Request, res: Response) => {
       res.setHeader('Connection', 'keep-alive');
 
       try {
-        const stream = await chatWithLLM(messages, true, systemPrompt);
+        const stream = await chatWithLLM(messages, true, systemPrompt, body.enableDeepThinking);
         
         let assistantContent = '';
+        let assistantReasoning = '';
         
-        for await (const chunk of stream as AsyncGenerator<string>) {
-          assistantContent += chunk;
-          res.write(`data: ${JSON.stringify({ content: chunk, sessionId })}\n\n`);
+        for await (const chunk of stream as AsyncGenerator<{ content: string; reasoning?: string; done: boolean }>) {
+          assistantContent += chunk.content;
+          if (chunk.reasoning) {
+            assistantReasoning += chunk.reasoning;
+          }
+          res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string })}\n\n`);
         }
         
         ChatMessageDAO.create({
-          sessionId,
+          sessionId: sessionId as string,
           role: 'assistant',
           content: assistantContent,
         });
-        ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+        ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
         const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
         if (session.messageCount === 1) {
-          ChatSessionDAO.update(sessionId, { title: sessionTitle });
+          ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
         
-        res.write(`data: ${JSON.stringify({ finished: true, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ finished: true, sessionId: sessionId as string })}\n\n`);
         res.end();
       } catch (err: any) {
-        res.write(`data: ${JSON.stringify({ error: err.message, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ error: err.message, sessionId: sessionId as string })}\n\n`);
         res.end();
       }
     } else {
-      const response = await chatWithLLM(messages, false, systemPrompt);
+      const response = await chatWithLLM(messages, false, systemPrompt) as { content: string; reasoning?: string };
       
       ChatMessageDAO.create({
-        sessionId,
+        sessionId: sessionId as string,
         role: 'assistant',
-        content: response,
+        content: response.content,
       });
-      ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+      ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-      const sessionTitle = response.length > 20 ? response.substring(0, 20) + '...' : response;
+      const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
       if (session.messageCount === 1) {
-        ChatSessionDAO.update(sessionId, { title: sessionTitle });
+        ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response, sessionId }));
+      res.json(successResponse({ content: response.content, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -311,19 +352,27 @@ router.post('/data-query', async (req: Request, res: Response) => {
     const messages = history.map((h) => ({
       role: h.role as 'user' | 'assistant',
       content: h.content,
+      reasoning: h.reasoning,
     }));
 
-    messages.push({ role: 'user', content: body.message });
+    messages.push({ role: 'user', content: body.message, reasoning: undefined });
 
-    const systemPrompt = getSystemPrompt('data_query');
+    let systemPrompt = getSystemPrompt('data_query');
+    
+    if (body.skill) {
+      const skillInstruction = getSkillInstruction(body.skill);
+      if (skillInstruction) {
+        systemPrompt = `以下是你需要遵循的技能指令：\n\n${skillInstruction}\n\n${systemPrompt}`;
+      }
+    }
 
     const now = dayjs().toISOString();
     ChatMessageDAO.create({
-      sessionId,
+      sessionId: sessionId as string,
       role: 'user',
       content: body.message,
     });
-    ChatSessionDAO.incrementMessageCount(sessionId, now);
+    ChatSessionDAO.incrementMessageCount(sessionId as string, now);
 
     if (body.stream) {
       res.setHeader('Content-Type', 'text/event-stream');
@@ -331,49 +380,53 @@ router.post('/data-query', async (req: Request, res: Response) => {
       res.setHeader('Connection', 'keep-alive');
 
       try {
-        const stream = await chatWithLLM(messages, true, systemPrompt);
+        const stream = await chatWithLLM(messages, true, systemPrompt, body.enableDeepThinking);
         
         let assistantContent = '';
+        let assistantReasoning = '';
         
-        for await (const chunk of stream as AsyncGenerator<string>) {
-          assistantContent += chunk;
-          res.write(`data: ${JSON.stringify({ content: chunk, sessionId })}\n\n`);
+        for await (const chunk of stream as AsyncGenerator<{ content: string; reasoning?: string; done: boolean }>) {
+          assistantContent += chunk.content;
+          if (chunk.reasoning) {
+            assistantReasoning += chunk.reasoning;
+          }
+          res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string })}\n\n`);
         }
         
         ChatMessageDAO.create({
-          sessionId,
+          sessionId: sessionId as string,
           role: 'assistant',
           content: assistantContent,
         });
-        ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+        ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
         const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
         if (session.messageCount === 1) {
-          ChatSessionDAO.update(sessionId, { title: sessionTitle });
+          ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
         
-        res.write(`data: ${JSON.stringify({ finished: true, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ finished: true, sessionId: sessionId as string })}\n\n`);
         res.end();
       } catch (err: any) {
-        res.write(`data: ${JSON.stringify({ error: err.message, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ error: err.message, sessionId: sessionId as string })}\n\n`);
         res.end();
       }
     } else {
-      const response = await chatWithLLM(messages, false, systemPrompt);
+      const response = await chatWithLLM(messages, false, systemPrompt) as { content: string; reasoning?: string };
       
       ChatMessageDAO.create({
-        sessionId,
+        sessionId: sessionId as string,
         role: 'assistant',
-        content: response,
+        content: response.content,
       });
-      ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+      ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-      const sessionTitle = response.length > 20 ? response.substring(0, 20) + '...' : response;
+      const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
       if (session.messageCount === 1) {
-        ChatSessionDAO.update(sessionId, { title: sessionTitle });
+        ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response, sessionId }));
+      res.json(successResponse({ content: response.content, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -406,19 +459,20 @@ router.post('/dispatch', async (req: Request, res: Response) => {
     const messages = history.map((h) => ({
       role: h.role as 'user' | 'assistant',
       content: h.content,
+      reasoning: h.reasoning,
     }));
 
-    messages.push({ role: 'user', content: body.message });
+    messages.push({ role: 'user', content: body.message, reasoning: undefined });
 
     const systemPrompt = getSystemPrompt('dispatch');
 
     const now = dayjs().toISOString();
     ChatMessageDAO.create({
-      sessionId,
+      sessionId: sessionId as string,
       role: 'user',
       content: body.message,
     });
-    ChatSessionDAO.incrementMessageCount(sessionId, now);
+    ChatSessionDAO.incrementMessageCount(sessionId as string, now);
 
     if (body.stream) {
       res.setHeader('Content-Type', 'text/event-stream');
@@ -430,45 +484,45 @@ router.post('/dispatch', async (req: Request, res: Response) => {
         
         let assistantContent = '';
         
-        for await (const chunk of stream as AsyncGenerator<string>) {
-          assistantContent += chunk;
-          res.write(`data: ${JSON.stringify({ content: chunk, sessionId })}\n\n`);
+        for await (const chunk of stream as AsyncGenerator<{ content: string; reasoning?: string; done: boolean }>) {
+          assistantContent += chunk.content;
+          res.write(`data: ${JSON.stringify({ content: chunk.content, sessionId: sessionId as string })}\n\n`);
         }
         
         ChatMessageDAO.create({
-          sessionId,
+          sessionId: sessionId as string,
           role: 'assistant',
           content: assistantContent,
         });
-        ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+        ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
         const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
         if (session.messageCount === 1) {
-          ChatSessionDAO.update(sessionId, { title: sessionTitle });
+          ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
         
-        res.write(`data: ${JSON.stringify({ finished: true, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ finished: true, sessionId: sessionId as string })}\n\n`);
         res.end();
       } catch (err: any) {
-        res.write(`data: ${JSON.stringify({ error: err.message, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ error: err.message, sessionId: sessionId as string })}\n\n`);
         res.end();
       }
     } else {
-      const response = await chatWithLLM(messages, false, systemPrompt);
+      const response = await chatWithLLM(messages, false, systemPrompt) as { content: string; reasoning?: string };
       
       ChatMessageDAO.create({
-        sessionId,
+        sessionId: sessionId as string,
         role: 'assistant',
-        content: response,
+        content: response.content,
       });
-      ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+      ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-      const sessionTitle = response.length > 20 ? response.substring(0, 20) + '...' : response;
+      const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
       if (session.messageCount === 1) {
-        ChatSessionDAO.update(sessionId, { title: sessionTitle });
+        ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response, sessionId }));
+      res.json(successResponse({ content: response.content, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -501,19 +555,20 @@ router.post('/report', async (req: Request, res: Response) => {
     const messages = history.map((h) => ({
       role: h.role as 'user' | 'assistant',
       content: h.content,
+      reasoning: h.reasoning,
     }));
 
-    messages.push({ role: 'user', content: body.message });
+    messages.push({ role: 'user', content: body.message, reasoning: undefined });
 
     const systemPrompt = getSystemPrompt('report');
 
     const now = dayjs().toISOString();
     ChatMessageDAO.create({
-      sessionId,
+      sessionId: sessionId as string,
       role: 'user',
       content: body.message,
     });
-    ChatSessionDAO.incrementMessageCount(sessionId, now);
+    ChatSessionDAO.incrementMessageCount(sessionId as string, now);
 
     if (body.stream) {
       res.setHeader('Content-Type', 'text/event-stream');
@@ -525,45 +580,45 @@ router.post('/report', async (req: Request, res: Response) => {
         
         let assistantContent = '';
         
-        for await (const chunk of stream as AsyncGenerator<string>) {
-          assistantContent += chunk;
-          res.write(`data: ${JSON.stringify({ content: chunk, sessionId })}\n\n`);
+        for await (const chunk of stream as AsyncGenerator<{ content: string; reasoning?: string; done: boolean }>) {
+          assistantContent += chunk.content;
+          res.write(`data: ${JSON.stringify({ content: chunk.content, sessionId: sessionId as string })}\n\n`);
         }
         
         ChatMessageDAO.create({
-          sessionId,
+          sessionId: sessionId as string,
           role: 'assistant',
           content: assistantContent,
         });
-        ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+        ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
         const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
         if (session.messageCount === 1) {
-          ChatSessionDAO.update(sessionId, { title: sessionTitle });
+          ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
         
-        res.write(`data: ${JSON.stringify({ finished: true, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ finished: true, sessionId: sessionId as string })}\n\n`);
         res.end();
       } catch (err: any) {
-        res.write(`data: ${JSON.stringify({ error: err.message, sessionId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ error: err.message, sessionId: sessionId as string })}\n\n`);
         res.end();
       }
     } else {
-      const response = await chatWithLLM(messages, false, systemPrompt);
+      const response = await chatWithLLM(messages, false, systemPrompt) as { content: string; reasoning?: string };
       
       ChatMessageDAO.create({
-        sessionId,
+        sessionId: sessionId as string,
         role: 'assistant',
-        content: response,
+        content: response.content,
       });
-      ChatSessionDAO.incrementMessageCount(sessionId, dayjs().toISOString());
+      ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-      const sessionTitle = response.length > 20 ? response.substring(0, 20) + '...' : response;
+      const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
       if (session.messageCount === 1) {
-        ChatSessionDAO.update(sessionId, { title: sessionTitle });
+        ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response, sessionId }));
+      res.json(successResponse({ content: response.content, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -656,7 +711,16 @@ router.get('/default-config', (_req: Request, res: Response) => {
 
 router.post('/start-model', async (req: Request, res: Response) => {
   try {
-    const currentConfig = llmConfig();
+    const { model, apiBaseUrl } = req.body;
+    let currentConfig = llmConfig();
+    
+    if (model) {
+      currentConfig = { ...currentConfig, model };
+    }
+    if (apiBaseUrl) {
+      currentConfig = { ...currentConfig, apiBaseUrl };
+    }
+    
     const result = await ensureModelLoaded(currentConfig);
     
     if (result.success) {

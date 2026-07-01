@@ -16,6 +16,13 @@ import {
   Activity,
   ChevronRight,
   MessageSquare,
+  ChevronDown,
+  Sparkles,
+  File,
+  Code,
+  Globe,
+  Check,
+  AlertCircle,
 } from 'lucide-react';
 import { useChatSessions, ChatSession, ChatMessage } from '../hooks/useChatSessions';
 
@@ -23,6 +30,18 @@ interface ChatMessageDisplay {
   role: 'user' | 'assistant';
   content: string;
   reasoning?: string;
+}
+
+interface SkillItem {
+  id: string;
+  name: string;
+  description: string;
+}
+
+interface ToolPermission {
+  type: 'file_read' | 'file_write' | 'script_exec' | 'network';
+  path?: string;
+  description: string;
 }
 
 interface FeatureCard {
@@ -93,19 +112,41 @@ function AIAssistantPage() {
   const [messages, setMessages] = useState<ChatMessageDisplay[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState<'connecting' | 'online' | 'offline'>('connecting');
+  const [status, setStatus] = useState<'connecting' | 'online' | 'offline'>('online');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null);
   const [enableDeepThinking, setEnableDeepThinking] = useState(false);
+  const [skills, setSkills] = useState<SkillItem[]>([]);
+  const [selectedSkill, setSelectedSkill] = useState<SkillItem | null>(null);
+  const [showSkillDropdown, setShowSkillDropdown] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const [showPermissionModal, setShowPermissionModal] = useState(false);
+  const [skillPermissions, setSkillPermissions] = useState<ToolPermission[]>([]);
+  const [skillExecuting, setSkillExecuting] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const receivedFirstChunk = useRef(false);
 
   useEffect(() => {
-    checkStatus();
     fetchSessions();
+    fetchSkills();
+    checkStatus();
   }, [fetchSessions]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  useEffect(() => {
+    if (status === 'offline') {
+      const maxRetries = 30;
+      if (retryCount < maxRetries) {
+        const timer = setTimeout(() => {
+          checkStatus();
+          setRetryCount(prev => prev + 1);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [status, retryCount]);
 
   useEffect(() => {
     if (selectedFeature && !selectedSession) {
@@ -132,11 +173,121 @@ function AIAssistantPage() {
       const data = await response.json();
       if (data.code === 0 && data.data?.online && data.data?.modelLoaded) {
         setStatus('online');
+        setRetryCount(0);
       } else {
         setStatus('offline');
       }
     } catch {
       setStatus('offline');
+    }
+  };
+
+  const fetchSkills = async () => {
+    try {
+      const response = await fetch('/api/skills/published');
+      const data = await response.json();
+      if (data.code === 0) {
+        setSkills(data.data.map((skill: any) => ({
+          id: skill.id,
+          name: skill.name,
+          description: skill.description,
+        })));
+      }
+    } catch (error) {
+      console.error('获取技能列表失败:', error);
+    }
+  };
+
+  const handleSelectSkill = async (skill: SkillItem) => {
+    setSelectedSkill(skill);
+    setShowSkillDropdown(false);
+    
+    try {
+      const response = await fetch(`/api/ai/tools/skills/${skill.id}/permissions`);
+      const data = await response.json();
+      if (data.code === 0) {
+        setSkillPermissions(data.data);
+        setShowPermissionModal(true);
+      }
+    } catch (error) {
+      console.error('获取技能权限失败:', error);
+    }
+  };
+
+  const handleConfirmPermission = async () => {
+    setShowPermissionModal(false);
+    if (selectedSkill) {
+      if (messages.length === 0) {
+        setMessages([
+          {
+            role: 'assistant',
+            content: `已激活技能「${selectedSkill.name}」。${selectedSkill.description}`,
+          },
+        ]);
+      } else {
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: `已切换到技能「${selectedSkill.name}」。${selectedSkill.description}`,
+          },
+        ]);
+      }
+    }
+  };
+
+  const handleCancelPermission = () => {
+    setShowPermissionModal(false);
+    setSelectedSkill(null);
+    setMessages(prev => [
+      ...prev,
+      {
+        role: 'assistant',
+        content: '已取消技能选择，当前使用默认模式。',
+      },
+    ]);
+  };
+
+  const executeSkillAction = async (action: string, params: Record<string, any> = {}) => {
+    if (!selectedSkill) return;
+    
+    setSkillExecuting(true);
+    
+    try {
+      const response = await fetch(`/api/ai/tools/skills/${selectedSkill.id}/run`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action, params }),
+      });
+      const data = await response.json();
+      
+      if (data.code === 0) {
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: `技能执行结果：\n${data.data}`,
+          },
+        ]);
+      } else {
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: `技能执行失败：${data.message}`,
+          },
+        ]);
+      }
+    } catch (error: any) {
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: `技能执行错误：${error.message}`,
+        },
+      ]);
+    } finally {
+      setSkillExecuting(false);
     }
   };
 
@@ -182,6 +333,7 @@ function AIAssistantPage() {
     setMessages(newMessages);
     setInput('');
     setIsLoading(true);
+    receivedFirstChunk.current = false;
 
     const apiPath: Record<string, string> = {
         qna: '/api/ai/assistant/qna',
@@ -206,6 +358,7 @@ function AIAssistantPage() {
           stream: true,
           sessionId: selectedSession?.id,
           enableDeepThinking,
+          skill: selectedSkill ? selectedSkill.id : undefined,
         }),
       });
 
@@ -253,16 +406,21 @@ function AIAssistantPage() {
                 assistantReasoning += json.reasoning;
               }
               if (json.content || json.reasoning) {
-                setMessages((prev) => {
-                  const lastIndex = prev.length - 1;
-                  if (lastIndex >= 0 && prev[lastIndex].role === 'assistant') {
-                    return [
-                      ...prev.slice(0, lastIndex),
-                      { role: 'assistant', content: assistantContent, reasoning: assistantReasoning },
-                    ];
-                  }
-                  return [...prev, { role: 'assistant', content: assistantContent, reasoning: assistantReasoning }];
-                });
+                if (!receivedFirstChunk.current) {
+                  receivedFirstChunk.current = true;
+                  setMessages((prev) => [...prev, { role: 'assistant', content: assistantContent, reasoning: assistantReasoning }]);
+                } else {
+                  setMessages((prev) => {
+                    const lastIndex = prev.length - 1;
+                    if (lastIndex >= 0 && prev[lastIndex].role === 'assistant') {
+                      return [
+                        ...prev.slice(0, lastIndex),
+                        { role: 'assistant', content: assistantContent, reasoning: assistantReasoning },
+                      ];
+                    }
+                    return [...prev, { role: 'assistant', content: assistantContent, reasoning: assistantReasoning }];
+                  });
+                }
               }
               if (json.finished) {
                 if (!selectedSession && currentSessionId) {
@@ -307,7 +465,7 @@ function AIAssistantPage() {
 
   return (
     <div className="h-full flex flex-col">
-      {status !== 'online' && (
+      {status === 'offline' && (
         <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
           <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
             <AlertTriangle size={20} className="text-amber-600" />
@@ -315,13 +473,15 @@ function AIAssistantPage() {
           <div>
             <p className="font-medium text-amber-800">大模型未就绪</p>
             <p className="text-sm text-amber-600">
-              {status === 'connecting'
-                ? '正在连接...'
-                : '请检查Ollama服务是否启动，模型是否已加载'}
+              请检查Ollama服务是否启动，模型是否已加载
             </p>
           </div>
           <button
-            onClick={checkStatus}
+            onClick={() => {
+              setStatus('online');
+              setRetryCount(0);
+              checkStatus();
+            }}
             className="ml-auto px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg text-sm font-medium transition-colors"
           >
             重新检测
@@ -344,17 +504,11 @@ function AIAssistantPage() {
             className={`w-2 h-2 rounded-full ${
               status === 'online'
                 ? 'bg-green-500'
-                : status === 'offline'
-                ? 'bg-red-500'
-                : 'bg-yellow-500 animate-pulse'
+                : 'bg-red-500'
             }`}
           />
           <span className="text-sm text-gray-600">
-            {status === 'online'
-              ? '大模型在线'
-              : status === 'offline'
-              ? '大模型离线'
-              : '连接中...'}
+            {status === 'online' ? '大模型在线' : '大模型离线'}
           </span>
         </div>
       </div>
@@ -641,6 +795,70 @@ function AIAssistantPage() {
                   {enableDeepThinking && (
                     <span className="text-xs text-amber-500">开启后将展示模型思考过程</span>
                   )}
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowSkillDropdown(!showSkillDropdown)}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                        selectedSkill
+                          ? 'bg-purple-100 text-purple-700'
+                          : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Sparkles size={14} />
+                      {selectedSkill ? selectedSkill.name : '选择技能'}
+                      <ChevronDown size={12} />
+                    </button>
+                    {showSkillDropdown && (
+                      <div className="absolute bottom-full left-0 mb-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50">
+                        <div className="p-2 border-b border-gray-100">
+                          <span className="text-xs font-medium text-gray-500">已发布技能</span>
+                        </div>
+                        {skills.length === 0 ? (
+                          <div className="p-4 text-center text-gray-400 text-sm">
+                            暂无已发布技能
+                          </div>
+                        ) : (
+                          <div className="max-h-48 overflow-y-auto">
+                            {skills.map((skill) => (
+                              <button
+                                key={skill.id}
+                                onClick={() => handleSelectSkill(skill)}
+                                className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors ${
+                                  selectedSkill?.id === skill.id ? 'bg-purple-50' : ''
+                                }`}
+                              >
+                                <p className={`text-sm font-medium ${
+                                  selectedSkill?.id === skill.id ? 'text-purple-700' : 'text-gray-900'
+                                }`}>
+                                  {skill.name}
+                                </p>
+                                <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                                  {skill.description}
+                                </p>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  {selectedSkill && (
+                    <button
+                      onClick={() => {
+                        setSelectedSkill(null);
+                        setMessages(prev => [
+                          ...prev,
+                          {
+                            role: 'assistant',
+                            content: '已取消技能选择，当前使用默认模式。',
+                          },
+                        ]);
+                      }}
+                      className="px-2 py-1 text-xs text-red-500 hover:text-red-600"
+                    >
+                      取消
+                    </button>
+                  )}
                 </div>
                 <div className="flex gap-3">
                   <input
@@ -669,6 +887,105 @@ function AIAssistantPage() {
           )}
         </div>
       </div>
+
+      {showPermissionModal && selectedSkill && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 overflow-hidden">
+            <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <AlertCircle size={20} className="text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">技能权限确认</h3>
+                  <p className="text-sm text-white/80">「{selectedSkill.name}」需要以下权限</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-6">
+              <div className="space-y-3 mb-6">
+                {skillPermissions.map((perm, index) => (
+                  <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    {perm.type === 'file_read' && <File size={18} className="text-blue-500 flex-shrink-0" />}
+                    {perm.type === 'file_write' && <File size={18} className="text-green-500 flex-shrink-0" />}
+                    {perm.type === 'script_exec' && <Code size={18} className="text-orange-500 flex-shrink-0" />}
+                    {perm.type === 'network' && <Globe size={18} className="text-purple-500 flex-shrink-0" />}
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">{perm.description}</p>
+                      {perm.path && <p className="text-xs text-gray-500">{perm.path}</p>}
+                    </div>
+                    <Check size={16} className="text-gray-400" />
+                  </div>
+                ))}
+              </div>
+              
+              <p className="text-xs text-gray-500 mb-6">
+                启用此技能后，系统将自动执行相关脚本和访问必要资源。请确保您了解这些操作的影响。
+              </p>
+              
+              <div className="flex gap-3">
+                <button
+                  onClick={handleCancelPermission}
+                  className="flex-1 px-4 py-3 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-medium"
+                >
+                  取消
+                </button>
+                <button
+                  onClick={handleConfirmPermission}
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all font-medium"
+                >
+                  允许并启用技能
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedSkill && (
+        <div className="fixed bottom-24 right-6 z-40">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-3">
+            <p className="text-xs font-medium text-gray-500 mb-2">技能快捷操作</p>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => executeSkillAction('search')}
+                disabled={skillExecuting}
+                className="px-3 py-2 text-xs bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors disabled:opacity-50"
+              >
+                搜索政策
+              </button>
+              <button
+                onClick={() => executeSkillAction('read_reference')}
+                disabled={skillExecuting}
+                className="px-3 py-2 text-xs bg-gray-50 text-gray-600 rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50"
+              >
+                查看参考
+              </button>
+              <button
+                onClick={() => executeSkillAction('download')}
+                disabled={skillExecuting}
+                className="px-3 py-2 text-xs bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors disabled:opacity-50"
+              >
+                下载文件
+              </button>
+              <button
+                onClick={() => executeSkillAction('parse')}
+                disabled={skillExecuting}
+                className="px-3 py-2 text-xs bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors disabled:opacity-50"
+              >
+                解析文件
+              </button>
+            </div>
+            {skillExecuting && (
+              <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+                <Loader2 size={12} className="animate-spin" />
+                执行中...
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

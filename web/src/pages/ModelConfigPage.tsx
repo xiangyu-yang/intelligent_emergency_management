@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
+  AlertTriangle,
   Server,
   Bot,
   Zap,
@@ -26,6 +27,7 @@ interface TestResult {
   model?: string;
   error?: string;
   availableModels?: string[];
+  modelDownloaded?: boolean;
   modelLoaded?: boolean;
   status?: string;
   message?: string;
@@ -102,20 +104,20 @@ function ModelConfigPage() {
         if (data.data.availableModels && data.data.availableModels.length > 0) {
           setAvailableModels(data.data.availableModels);
         }
-        // 如果模型未启动，自动启动
-        if (data.data.online && !data.data.modelLoaded) {
-          setIsTesting(false);
-          await handleStartModel();
-          return;
+        if (data.data.online && data.data.modelLoaded) {
+          setStatus('online');
+        } else {
+          setStatus('offline');
         }
       } else {
         setTestResult({ online: false, error: data.message });
+        setStatus('offline');
       }
     } catch (error: any) {
       setTestResult({ online: false, error: error.message });
+      setStatus('offline');
     } finally {
       setIsTesting(false);
-      checkStatus();
     }
   };
 
@@ -125,12 +127,12 @@ function ModelConfigPage() {
       const response = await fetch('/api/ai/assistant/start-model', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: config.model, apiBaseUrl: config.apiBaseUrl }),
       });
       const data = await response.json();
       if (data.code === 0) {
         setSaveMessage('模型启动成功');
         setTimeout(() => setSaveMessage(''), 3000);
-        checkStatus();
         handleTest();
       } else {
         setSaveMessage(data.message || '模型启动失败');
@@ -456,17 +458,25 @@ function ModelConfigPage() {
                     className={`p-4 rounded-xl flex items-start gap-3 ${
                       testResult.online && testResult.modelLoaded
                         ? 'bg-green-50 text-green-700'
+                        : testResult.online && testResult.modelDownloaded && !testResult.modelLoaded
+                        ? 'bg-amber-50 text-amber-700'
                         : 'bg-red-50 text-red-700'
                     }`}
                   >
                     {testResult.online && testResult.modelLoaded ? (
                       <CheckCircle2 size={20} className="flex-shrink-0 mt-0.5" />
+                    ) : testResult.online && testResult.modelDownloaded && !testResult.modelLoaded ? (
+                      <AlertTriangle size={20} className="flex-shrink-0 mt-0.5" />
                     ) : (
                       <XCircle size={20} className="flex-shrink-0 mt-0.5" />
                     )}
                     <div>
                       <p className="font-medium">
-                        {testResult.online && testResult.modelLoaded ? '✅ 连接成功' : '❌ 连接失败'}
+                        {testResult.online && testResult.modelLoaded
+                          ? '✅ 连接成功'
+                          : testResult.online && testResult.modelDownloaded && !testResult.modelLoaded
+                          ? '⚠️ 模型未加载'
+                          : '❌ 连接失败'}
                       </p>
                       {testResult.message ? (
                         <p className="text-sm mt-1">{testResult.message}</p>
@@ -502,7 +512,7 @@ function ModelConfigPage() {
                       </div>
                     )}
 
-                  {testResult && !testResult.modelLoaded && (
+                  {testResult && testResult.online && testResult.modelDownloaded && !testResult.modelLoaded && (
                     <button
                       onClick={handleStartModel}
                       disabled={isStarting}

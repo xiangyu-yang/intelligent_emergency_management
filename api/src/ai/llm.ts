@@ -70,14 +70,18 @@ export async function chatWithLLM(
 
   const baseUrl = config.apiBaseUrl.replace('/v1', '');
   
-  const body = {
+  const body: Record<string, any> = {
     model: config.model,
     messages: requestMessages,
     stream,
     temperature: config.temperature,
     max_tokens: config.maxTokens,
-    think: enableDeepThinking ?? config.enableDeepThinking,
   };
+
+  const shouldThink = enableDeepThinking ?? config.enableDeepThinking;
+  if (shouldThink) {
+    body.think = shouldThink;
+  }
 
   const response = await fetch(`${baseUrl}/api/chat`, {
     method: 'POST',
@@ -134,22 +138,31 @@ function* parseBuffer(buffer: string): Generator<StreamChunk> {
   const lines = buffer.split('\n');
   
   for (const line of lines) {
-    if (line.startsWith('data: ')) {
-      const data = line.slice(6);
-      if (data === '[DONE]') {
-        yield { content: '', reasoning: '', done: true };
-        return;
-      }
-      try {
-        const json = JSON.parse(data) as { message?: { content?: string; thinking?: string }; done?: boolean };
+    const trimmedLine = line.trim();
+    if (!trimmedLine) continue;
+    
+    let data = trimmedLine;
+    if (trimmedLine.startsWith('data: ')) {
+      data = trimmedLine.slice(6);
+    }
+    
+    if (data === '[DONE]') {
+      yield { content: '', reasoning: '', done: true };
+      return;
+    }
+    
+    try {
+      const json = JSON.parse(data) as { message?: { content?: string; thinking?: string }; done?: boolean };
+      
+      if (json.message) {
         yield {
           content: json.message?.content || '',
           reasoning: json.message?.thinking,
           done: json.done === true,
         };
-      } catch {
-        continue;
       }
+    } catch {
+      continue;
     }
   }
 }
@@ -159,8 +172,9 @@ export async function checkLLMStatus(config?: LLMConfig): Promise<{
   model?: string;
   error?: string;
   availableModels?: string[];
+  modelDownloaded?: boolean;
   modelLoaded?: boolean;
-  status?: 'connected' | 'model_not_found' | 'model_error' | 'service_error' | 'connection_refused' | 'error';
+  status?: 'connected' | 'model_not_found' | 'model_not_loaded' | 'model_error' | 'service_error' | 'connection_refused' | 'error';
   message?: string;
 }> {
   const currentConfig = config || getConfig();
@@ -172,88 +186,93 @@ export async function checkLLMStatus(config?: LLMConfig): Promise<{
     if (!modelListResponse.ok) {
       return {
         online: false,
-        error: `无法获取模型列表 (状态码: ${modelListResponse.status})`,
-        modelLoaded: false,
-        status: 'service_error',
-        message: `❌ 无法获取模型列表 (状态码: ${modelListResponse.status})`
-      };
-    }
-
-    const modelData = (await modelListResponse.json()) as { models?: Array<{ name: string }> };
-    const availableModels = (modelData.models || []).map((m) => m.name);
-
-    if (!availableModels.includes(currentConfig.model)) {
-      return {
-        online: true,
-        model: currentConfig.model,
-        availableModels,
-        error: `Model '${currentConfig.model}' 未找到`,
-        modelLoaded: false,
-        status: 'model_not_found',
-        message: `❌ 模型 '${currentConfig.model}' 未找到。可用模型: ${availableModels.join(', ') || '无'}`
-      };
-    }
-
-    const baseUrl = currentConfig.apiBaseUrl.replace('/v1', '');
-    
-    const chatResponse = await fetch(`${baseUrl}/api/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: currentConfig.model,
-        messages: [{ role: 'user', content: 'hello' }],
-        max_tokens: 10,
-        stream: false,
-      }),
-    });
-
-    if (chatResponse.ok) {
-      const result = (await chatResponse.json()) as { message?: { content?: string } };
-      if (result.message?.content) {
-        return {
-          online: true,
-          model: currentConfig.model,
-          availableModels,
-          modelLoaded: true,
-          status: 'connected',
-          message: `✅ 连接成功！模型 '${currentConfig.model}' 响应正常`
-        };
-      }
-    }
-
-    let errorMsg = `状态码: ${chatResponse.status}`;
-    try {
-      const errorData = (await chatResponse.json()) as { error?: { message?: string } };
-      if (errorData.error?.message) {
-        errorMsg = errorData.error.message;
-      }
-    } catch {}
-
-    return {
-      online: true,
-      model: currentConfig.model,
-      availableModels,
-      error: `模型响应异常: ${errorMsg}`,
-      modelLoaded: false,
-      status: 'model_error',
-      message: `❌ 模型 '${currentConfig.model}' 响应异常: ${errorMsg}`
-    };
-  } catch (error: any) {
-    if (error.message?.includes('fetch failed') || error.message?.includes('ECONNREFUSED')) {
-      return {
-        online: false,
         error: '无法连接到服务',
+        modelDownloaded: false,
         modelLoaded: false,
         status: 'connection_refused',
         message: '❌ 无法连接到服务，请确认服务地址正确且Ollama正在运行'
       };
     }
+
+    const modelData = (await modelListResponse.json()) as { models?: Array<{ name: string }> };
+    const availableModels = (modelData.models || []).map((m) => m.name);
+    const modelDownloaded = availableModels.includes(currentConfig.model);
+
+    if (!modelDownloaded) {
+      return {
+        online: true,
+        model: currentConfig.model,
+        availableModels,
+        modelDownloaded: false,
+        modelLoaded: false,
+        status: 'model_not_found',
+        message: `❌ 模型 '${currentConfig.model}' 未下载。可用模型: ${availableModels.join(', ') || '无'}`
+      };
+    }
+
+    let modelLoaded = false;
+    try {
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error('timeout')), 1500);
+      });
+
+      const chatResponse = await Promise.race([
+        fetch(`${baseUrlNoV1}/api/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: currentConfig.model,
+            messages: [{ role: 'user', content: 'hi' }],
+            stream: false,
+            options: {
+              num_ctx: 128,
+              num_predict: 1,
+              keep_alive: -1,
+            },
+          }),
+        }),
+        timeoutPromise,
+      ]);
+
+      if (chatResponse.ok) {
+        modelLoaded = true;
+      } else {
+        try {
+          const errorData = (await chatResponse.json()) as { error?: string };
+          if (errorData.error?.includes('not loaded')) {
+            modelLoaded = false;
+          } else if (errorData.error?.includes('model')) {
+            modelLoaded = false;
+          } else {
+            modelLoaded = true;
+          }
+        } catch {
+          modelLoaded = false;
+        }
+      }
+    } catch {
+      modelLoaded = false;
+    }
+
+    return {
+      online: true,
+      model: currentConfig.model,
+      availableModels,
+      modelDownloaded: true,
+      modelLoaded,
+      status: modelLoaded ? 'connected' : 'model_not_loaded',
+      message: modelLoaded
+        ? `✅ 服务在线，模型 '${currentConfig.model}' 已就绪`
+        : `⚠️ 服务在线，模型 '${currentConfig.model}' 已下载但未加载，请点击"启动模型"`
+    };
+  } catch (error: any) {
     return {
       online: false,
       error: error.message,
+      modelDownloaded: false,
       modelLoaded: false,
-      status: 'error',
-      message: `❌ 连接测试失败: ${error.message}`
+      status: 'connection_refused',
+      message: '❌ 无法连接到服务，请确认服务地址正确且Ollama正在运行'
     };
   }
 }
@@ -262,13 +281,19 @@ export async function ensureModelLoaded(config?: LLMConfig): Promise<{ success: 
   const currentConfig = config || getConfig();
 
   try {
-    const response = await fetch(`${currentConfig.apiBaseUrl}/api/generate`, {
+    const baseUrl = currentConfig.apiBaseUrl.replace('/v1', '');
+    const response = await fetch(`${baseUrl}/api/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: currentConfig.model,
         prompt: 'hello',
         stream: false,
+        options: {
+          num_ctx: 128,
+          num_predict: 1,
+          keep_alive: -1,
+        },
       }),
     });
 

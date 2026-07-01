@@ -17,6 +17,18 @@ interface SkillMetadata {
   tags: string[];
 }
 
+interface SkillInfo {
+  id: string;
+  name: string;
+  description: string;
+  version: string;
+  category: string;
+  difficulty: string;
+  tags: string[];
+  status: 'published' | 'draft';
+  publishedAt?: string;
+}
+
 interface SkillResource {
   name: string;
   type: 'directory' | 'file';
@@ -89,6 +101,22 @@ router.get('/', (req: Request, res: Response) => {
     const skills = skillIds.map(id => {
       const skillDir = path.join(SKILLS_DIR, id);
       const skillMdPath = path.join(skillDir, 'skill.md');
+      const statusFile = path.join(skillDir, '.status');
+
+      let status: 'published' | 'draft' = 'published';
+      let publishedAt: string | undefined;
+
+      if (fs.existsSync(statusFile)) {
+        const statusContent = fs.readFileSync(statusFile, 'utf-8').trim();
+        if (statusContent === 'draft') {
+          status = 'draft';
+        } else if (statusContent.startsWith('published:')) {
+          status = 'published';
+          publishedAt = statusContent.replace('published:', '');
+        }
+      } else {
+        status = 'published';
+      }
 
       if (!fs.existsSync(skillMdPath)) {
         return {
@@ -99,6 +127,8 @@ router.get('/', (req: Request, res: Response) => {
           category: '未分类',
           difficulty: 'medium',
           tags: [],
+          status,
+          publishedAt,
         };
       }
 
@@ -113,10 +143,75 @@ router.get('/', (req: Request, res: Response) => {
         category: metadata?.category || '未分类',
         difficulty: metadata?.difficulty || 'medium',
         tags: metadata?.tags || [],
+        status,
+        publishedAt,
       };
     });
 
-    res.json(successResponse(skills, '获取技能列表成功'));
+    const { status: filterStatus } = req.query;
+    let filteredSkills = skills;
+    if (filterStatus === 'published') {
+      filteredSkills = skills.filter(s => s.status === 'published');
+    } else if (filterStatus === 'draft') {
+      filteredSkills = skills.filter(s => s.status === 'draft');
+    }
+
+    res.json(successResponse(filteredSkills, '获取技能列表成功'));
+  } catch (err: any) {
+    res.json(errorResponse(err.message || '获取技能列表失败', 500));
+  }
+});
+
+router.get('/published', (req: Request, res: Response) => {
+  try {
+    if (!fs.existsSync(SKILLS_DIR)) {
+      res.json(successResponse([], '技能列表为空'));
+      return;
+    }
+
+    const skillIds = fs.readdirSync(SKILLS_DIR)
+      .filter(item => {
+        const itemPath = path.join(SKILLS_DIR, item);
+        return fs.statSync(itemPath).isDirectory();
+      });
+
+    const skills = skillIds.map(id => {
+      const skillDir = path.join(SKILLS_DIR, id);
+      const skillMdPath = path.join(skillDir, 'skill.md');
+      const statusFile = path.join(skillDir, '.status');
+
+      let status: 'published' | 'draft' = 'published';
+
+      if (fs.existsSync(statusFile)) {
+        const statusContent = fs.readFileSync(statusFile, 'utf-8').trim();
+        if (statusContent === 'draft') {
+          status = 'draft';
+        }
+      }
+
+      if (status !== 'published') {
+        return null;
+      }
+
+      if (!fs.existsSync(skillMdPath)) {
+        return null;
+      }
+
+      const content = fs.readFileSync(skillMdPath, 'utf-8');
+      const metadata = parseSkillMetadata(content);
+
+      return {
+        id,
+        name: metadata?.name || id,
+        description: metadata?.description || '',
+        version: metadata?.version || '1.0.0',
+        category: metadata?.category || '未分类',
+        difficulty: metadata?.difficulty || 'medium',
+        tags: metadata?.tags || [],
+      };
+    }).filter(Boolean);
+
+    res.json(successResponse(skills, '获取已发布技能列表成功'));
   } catch (err: any) {
     res.json(errorResponse(err.message || '获取技能列表失败', 500));
   }
@@ -184,6 +279,45 @@ router.get('/:id/raw', (req: Request, res: Response) => {
     res.json(successResponse(content, '获取技能原始内容成功'));
   } catch (err: any) {
     res.json(errorResponse(err.message || '获取技能原始内容失败', 500));
+  }
+});
+
+router.post('/:id/publish', (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const skillDir = path.join(SKILLS_DIR, id);
+
+    if (!fs.existsSync(skillDir)) {
+      res.json(errorResponse('技能不存在', 404));
+      return;
+    }
+
+    const statusFile = path.join(skillDir, '.status');
+    const publishedAt = new Date().toISOString();
+    fs.writeFileSync(statusFile, `published:${publishedAt}`);
+
+    res.json(successResponse({ id, status: 'published', publishedAt }, '技能发布成功'));
+  } catch (err: any) {
+    res.json(errorResponse(err.message || '发布技能失败', 500));
+  }
+});
+
+router.post('/:id/unpublish', (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const skillDir = path.join(SKILLS_DIR, id);
+
+    if (!fs.existsSync(skillDir)) {
+      res.json(errorResponse('技能不存在', 404));
+      return;
+    }
+
+    const statusFile = path.join(skillDir, '.status');
+    fs.writeFileSync(statusFile, 'draft');
+
+    res.json(successResponse({ id, status: 'draft' }, '技能已取消发布'));
+  } catch (err: any) {
+    res.json(errorResponse(err.message || '取消发布技能失败', 500));
   }
 });
 

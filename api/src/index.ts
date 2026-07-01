@@ -9,6 +9,7 @@ import eventMonitorRouter from './routes/events/monitor.js';
 import taskRouter from './routes/events/tasks.js';
 import aiSolutionRouter from './routes/ai/solution.js';
 import aiAssistantRouter from './routes/ai/assistant.js';
+import aiToolsRouter from './routes/ai/tools.js';
 import correlationRouter from './routes/analysis/correlation.js';
 import selfLearningRouter from './routes/analysis/selfLearning.js';
 import knowledgeRouter from './routes/knowledge/base.js';
@@ -54,6 +55,7 @@ async function startServer() {
   app.use('/api/solutions', solutionsRouter);
   app.use('/api/ai', aiSolutionRouter);
   app.use('/api/ai/assistant', aiAssistantRouter);
+  app.use('/api/ai/tools', aiToolsRouter);
 
   app.use('/api/config/event-types', eventTypesRouter);
   app.use('/api/config/plan-templates', planTemplatesRouter);

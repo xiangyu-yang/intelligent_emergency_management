@@ -527,16 +527,16 @@ class ChatSessionDAOImpl extends BaseDAO<ChatSession> {
     return result as ChatSession[];
   }
 
-  findById(id: string): ChatSession | null {
+  findById(id: string): ChatSession | undefined {
     const result = this.db.prepare(
       `SELECT * FROM ${this.tableName} WHERE id = ?`
     ).get(id);
-    return result ? (result as ChatSession) : null;
+    return result ? (result as ChatSession) : undefined;
   }
 
-  update(id: string, data: Partial<ChatSession>): ChatSession | null {
+  update(id: string, data: Partial<Omit<ChatSession, "id" | "createdAt">>): ChatSession | undefined {
     const session = this.findById(id);
-    if (!session) return null;
+    if (!session) return undefined;
 
     const updateData = { ...data, updatedAt: this.now() };
     const fieldList = Object.keys(updateData).filter(f => f !== 'id' && f !== 'createdAt');

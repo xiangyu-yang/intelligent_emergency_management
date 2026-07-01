@@ -170,6 +170,37 @@ python scripts/incremental_update.py --lastUpdate=2026-06-01
 python scripts/search_policy_content.py --query="安全生产责任制"
 ```
 
+### 4. 工具调用
+
+你可以调用以下工具来完成政策收集任务：
+
+**可用工具：**
+
+1. **execute_policy_collection**: 执行应急政策收集脚本，从互联网获取最新的应急政策文件并下载到本地目录
+   - 参数: 
+     - skillId (必填): 技能ID，通常为"policy-collection"
+     - keyword (可选): 搜索关键词，如"应急预案"、"安全生产"
+     - category (可选): 政策分类，如"部令"、"公告"、"通知"、"通报"
+     - url (可选): 特定政策文件URL
+
+2. **read_downloaded_file**: 读取已下载的政策文件内容
+   - 参数:
+     - skillId (必填): 技能ID
+     - filePath (必填): 文件相对路径（相对于技能目录）
+
+**工具调用规则：**
+
+- 当用户请求收集或下载政策文件时，必须调用 `execute_policy_collection` 工具
+- 工具执行完成后，会自动将结果返回给你，你需要根据结果继续回答用户
+- 如果需要查看已下载文件的内容，可以调用 `read_downloaded_file` 工具
+- 如果不需要调用工具，可以直接回答用户问题
+
+**执行流程：**
+
+```
+用户请求 → 分析需求 → 调用工具 → 获取结果 → 总结报告
+```
+
 ### 执行流程
 
 ```

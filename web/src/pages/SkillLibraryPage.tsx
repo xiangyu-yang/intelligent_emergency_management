@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Briefcase,
   FileSearch,
@@ -58,6 +58,7 @@ interface SkillCard {
   category: string;
   tags: string[];
   difficulty: 'easy' | 'medium' | 'hard';
+  status?: 'published' | 'draft';
 }
 
 const skillCards: SkillCard[] = [
@@ -427,8 +428,62 @@ function SkillLibraryPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSkill, setSelectedSkill] = useState<SkillDetail | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [skills, setSkills] = useState<SkillCard[]>([]);
 
-  const filteredSkills = skillCards.filter((skill) => {
+  useEffect(() => {
+    fetchSkills();
+  }, []);
+
+  const fetchSkills = async () => {
+    try {
+      const response = await apiClient.get('/skills');
+      if (response.code === 0) {
+        const apiSkills = response.data.map((skill: any) => {
+          const card = skillCards.find(c => c.id === skill.id);
+          return {
+            ...card,
+            id: skill.id,
+            name: skill.name,
+            title: skill.name,
+            description: skill.description,
+            category: skill.category,
+            difficulty: skill.difficulty,
+            tags: skill.tags,
+            status: skill.status,
+          } as SkillCard;
+        }).filter((skill: SkillCard | undefined) => skill);
+        setSkills(apiSkills.length > 0 ? apiSkills : skillCards);
+      } else {
+        setSkills(skillCards);
+      }
+    } catch {
+      setSkills(skillCards);
+    }
+  };
+
+  const handlePublishSkill = async (skillId: string) => {
+    try {
+      const response = await apiClient.post(`/skills/${skillId}/publish`);
+      if (response.code === 0) {
+        fetchSkills();
+      }
+    } catch (error) {
+      console.error('发布技能失败:', error);
+    }
+  };
+
+  const handleUnpublishSkill = async (skillId: string) => {
+    try {
+      const response = await apiClient.post(`/skills/${skillId}/unpublish`);
+      if (response.code === 0) {
+        fetchSkills();
+      }
+    } catch (error) {
+      console.error('取消发布技能失败:', error);
+    }
+  };
+
+  const filteredSkills = skills.filter((skill) => {
     const matchCategory = selectedCategory === '全部' || skill.category === selectedCategory;
     const matchSearch = skill.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                         skill.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -507,6 +562,24 @@ function SkillLibraryPage() {
               onClick={() => handleSkillClick(skill.id)}
               className="group relative bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-primary-200 transition-all duration-300 text-left"
             >
+              <div className="absolute top-4 right-4">
+                {skill.status === 'published' && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    已发布
+                  </span>
+                )}
+                {skill.status === 'draft' && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-yellow-50 text-yellow-700 rounded-full text-xs font-medium">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    草稿
+                  </span>
+                )}
+              </div>
               <div
                 className={`w-14 h-14 rounded-xl bg-gradient-to-br ${skill.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}
               >
@@ -529,13 +602,36 @@ function SkillLibraryPage() {
                 ))}
               </div>
               <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                <span className="text-xs text-gray-500">{skill.category}</span>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${difficultyConfig[skill.difficulty].color}`}>
-                  {difficultyConfig[skill.difficulty].label}
-                </span>
-              </div>
-              <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                <ChevronRight className="w-5 h-5 text-primary-500" />
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-500">{skill.category}</span>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${difficultyConfig[skill.difficulty].color}`}>
+                    {difficultyConfig[skill.difficulty].label}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  {skill.status === 'published' ? (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleUnpublishSkill(skill.id);
+                      }}
+                      className="px-3 py-1 bg-red-50 text-red-600 rounded-lg text-xs font-medium hover:bg-red-100 transition-colors"
+                    >
+                      取消发布
+                    </button>
+                  ) : (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePublishSkill(skill.id);
+                      }}
+                      className="px-3 py-1 bg-green-50 text-green-600 rounded-lg text-xs font-medium hover:bg-green-100 transition-colors"
+                    >
+                      发布
+                    </button>
+                  )}
+                  <ChevronRight className="w-5 h-5 text-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
               </div>
             </button>
           ))}
