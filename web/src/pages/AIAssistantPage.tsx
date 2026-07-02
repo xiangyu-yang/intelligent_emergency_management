@@ -122,6 +122,7 @@ function AIAssistantPage() {
   const [showPermissionModal, setShowPermissionModal] = useState(false);
   const [skillPermissions, setSkillPermissions] = useState<ToolPermission[]>([]);
   const [skillExecuting, setSkillExecuting] = useState(false);
+  const [expandedReasoning, setExpandedReasoning] = useState<Record<string, boolean>>({});
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const receivedFirstChunk = useRef(false);
 
@@ -257,13 +258,17 @@ function AIAssistantPage() {
       const response = await fetch(`/api/ai/tools/skills/${selectedSkill.id}/run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action, params }),
+        body: JSON.stringify({ action, params, sessionId: selectedSession?.id }),
       });
       const data = await response.json();
       
       if (data.code === 0) {
         setMessages(prev => [
           ...prev,
+          {
+            role: 'user',
+            content: `执行技能操作: ${action}`,
+          },
           {
             role: 'assistant',
             content: `技能执行结果：\n${data.data}`,
@@ -273,6 +278,10 @@ function AIAssistantPage() {
         setMessages(prev => [
           ...prev,
           {
+            role: 'user',
+            content: `执行技能操作: ${action}`,
+          },
+          {
             role: 'assistant',
             content: `技能执行失败：${data.message}`,
           },
@@ -281,6 +290,10 @@ function AIAssistantPage() {
     } catch (error: any) {
       setMessages(prev => [
         ...prev,
+        {
+          role: 'user',
+          content: `执行技能操作: ${action}`,
+        },
         {
           role: 'assistant',
           content: `技能执行错误：${error.message}`,
@@ -556,26 +569,28 @@ function AIAssistantPage() {
                         e.stopPropagation();
                         setShowDeleteConfirm(session.id);
                       }}
-                      className="absolute top-2 right-2 p-1 hover:bg-red-50 rounded opacity-0 hover:opacity-100 transition-opacity"
+                      className="absolute top-2 right-2 p-1.5 hover:bg-red-50 rounded-lg text-gray-400 hover:text-red-500 transition-colors"
                     >
-                      <Trash2 size={14} className="text-red-400" />
+                      <Trash2 size={14} />
                     </button>
 
                     {showDeleteConfirm === session.id && (
-                      <div className="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded-lg z-10">
-                        <span className="mr-1">确定删除?</span>
-                        <button
-                          onClick={() => handleDeleteSession(session.id)}
-                          className="text-white underline"
-                        >
-                          是
-                        </button>
-                        <button
-                          onClick={() => setShowDeleteConfirm(null)}
-                          className="text-white ml-2 underline"
-                        >
-                          否
-                        </button>
+                      <div className="absolute top-full right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-20 p-3 min-w-[120px]">
+                        <p className="text-sm text-gray-700 mb-2">确定删除该会话?</p>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleDeleteSession(session.id)}
+                            className="flex-1 px-3 py-1.5 bg-red-500 text-white text-xs rounded-lg hover:bg-red-600 transition-colors"
+                          >
+                            删除
+                          </button>
+                          <button
+                            onClick={() => setShowDeleteConfirm(null)}
+                            className="flex-1 px-3 py-1.5 bg-gray-100 text-gray-700 text-xs rounded-lg hover:bg-gray-200 transition-colors"
+                          >
+                            取消
+                          </button>
+                        </div>
                       </div>
                     )}
 
@@ -751,13 +766,30 @@ function AIAssistantPage() {
                     <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                     {message.reasoning && (
                       <div className="mt-3 pt-3 border-t border-gray-200">
-                        <div className="flex items-center gap-2 mb-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedReasoning((prev) => ({
+                              ...prev,
+                              [message.content]: !prev[message.content],
+                            }));
+                          }}
+                          className="flex items-center gap-2 text-xs font-medium text-amber-600 hover:text-amber-700 transition-colors"
+                        >
+                          <ChevronDown
+                            size={14}
+                            className={`transition-transform ${
+                              expandedReasoning[message.content] ? 'rotate-180' : ''
+                            }`}
+                          />
                           <Activity size={14} className="text-amber-500" />
-                          <span className="text-xs font-medium text-amber-600">思考过程</span>
-                        </div>
-                        <p className="text-xs text-gray-500 whitespace-pre-wrap bg-amber-50 p-2 rounded-lg">
-                          {message.reasoning}
-                        </p>
+                          <span>思考过程</span>
+                        </button>
+                        {expandedReasoning[message.content] && (
+                          <p className="text-xs text-gray-500 whitespace-pre-wrap bg-amber-50 p-2 rounded-lg mt-2">
+                            {message.reasoning}
+                          </p>
+                        )}
                       </div>
                     )}
                   </div>

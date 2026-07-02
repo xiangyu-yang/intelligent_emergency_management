@@ -89,7 +89,7 @@ export function getSkillPermissions(skillId: string): ToolPermission[] {
     {
       type: 'file_read',
       path: `data/skills/${skillId}/assets/`,
-      description: '读取技能资源文件',
+      description: '读取技能静态资源文件',
     },
     {
       type: 'script_exec',

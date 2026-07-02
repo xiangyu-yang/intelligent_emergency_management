@@ -1,0 +1,734 @@
+{
+  "totalCount": 104,
+  "successCount": 61,
+  "results": [
+    {
+      "title": "# 应急政策文件来源URL列表",
+      "url": "# 应急政策文件来源URL列表",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "## 国家应急管理部官方网站",
+      "url": "## 国家应急管理部官方网站",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "### 一、通知公告栏目",
+      "url": "### 一、通知公告栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "#### 1. 部令",
+      "url": "#### 1. 部令",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/bl/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920367.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/bl/index_2.shtml",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "index_3.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/bl/index_3.shtml",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "#### 2. 通报",
+      "url": "#### 2. 通报",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/tb/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920376.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/tb/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 3. 公告（应急管理部公告）",
+      "url": "#### 3. 公告（应急管理部公告）",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yjbgg/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920382.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yjbgg/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 4. 通知",
+      "url": "#### 4. 通知",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/tz/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920388.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/tz/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 5. 函",
+      "url": "#### 5. 函",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/h/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920394.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/h/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 6. 意见",
+      "url": "#### 6. 意见",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yj/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920400.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yj/index_2.shtml",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "#### 7. 其他",
+      "url": "#### 7. 其他",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/qt/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920407.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/qt/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 8. 应急管理部公报（PDF）",
+      "url": "#### 8. 应急管理部公报（PDF）",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yjglbgg/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920413.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yjglbgg/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "### 二、政策解读栏目",
+      "url": "### 二、政策解读栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/zcjd/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920419.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/zcjd/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "### 三、事故及灾害查处栏目",
+      "url": "### 三、事故及灾害查处栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "#### 1. 挂牌督办",
+      "url": "#### 1. 挂牌督办",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/sgcc/sggpdbqk/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920427.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/sgcc/sggpdbqk/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 2. 调查报告",
+      "url": "#### 2. 调查报告",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/sgcc/tbzdsgdcbg/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920433.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/sgcc/tbzdsgdcbg/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "### 四、计划规划栏目",
+      "url": "### 四、计划规划栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/ghjh/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920439.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/ghjh/index_2.shtml",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "### 五、统计数据栏目",
+      "url": "### 五、统计数据栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/tjsj/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920445.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/tjsj/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "### 六、人事信息栏目",
+      "url": "### 六、人事信息栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/rsxx/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920451.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/rsxx/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "### 七、财务信息栏目",
+      "url": "### 七、财务信息栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/cwxx/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920457.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/cwxx/index_2.shtml",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "### 八、原国家安全监管总局文件栏目",
+      "url": "### 八、原国家安全监管总局文件栏目",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "#### 1. 总局令",
+      "url": "#### 1. 总局令",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/zjl_01/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920466.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/zjl_01/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 2. 通知",
+      "url": "#### 2. 通知",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/tz_01/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920472.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/tz_01/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 3. 通报",
+      "url": "#### 3. 通报",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/tb_01/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920478.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/tb_01/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 4. 决定",
+      "url": "#### 4. 决定",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/jd_01/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920484.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/jd_01/index_2.shtml",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "#### 5. 公告",
+      "url": "#### 5. 公告",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/gg_01/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920490.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/gg_01/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 6. 函",
+      "url": "#### 6. 函",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/han_01/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920497.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/han_01/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 7. 意见",
+      "url": "#### 7. 意见",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/yj_01/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920503.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/yj_01/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "#### 8. 规范性文件",
+      "url": "#### 8. 规范性文件",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/gfxwj/",
+      "documentType": "html",
+      "savePath": "downloads/html/policy_1782920509.html",
+      "success": true
+    },
+    {
+      "title": "index_2.shtml",
+      "url": "https://www.mem.gov.cn/gk/gwgg/agwzlfl/gfxwj/index_2.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/index_2.shtml",
+      "success": true
+    },
+    {
+      "title": "## 示例详情页URL",
+      "url": "## 示例详情页URL",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "### 部令示例",
+      "url": "### 部令示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "t20260528_605335.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202605/t20260528_605335.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260528_605335.shtml",
+      "success": true
+    },
+    {
+      "title": "t20260528_605334.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202605/t20260528_605334.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260528_605334.shtml",
+      "success": true
+    },
+    {
+      "title": "t20251219_589179.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202512/t20251219_589179.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20251219_589179.shtml",
+      "success": true
+    },
+    {
+      "title": "t20251202_587134.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202512/t20251202_587134.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20251202_587134.shtml",
+      "success": true
+    },
+    {
+      "title": "### 公告示例",
+      "url": "### 公告示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "t20260622_608438.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260622_608438.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260622_608438.shtml",
+      "success": true
+    },
+    {
+      "title": "t20260622_608437.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260622_608437.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260622_608437.shtml",
+      "success": true
+    },
+    {
+      "title": "t20260610_607260.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260610_607260.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260610_607260.shtml",
+      "success": true
+    },
+    {
+      "title": "### 通报示例",
+      "url": "### 通报示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "t20260608_606757.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260608_606757.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260608_606757.shtml",
+      "success": true
+    },
+    {
+      "title": "t20260425_601768.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202604/t20260425_601768.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260425_601768.shtml",
+      "success": true
+    },
+    {
+      "title": "### 通知示例",
+      "url": "### 通知示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "t20260623_608712.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260623_608712.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260623_608712.shtml",
+      "success": true
+    },
+    {
+      "title": "t20260609_607138.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260609_607138.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260609_607138.shtml",
+      "success": true
+    },
+    {
+      "title": "### 意见示例",
+      "url": "### 意见示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "t20260127_593136.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202601/t20260127_593136.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260127_593136.shtml",
+      "success": true
+    },
+    {
+      "title": "t20241023_506225.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202410/t20241023_506225.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20241023_506225.shtml",
+      "success": true
+    },
+    {
+      "title": "### PDF公报示例",
+      "url": "### PDF公报示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "P020260522357267263124.pdf",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yjglbgg/202605/P020260522357267263124.pdf",
+      "documentType": "pdf",
+      "savePath": "downloads/pdf/P020260522357267263124.pdf",
+      "success": true
+    },
+    {
+      "title": "P020260522356638342956.pdf",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yjglbgg/202605/P020260522356638342956.pdf",
+      "documentType": "pdf",
+      "savePath": "downloads/pdf/P020260522356638342956.pdf",
+      "success": true
+    },
+    {
+      "title": "P020260522356270993209.pdf",
+      "url": "https://www.mem.gov.cn/gk/tzgg/yjglbgg/202605/P020260522356270993209.pdf",
+      "documentType": "pdf",
+      "savePath": "downloads/pdf/P020260522356270993209.pdf",
+      "success": true
+    },
+    {
+      "title": "### 调查报告示例",
+      "url": "### 调查报告示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "t20260618_608227.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/t20260618_608227.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260618_608227.shtml",
+      "success": true
+    },
+    {
+      "title": "t20260522_604598.shtml",
+      "url": "https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202605/t20260522_604598.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260522_604598.shtml",
+      "success": true
+    },
+    {
+      "title": "## 政策解读示例",
+      "url": "## 政策解读示例",
+      "documentType": "html",
+      "savePath": "",
+      "success": false
+    },
+    {
+      "title": "t20260529_605654.shtml",
+      "url": "https://www.mem.gov.cn/gk/zcjd/202605/t20260529_605654.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260529_605654.shtml",
+      "success": true
+    },
+    {
+      "title": "t20260519_604115.shtml",
+      "url": "https://www.mem.gov.cn/gk/zcjd/202605/t20260519_604115.shtml",
+      "documentType": "html",
+      "savePath": "downloads/html/t20260519_604115.shtml",
+      "success": true
+    }
+  ]
+}

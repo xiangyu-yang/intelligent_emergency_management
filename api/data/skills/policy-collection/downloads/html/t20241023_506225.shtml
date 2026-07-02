@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>国家防灾减灾救灾委员会办公室关于进一步加强应急抢险救灾物资保障体系和能力建设的指导意见</title>
+    <link rel="stylesheet" href="../../../../images/comStyle.css">
+   <link rel="stylesheet" href="../../../../images/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../../images/style_xxgkml.css">
+<script src="../../../../images/jquery-1_118.7.2.min.js"></script>
+<!--[if IE 6]>
+   <script src="../../../../images/DD_belatedPNG_129.js"></script>
+   <script>
+    DD_belatedPNG.fix("img,.fiWrap_con");
+   </script>
+  <![endif]-->
+
+
+</head>
+
+
+<style>
+.scy_main_l ul > li a.li5 span{width:84px;}
+.dl_hidden dd a{padding-left:68px;background-position-x: 50px;width:170px;}
+.dl_hidden dd a.on{background-position-x: 50px;}
+.dl_hidden dd a:hover{background-position-x: 50px;}
+.yingji_banner{padding-top: 36px;}
+#content p span{font-family:宋体!important; line-height:28pt;}
+#content p {font-family:宋体!important; line-height:28pt;}
+#content h1{font-family:宋体!important; font-weight:600}
+.gk-file h2, .zw-file1 h2, .zw-file2 h2 {margin: 0px 0 10px!important;text-indent: 74px;}
+.scy_detail_bottom h1{border-bottom:none!important;}
+.scy_detail_top{margin:28px 0 0!important;}
+.scy_current {padding-top:20px;}
+.fiBoxCen { background: rgb(32, 117, 174);}
+  </style>
+ 
+<script type="text/javascript">
+function doPrint() {    
+        bdhtml=window.document.body.innerHTML;    
+        sprnstr="<!--startprint-->";    
+        eprnstr="<!--endprint-->";    
+        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
+        window.document.body.innerHTML=prnhtml; 
+        window.print(); 
+}
+</script>
+<body>
+    <!--顶部-->
+    <!--<script>
+			$("#query_btn").click(function(){
+				window.location.href="https://www.mem.gov.cn/was5/web/sousuo/index.html?sw="+$("#iptSword").val()+"&date1=&date2=&stype=0";
+			});
+			</script>
+<SCRIPT LANGUAGE="JavaScript">
+
+	
+	function search_check() {
+		var sword =document.getElementById("iptSword").value.replace(/^\s+|\s+$/g,"");		
+		document.searchform.action = "https://www.mem.gov.cn/was5/web/sousuo/index.html?sw="+sword+"&date1=&date2=&stype=0";
+		document.searchform.submit();
+		//return true;
+	}
+
+</SCRIPT>
+-->
+<SCRIPT LANGUAGE="JavaScript">
+
+	
+	function search_check() {
+		var sword =document.getElementById("iptSword").value.replace(/^\s+|\s+$/g,"");		
+		if(hasIllegalChar(sword )){
+			  alert("输入的字符串包含非法字符!");
+			  return false;
+		}else if(hasIllegalScriptChar(sword)){
+			  alert("输入的字符串包含非法字符");
+			  return false;
+		}else{
+			document.getElementById("sw").value=sword;
+		        document.searchform.submit();
+		}
+		//return true;
+	}
+  
+               function hasIllegalChar(value){
+		 reg=/[`~!@#$%^&*()_+<>?:\"{},.\/;\'[\]]/im;
+		 if(reg.test(value)){
+		  return true;
+		 }
+		}
+
+		function hasIllegalScriptChar(str) {
+		 return new RegExp(".*?script[^>]*?.*?(<\/.*?script.*?>)*", "ig").test(str);
+		}
+
+</SCRIPT>
+<!--百度访问量统计-->
+<!-- mem.gov.cn Baidu tongji analytics -->
+<script>
+/*
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7c3492d683dc7a90fd44bf8bfd57e50c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+*/
+</script>
+
+<style>
+.yingji_NavBox .NavBox ul li{margin-right:55px;}
+.yingji_nav .navBar .tools ul li .input{width:262px;}
+</style>
+<style media="print" type="text/css">
+ .yingji_nav
+{
+  display:none
+}    
+
+
+</style>
+<!--时间 begin-->
+<div class="yingji_nav">
+  <div class="navBar">
+    <div class="time" id="pDate"></div>
+    <div class="tools">
+      <ul>
+        <li class="searchBox cur" style="width:300px">
+          <form name="searchform" method="post" action="/was5/web/search" onSubmit="return search_check();" target="_blank">
+           <input type="hidden" name="channelid" id="channelid" value='201309' />
+	   <input type="hidden" name="perpage" value='15' />
+	   <input type="hidden" name="page" value='1' />
+             <input type="hidden" name="sw" id="sw" value='' />
+           <input type="hidden" name="date1" value='' />
+           <input type="hidden" name="date2" value='' />
+           <input type="hidden" name="stype" value='0' />
+          <img src="../../../../images/search.png" id="query_btn" width="28" height="26" onclick="search_check();" class="sousuoIcon" />
+        
+         <!-- <div class="input" style="display:block;" >请输入检索词</div>-->
+         <input type="text" style="width:262px;display:block;" placeholder="请输入检索词" class="txt" name="iptSword" id="iptSword" value="" />
+          <div class="rbg"></div>
+          </form>
+        </li>
+       
+        <li>
+
+               <a href="#" target="_blank"><img src="../../../../images/weibo.png" width="28" height="26" /></a>
+         
+          <div class="code">
+            <img src="../../../../csym/images/P020200903653496548530.png" width="100%" height="100%" />
+          </div>
+        </li>
+        <li>
+          <a href="#" target="_blank"><img src="../../../../images/weixin.png" width="28" height="26" /></a>
+          <div class="code">
+            <img src="../../../../image/code.jpg" width="100%" height="100%" />
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<!--时间 end-->
+
+
+  <!--banner-->
+  <div class="yingji_banner"><a href="javascript:void(0);" onclick="return false;" target="_blank"><img id="imag" src="../../../../jg/images/P020250415553134787719.png" width="100%" height="100%" /></a></div>
+  <!--nav-->
+  <div class="yingji_NavBox">
+    <div class="NavBox">
+      <ul>
+        <li>
+          <a href="https://www.mem.gov.cn/" class="navList" target="_blank">首页</a>
+        </li>
+        <li>
+          <a href="../../../../jg/" class="navList" target="_blank">机构</a>
+<!--
+          <div class="down">
+                                         
+                                           <a href="../../../../jg/zyzz/" target="_blank">主要职责</a>
+                                         
+                                           <a href="../../../../jg/ldxx/" target="_blank">领导信息</a>
+                                         
+                                           <a href="../../../../jg/nsjg/" target="_blank">内设机构</a>
+                                         
+                                        </div>
+-->
+        </li>
+        <li>
+          <a href="../../../../xw/" class="navList" target="_blank">新闻<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../xw/szzl/" target="_blank">时政要闻</a>
+                                        
+                                            <a href="../../../../xw/yjyw/" target="_blank">应急要闻</a>
+                                        
+ 
+                                            <a href="../../../../xw/yjglbgzdt/" target="_blank">工作动态</a>
+                                        
+                                            <a href="../../../../xw/gdyj/" target="_blank">地方应急</a>
+                                        
+                                            <a href="../../../../xw/jyll/" target="_blank">救援力量</a>
+                                        
+                                            <a href="../../../../xw/zhsgxx/" target="_blank">灾害事故信息</a>
+                                        
+                                            <a href="../../../../xw/xwfbh/" target="_blank">新闻发布会</a>
+                                        
+                                            <a href="../../../../xw/mtxx/" target="_blank">媒体信息</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../" class="navList" target="_blank">公开<i></i></a>
+          <div class="down">
+                                           
+                                            <a href="../../" target="_blank">政府信息公开</a>
+                                        
+                                            <a href="../../../tzgg/" target="_blank">通知公告</a>
+                                        
+                                            <a href="../../../zcjd/" target="_blank">政策解读</a>
+                                        
+                                            <a href="../../../sgcc/" target="_blank">事故及灾害查处</a>
+                                        
+                                            <a href="../../../rsxx/" target="_blank">人事信息</a>
+                                        
+                                            <a href="../../../cwxx/" target="_blank">财务信息</a>
+                                        
+                                            <a href="../../../ghjh/" target="_blank">计划规划</a>
+                                        
+                                            <a href="../../../tjsj/" target="_blank">统计数据</a>
+                                        
+                                            <a href="../../../jytabljggk/" target="_blank">建议提案办理</a>
+                                        
+                                            <a href="../../../gwgg/" target="_blank">原国家安全监管总局文件</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../../fw/" class="navList" target="_blank">服务<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../fw/zffw/" target="_blank">政务服务</a>
+                                        
+                                            <a href="../../../../fw/jsxx/" target="_blank">警示信息</a>
+                                        
+                                            <a href="../../../../fw/flfgbz/" target="_blank">法律法规标准</a>
+                                        
+                                            <a href="../../../../fw/yjya/" target="_blank">应急预案</a>
+                                        
+                                            <a href="../../../../fw/yajzjxzxk/" target="_blank">应急管理部行政许可</a>
+                                        
+                                            <a href="../../../../fw/xzzfgs/" target="_blank">行政执法公示</a>
+                                        
+                                            <a href="../../../../fw/yjpf/" target="_blank">应急普法</a>
+                                        
+                                            <a href="../../../../fw/cxfw/" target="_blank">查询服务</a>
+                                        
+                                            <a href="../../../../fw/ywxt/" target="_blank">业务系统</a>
+                                        
+                                            <a href="../../../../fw/dzzz/" target="_blank">应急管理部电子证照</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../../hd/" class="navList" target="_blank">互动<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../hd/zxft/" target="_blank">在线访谈</a>
+                                        
+                                            <a href="../../../../hd/zqyj/" target="_blank">征求意见</a>
+                                        
+                                            <a href="../../../../hd/hygq/" target="_blank">回应关切</a>
+                                        
+                                            <a href="../../../../hd/gzly/" target="_blank">公众留言</a>
+                                        
+                                            <a href="../../../../hd/tsjb/" target="_blank">国家政务服务投诉与建议</a>
+                                        
+ <!--<a href="https://www.mem.gov.cn/hd/wsxf1/yjwsxf/" target="_blank">网上信访</a>-->
+                                        </div>
+        </li>
+       
+        <li>
+          <a href="../../../../dj/" class="navList" target="_blank">党建<i></i></a>
+ <div class="down">
+                                        
+                                            <a href="../../../../dj/djyw/" target="_blank">党建要闻</a>
+                                        
+                                            <a href="../../../../dj/jcdt_1/" target="_blank">基层党建</a>
+                                        
+                                            <a href="../../../../dj/djjl/" target="_blank">党建交流</a>
+                                        
+                                            <a href="../../../../dj/dflz/" target="_blank">党风廉政</a>
+                                        
+                                            <a href="../../../../dj/xsdt/" target="_blank">巡视工作</a>
+                                        
+                                            <a href="../../../../dj/gwgg/" target="_blank">公文公告</a>
+                                        
+                                            <a href="../../../../dj/gzzd/" target="_blank">规章制度</a>
+                                        
+                                            <a href="../../../../dj/qttz/" target="_blank">群团统战</a>
+                                        
+                                            <a href="../../../../dj/xxyd/" target="_blank">学习园地</a>
+                                        
+                                            <a href="../../../../dj/rdzt/" target="_blank">热点专题</a>
+                                        
+                                        </div>
+                                                </li>
+        <li>
+          <a href="../../../../shjyfw/" class="navList" target="_blank">社会救援服务<i></i></a>
+ <div class="down">
+ 
+                                            <a href="../../../../shjyfw/tzgg_3324/" target="_blank">工作信息</a>
+                                        
+                                            <a href="../../../../shjyfw/dwfc/" target="_blank">队伍风采</a>
+                                        
+        </li>
+        <li>
+          <a href="../../../../kp/" class="navList" target="_blank">应急科普<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../kp/shaq/" target="_blank">生活安全</a>
+                                        
+                                            <a href="../../../../kp/zrzh/" target="_blank">自然灾害</a>
+                                        
+                                            <a href="../../../../kp/sgzn/" target="_blank">安全生产</a>
+                                        
+                                            <a href="../../../../kp/yjkpcg/" target="_blank">应急科普场馆</a>
+                                        
+                                          </div>
+        </li> 
+      </ul>
+    </div>
+  </div>
+    <!--导航-->
+      <!--startprint-->
+    <!--内容-->
+    <div class="scy_box_wrap">
+        <div class="scy_box_nei" style="background-color:#fff">
+            <div class="scy_current"><a href="../../../../">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                    href="https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/">政府信息公开</a>
+            </div>
+         
+            <div class="scy_main scy_main_detail">
+               <div class="scy_detail_top">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                     <tr>
+                      <td class="td_lable">标题：</td>
+                      <td colspan="5">国家防灾减灾救灾委员会办公室关于进一步加强应急抢险救灾物资保障体系和能力建设的指导意见</td>
+                    </tr>
+                    <tr>
+                      <td class="td_lable">索引号：</td>
+                      <td>4/2024-00061</td>
+                      <td class="td_lable">发文字号：</td>
+                      <td>国防减救办发〔2024〕13号</td> 
+                      <td class="td_lable">发文单位：</td>
+                      <td>其他</td>          
+                    </tr>
+                    <tr>
+                       <td class="td_lable">所属机构：</td>
+                      <td>救灾和物资保障司</td>
+                      <td class="td_lable">主题分类：</td>
+                      <td>救灾和物资保障</td>
+                       <td class="td_lable">公文种类：</td>
+                      <td>意见</td>
+                    </tr>
+                    <tr>
+                      <td class="td_lable">成文日期：</td>
+                      <td>2024年09月23日</td>
+                      
+                      <td class="td_lable">发布日期：</td>
+                      <td>2024年10月23日</td>
+                
+                    </tr>
+                  
+                  </table>
+               </div>
+               <div class="scy_detail_bottom" style="margin-top:-20px;padding: 30px 30px 100px 30px;">
+                   
+                  <div id="content">
+                   <div>&nbsp;</div>
+<div>&nbsp;</div>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;text-align:center;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">国家防灾减灾救灾委员会</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">办公室</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">关于</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><br />
+</span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">进一步加强应急抢险救灾物资保障体系和</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;text-align:center;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">能力建设的指导意见</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;margin-left:336.2500pt;mso-para-margin-left:0.5000gd;&#10;text-indent:-331.0000pt;mso-char-indent-count:-20.6900;text-autospace:ideograph-numeric;&#10;mso-pagination:none;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">防</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">减救</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">办发</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">〔</font><font face="宋体">20</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">24</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">〕</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">13</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">号</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;line-height:30.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:仿宋_GB2312;mso-ascii-font-family:宋体;&#10;mso-hansi-font-family:宋体;mso-bidi-font-family:'Times New Roman';font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各省、自治区、直辖市防灾减灾救灾议事协调机构，新疆生产建设兵团</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">防灾</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">减灾</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">救灾</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">委员会，国家防灾减灾救灾委员会各成员单位：</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急抢险救灾物资（以下简称应急物资）是有力有序有效开展抢险救援救灾的重要保障，应急物资保障</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">体系和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">能力</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">建设</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">是</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家应急管理体系和能力建设</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">的重要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">组成部分</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">为贯彻落实党中央、国务院重大决策部署，</font><font face="宋体">根据</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">国家防灾减灾救灾工作</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">及大国储备体系建设有关要求，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">现就</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">进一步</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">加强应急物资保障</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">体系和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">能力建设提出以下意见。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">一、总体要求</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:widow-orphan;text-align:left;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">坚持以习近平新时代中国特色社会主义思想为指导，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">深入贯彻</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">总体国家安全观，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">锚定构建</font><font face="宋体">“大安全、大应急”框架，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">健全重大突发公共事件处置</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">保障体系</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">立足抢大险、救大灾应急物资需求，夯实实物储备基础，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">拓展多元储备渠道，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化快速投送能力建设，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资统筹管理，科学规划、合理布局，突出基层、规范引领，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">逐步建成统一管理、分级负责、政社协同、节约高效的应急物资保障体系。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">二、提高应急物资实物储备能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（一）加强应急物资储备库及设施设备建设。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">因地制宜，通过新建、改扩建及租赁等方式，加强各级应急物资储备库（点），特别是重点地区县（区）、乡镇（街道）、村（社区）储备库（点）建设。到</font><font face="宋体">2025年底，力争实现全国</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">县级</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">储备库（点）覆盖率达到</font><font face="宋体">100%，2030年前，力争实现多灾易灾地区乡镇级储备库（点）全覆盖。鼓励加快、加大新</font><font face="宋体">质</font><font face="宋体">生产力投入力度，引入现代仓储物流技术和设备，加快储备库设施改造和设备升级；结合发展低空经济、数字经济、创新社会服务等，根据实际需要为储备库配备应急通信装备、物流终端设备、电动叉车、液压拖车等实用新型装备。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（二）强化应急物资实物储备。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要加强全国自然灾害综合风险普查成果应用，动态评估本行政区域风险形势，中风险及以上地区应储备能够满足本行政区域启动</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">二级应急响应</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">所需物资，并留有一定冗余；中风险以下地区结合本地区实际，可视情调</font><font face="宋体">减</font><font face="宋体">启动二级应急响应所需物资或按较低响应等级储备。各地应根据物资品类、规模、数量和性质特点，合理配置实物储备、协议储备、产能储备等多种储备模式，形成数量充足、结构合理的储备体系。在以多种模式结合的储备中，原则上政府实物储备规模不低于所需物资的</font><font face="宋体">50%。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">根据水旱灾害规律和特点，以及抢险工作实际需要，科学合理测算防汛抗旱物资储备所需品种数量，合理确定储备规模；水利工程管理单位应根据工程类型和防汛风险储备适量常用抢险物资。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（三）健全储备管理与处置更新轮换机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要积极推广使用应急物资统一标识。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">建立健全常态化应急物资规划、计划、采购、储备、调运、处置、检查、前置等日常管理机制。各地要结合发展新</font><font face="宋体">质</font><font face="宋体">生产力，增储实用性强、科技含量高的物资品种，逐步淘汰技术落后老旧物资，不断优化储备布局和品种（类）。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">进一步完善储备物资到期处置制度，明确应急物资定期点验、维护保养、报废、补充更新措施，保持应急物资总量稳定、性能良好、及时更新、节约高效。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">三、提高应急物资多元保障能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（四）拓展应急物资多元保障渠道。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">在持续加强实物储备的基础上，鼓励、引导和支持社会组织、企业等社会力量积极参与应急物资保障，引导和支持社区、居民家庭储备必要的应急物资。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要依法依规引导社会组织捐赠活动，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">与有意向的社会主体建立合作机制，探索建立应急物资政府与企业、社会组织等协同（以下简称</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">政社</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">协同）保障机制。要提升应急物资供应能力，支持应急物资供应链培育和优化，推进安全应急产业园建设，鼓励大型企业、特别是关键行业和重点产业链企业，建立与生产经营相适应的应急物资储备和紧急生产调度机制，并纳入企业社会责任体系。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">引导支持协议储备、产能储备、社会储备、云仓储等创新保障方式先行先试。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（五）健全应急物资跨区域协同保障机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要积极推进签订省级应急物资跨区域互助保障协议，不断完善互助协作内容，优化协同保障方式。多灾易灾省份要建立全省协同保障机制，引导重点地市和县（区）</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">与周边地区应急物资互助协作</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">明确协同保障内容和协调机构，推动共建共享储备资源和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，定期开展跨区域保障联合培训与演练，协同开展应急响应与抢险救援救灾行动。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">四、提高应急物资快速投送能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（六）健全快速响应</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;background:rgb(255,255,255);&#10;mso-shading:rgb(255,255,255);"><font face="宋体">调拨</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">健全国家、省、市、县四级应急物资调拨体系和调拨规程，明确各级调拨权限与流程，确保应急状态下物资调拨指令迅速传达、执行到位。建立健全跨部门应急物资调拨协调机制，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资调拨部门、储备部门、交通运输部门等工作协同，提高调运效率，强化紧急投送能力。鼓励各地</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">加大</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资前置</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">力度</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，根据风险等级、趋势研判和道路情况等，提前将应急物资前置到重点地区。原则上，除少数边远地区及道路中断等特殊情况外，接到调拨指令后，应确保首批应急物资县级</font><font face="宋体">6小时内、市级8小时内、省级10小时内运抵灾区；用于防汛抢险的砂、石料、编织袋等物资应</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">最</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">短</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">时间</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">运抵现场。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（七）构建综合交通运输应急物流网络。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要结合本地实际，统筹铁路、公路、水运、航空、邮政</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">、快递</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">等资源，建立健全应急物资运输保障力量，构建应急物资快速配送网络，提升全链条、全要素、全地形投送能力，特别是提高</font><font face="宋体">“三</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">断</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">”情况下应急投送能力。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">交通运输各职能部门</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要加强应急运输绿色通道建设，完善应急物资及人员运输车辆优先通行机制。鼓励探索优化应急物资储备、装卸、搬运、分拣、包装成套化、一体化、自动化快速物流环节，提升物流联运效率。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">完善应急物流设施网络，推动既有物流设施嵌入应急功能，统筹加强应急物资储备设施和应急物流设施的衔接，提高大批量物资末端集散配送能力。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（八）推动建设</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要加快建立本地区</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，按照专兼结合、政</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">社</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">协同方式，明确岗位职责、确定队伍名单，建立一支</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">懂</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">物资、善管理、人数</font><font face="宋体">足</font><font face="宋体">、能实战的</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">。定期开展应急物资筹集、调运、分发、现场管理等实训实练，组织</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">比武，以练代训，以赛促练，提升实战保障能力。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">建立应急物资保障专家库，整合高校、科研院所、企事业单位人才资源，为紧急情况下应急物资保障提供决策支撑。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">鼓励有条件的</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">组织和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">高校设立应急物资保障相关专业，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">培养专业化的应急物资管理人员和技术人才。鼓励</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各地</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">探索</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">跨区域</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">援助</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">工作</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，研究建立全国</font><font face="宋体">“一盘棋”应急物资保障队伍调集机制，做好重特大灾害援助</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">救助准备</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">五、</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">提高</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资统筹管理能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（九）健全应急物资统筹管理机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">按照</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">分级负责、属地管理为主</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">的原则，建立健全统一的应急物资保障运行管理机制。在各级防灾减灾救灾议事协调机构框架下，明确牵头</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">部门</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，统筹协调应急管理、发展改革、工业和信息化、民政、财政、自然资源、交通运输、水利、商务、卫生健康、粮食和储备</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">等</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">有关部门，以及共青团、红十字会、社会组织</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">等</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，明确各单位职责及协同工作流程，形成上下联动、左右协同、责任明确、运行高效的管理机制。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（十）完善应急物资保障方案预案。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">依据灾害影响程度、地域特点及交通状况等，完善本地区应急物资保障方案或预案，细化救援救灾现场应急物资分配结构、数量、顺序以及执行方式，优先保障重灾区救援救灾和群众转移救助需求。特别是针对多灾易灾地区要提前制定应急物资保障现场工作方案，明确救援救灾现场大批量应急物资集中情况下，人员抽调、分工分组、岗位</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">责任以及</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">物资分配、发放保障、</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">管理</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">维护、清理回收、信息统计等工作职责及要求。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（十一）提升应急物资信息化管理水平。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各级应急物资储备数据应及时录入国家应急资源管理平台并动态更新，定期组织已录入数据抽查、检查，确保所有在库物资数据准确、账实相符。要做好平台迭代升级，利用物联网、大数据、人工智能等技术，推动实现应急物资调运动态监控、精准调度，不断优化平台定位追踪、库存预警、轮换更新、需求分析、路径优化、配送调度、现场分发等功能。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">加强</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">物资信息标准化建设，推动平台间数据共享，鼓励有条件的地区先行先试、推广典型经验。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">六、</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">保障</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">措施</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各地要把应急物资保障体系和能力建设纳入防灾减灾救灾年度工作计划、五年规划，通过既有资金渠道给予支持，明确责任分工，定期开展工作评估，对重点地区和单位加强帮扶指导。要加强宣传，不断提高认识、加大投入，营造全社会共同关注、支持、参与应急物资保障工作的良好氛围。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">附件：</font><font face="宋体" style="" color="#3366ff"><a href="./W020241023541981981375.wps" target="_blank" oldsrc="W020241023541981981375.wps" style=""><font color="#3366ff">1</font></a></font></span><font face="宋体" style="" color="#3366ff"><a href="./W020241023541981981375.wps" uploadpic="U020241023541444145329.wps" target="_blank" oldsrc="W020241023541981981375.wps"><font color="#3366ff"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">.</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">地方各级应急物资储备指导目录</font></span></font></a></font></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-bottom: 0pt; text-indent: 80pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体" color="#3366ff"><a href="./W020241023541981997653.wps" target="_blank" oldsrc="W020241023541981997653.wps"><font color="#3366ff">2.家庭应急物资储备指导目录</font></a></font></span></p>
+<font face="宋体" color="#3366ff" style="color: rgb(51, 102, 255);"> </font>
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-bottom: 0pt; text-indent: 80pt; line-height: 28pt;"><font face="宋体" color="#3366ff"><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体" style="" color="#3366ff"><a href="./W020241023541982001544.wps" target="_blank" oldsrc="W020241023541982001544.wps" style=""><font color="#3366ff">3.灾害信息员装备配备指导目录</font></a></font></span></font></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-bottom: 0pt; text-indent: 80pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom: 0pt; text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体" style="">国家防灾减灾救灾委员会</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">办公室</font></span></p>
+<p class="MsoNormal" style="margin-bottom: 0pt; text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">2024年</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">9</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">月</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">23</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体" style="">日</font></span></p>
+<style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}@font-face{
+
+
+font-family:"Arial";
+
+
+}@font-face{
+
+
+font-family:"仿宋_GB2312";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin-bottom:8.0000pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+line-height:115%;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:Arial;
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style></font></font>
+                  </div>
+
+               <!--相关文档--> 
+              <div class="xglj zw-file2" style="display:flex;margin-top:30px">
+                    <h2 style="width:200px;">相关链接：</h2>
+                    <div style=";margin-top:5px">
+                    
+                           <li> <a href="../../../zcjd/202410/t20241023_506025.shtml">《国家防灾减灾救灾委员会办公室关于进一步加强应急抢险救灾物资保障体系和能力建设的指导意见》解读</a></li>
+                    
+                           <li> <a href="../../../zcjd/202410/t20241023_506056.shtml">一图读懂｜关于进一步加强应急抢险救灾物资保障体系和能力建设的指导意见</a></li>
+                    
+            </div>
+           </div>
+
+               </div>
+ <!--endprint-->
+
+
+<!--附件-->
+
+   
+    <div style="float: right;">
+        <div style="float: left;list-style: none;margin-left: 34px;position: relative;height: 26px;line-height: 26px;font-family: SimSun;font-size: 16px;margin-right: -30px;"><!--<div class="bshare-custom" style="font-size: 16px;line-height: 26px !important;margin-top: -3px;"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone" style="background:url(../../images/P020230426383609099247.jpg)"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"  style="background:url(../../images/P020230426383873866638.jpg)"></a><a title="分享到微信" class="bshare-weixin"  style="background:url(../../images/P020230426383726700133.jpg)"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>--></div>
+        <div style="float: left;list-style: none;margin-left: 34px;position: relative;height: 26px;line-height: 26px;font-family: SimSun;font-size: 16px;"><a href="https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202410/P020241023531652914973.wps">【下 载】</a><a style="cursor:pointer;" onclick="doPrint();" >【打 印】</a><a href="javascript:window.opener=null;window.open('','_self');window.close();">【关 闭】</a></div>
+
+        
+    
+
+     
+   
+<!--附件-->
+            </div>
+        </div>
+    </div>
+<script src="../../../../images/jquery-1.11.0.min.js" type="text/javascript"></script>
+
+
+<script>
+
+      var Otitle = '国家防灾减灾救灾委员会办公室关于进一步加强应急抢险救灾物资保障体系和能力建设的指导意见';
+      var Ocon = '<div>&nbsp;</div>
+<div>&nbsp;</div>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;text-align:center;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">国家防灾减灾救灾委员会</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">办公室</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">关于</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><br />
+</span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">进一步加强应急抢险救灾物资保障体系和</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;text-align:center;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">能力建设的指导意见</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;margin-left:336.2500pt;mso-para-margin-left:0.5000gd;&#10;text-indent:-331.0000pt;mso-char-indent-count:-20.6900;text-autospace:ideograph-numeric;&#10;mso-pagination:none;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">防</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">减救</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">办发</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">〔</font><font face="宋体">20</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">24</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">〕</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">13</font></span><span style="mso-spacerun:'yes';font-family:宋体;color:rgb(0,0,0);&#10;mso-ansi-font-weight:normal;mso-bidi-font-weight:bold;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">号</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;line-height:30.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:仿宋_GB2312;mso-ascii-font-family:宋体;&#10;mso-hansi-font-family:宋体;mso-bidi-font-family:'Times New Roman';font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各省、自治区、直辖市防灾减灾救灾议事协调机构，新疆生产建设兵团</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">防灾</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">减灾</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">救灾</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">委员会，国家防灾减灾救灾委员会各成员单位：</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急抢险救灾物资（以下简称应急物资）是有力有序有效开展抢险救援救灾的重要保障，应急物资保障</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">体系和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">能力</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">建设</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">是</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家应急管理体系和能力建设</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">的重要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">组成部分</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">为贯彻落实党中央、国务院重大决策部署，</font><font face="宋体">根据</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">国家防灾减灾救灾工作</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">及大国储备体系建设有关要求，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">现就</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">进一步</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">加强应急物资保障</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">体系和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">能力建设提出以下意见。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">一、总体要求</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:widow-orphan;text-align:left;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">坚持以习近平新时代中国特色社会主义思想为指导，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">深入贯彻</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">总体国家安全观，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">锚定构建</font><font face="宋体">“大安全、大应急”框架，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">健全重大突发公共事件处置</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">保障体系</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">立足抢大险、救大灾应急物资需求，夯实实物储备基础，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">拓展多元储备渠道，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化快速投送能力建设，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资统筹管理，科学规划、合理布局，突出基层、规范引领，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">逐步建成统一管理、分级负责、政社协同、节约高效的应急物资保障体系。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">二、提高应急物资实物储备能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（一）加强应急物资储备库及设施设备建设。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">因地制宜，通过新建、改扩建及租赁等方式，加强各级应急物资储备库（点），特别是重点地区县（区）、乡镇（街道）、村（社区）储备库（点）建设。到</font><font face="宋体">2025年底，力争实现全国</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">县级</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">储备库（点）覆盖率达到</font><font face="宋体">100%，2030年前，力争实现多灾易灾地区乡镇级储备库（点）全覆盖。鼓励加快、加大新</font><font face="宋体">质</font><font face="宋体">生产力投入力度，引入现代仓储物流技术和设备，加快储备库设施改造和设备升级；结合发展低空经济、数字经济、创新社会服务等，根据实际需要为储备库配备应急通信装备、物流终端设备、电动叉车、液压拖车等实用新型装备。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（二）强化应急物资实物储备。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要加强全国自然灾害综合风险普查成果应用，动态评估本行政区域风险形势，中风险及以上地区应储备能够满足本行政区域启动</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">二级应急响应</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">所需物资，并留有一定冗余；中风险以下地区结合本地区实际，可视情调</font><font face="宋体">减</font><font face="宋体">启动二级应急响应所需物资或按较低响应等级储备。各地应根据物资品类、规模、数量和性质特点，合理配置实物储备、协议储备、产能储备等多种储备模式，形成数量充足、结构合理的储备体系。在以多种模式结合的储备中，原则上政府实物储备规模不低于所需物资的</font><font face="宋体">50%。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">根据水旱灾害规律和特点，以及抢险工作实际需要，科学合理测算防汛抗旱物资储备所需品种数量，合理确定储备规模；水利工程管理单位应根据工程类型和防汛风险储备适量常用抢险物资。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（三）健全储备管理与处置更新轮换机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要积极推广使用应急物资统一标识。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">建立健全常态化应急物资规划、计划、采购、储备、调运、处置、检查、前置等日常管理机制。各地要结合发展新</font><font face="宋体">质</font><font face="宋体">生产力，增储实用性强、科技含量高的物资品种，逐步淘汰技术落后老旧物资，不断优化储备布局和品种（类）。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">进一步完善储备物资到期处置制度，明确应急物资定期点验、维护保养、报废、补充更新措施，保持应急物资总量稳定、性能良好、及时更新、节约高效。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">三、提高应急物资多元保障能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（四）拓展应急物资多元保障渠道。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">在持续加强实物储备的基础上，鼓励、引导和支持社会组织、企业等社会力量积极参与应急物资保障，引导和支持社区、居民家庭储备必要的应急物资。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要依法依规引导社会组织捐赠活动，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">与有意向的社会主体建立合作机制，探索建立应急物资政府与企业、社会组织等协同（以下简称</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">政社</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">协同）保障机制。要提升应急物资供应能力，支持应急物资供应链培育和优化，推进安全应急产业园建设，鼓励大型企业、特别是关键行业和重点产业链企业，建立与生产经营相适应的应急物资储备和紧急生产调度机制，并纳入企业社会责任体系。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">引导支持协议储备、产能储备、社会储备、云仓储等创新保障方式先行先试。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（五）健全应急物资跨区域协同保障机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要积极推进签订省级应急物资跨区域互助保障协议，不断完善互助协作内容，优化协同保障方式。多灾易灾省份要建立全省协同保障机制，引导重点地市和县（区）</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">与周边地区应急物资互助协作</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">明确协同保障内容和协调机构，推动共建共享储备资源和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，定期开展跨区域保障联合培训与演练，协同开展应急响应与抢险救援救灾行动。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">四、提高应急物资快速投送能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（六）健全快速响应</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;background:rgb(255,255,255);&#10;mso-shading:rgb(255,255,255);"><font face="宋体">调拨</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">健全国家、省、市、县四级应急物资调拨体系和调拨规程，明确各级调拨权限与流程，确保应急状态下物资调拨指令迅速传达、执行到位。建立健全跨部门应急物资调拨协调机制，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">强化</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资调拨部门、储备部门、交通运输部门等工作协同，提高调运效率，强化紧急投送能力。鼓励各地</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">加大</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资前置</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">力度</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，根据风险等级、趋势研判和道路情况等，提前将应急物资前置到重点地区。原则上，除少数边远地区及道路中断等特殊情况外，接到调拨指令后，应确保首批应急物资县级</font><font face="宋体">6小时内、市级8小时内、省级10小时内运抵灾区；用于防汛抢险的砂、石料、编织袋等物资应</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">最</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">短</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">时间</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">运抵现场。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（七）构建综合交通运输应急物流网络。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要结合本地实际，统筹铁路、公路、水运、航空、邮政</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">、快递</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">等资源，建立健全应急物资运输保障力量，构建应急物资快速配送网络，提升全链条、全要素、全地形投送能力，特别是提高</font><font face="宋体">“三</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">断</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">”情况下应急投送能力。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">交通运输各职能部门</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要加强应急运输绿色通道建设，完善应急物资及人员运输车辆优先通行机制。鼓励探索优化应急物资储备、装卸、搬运、分拣、包装成套化、一体化、自动化快速物流环节，提升物流联运效率。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">完善应急物流设施网络，推动既有物流设施嵌入应急功能，统筹加强应急物资储备设施和应急物流设施的衔接，提高大批量物资末端集散配送能力。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（八）推动建设</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要加快建立本地区</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，按照专兼结合、政</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">社</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">协同方式，明确岗位职责、确定队伍名单，建立一支</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">懂</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">物资、善管理、人数</font><font face="宋体">足</font><font face="宋体">、能实战的</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">。定期开展应急物资筹集、调运、分发、现场管理等实训实练，组织</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">比武，以练代训，以赛促练，提升实战保障能力。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">建立应急物资保障专家库，整合高校、科研院所、企事业单位人才资源，为紧急情况下应急物资保障提供决策支撑。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">鼓励有条件的</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">组织和</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">高校设立应急物资保障相关专业，</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">培养专业化的应急物资管理人员和技术人才。鼓励</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各地</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">探索</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">跨区域</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资保障队伍</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">援助</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">工作</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，研究建立全国</font><font face="宋体">“一盘棋”应急物资保障队伍调集机制，做好重特大灾害援助</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">救助准备</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">五、</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">提高</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">应急物资统筹管理能力</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（九）健全应急物资统筹管理机制。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">按照</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">分级负责、属地管理为主</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">的原则，建立健全统一的应急物资保障运行管理机制。在各级防灾减灾救灾议事协调机构框架下，明确牵头</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">部门</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，统筹协调应急管理、发展改革、工业和信息化、民政、财政、自然资源、交通运输、水利、商务、卫生健康、粮食和储备</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">等</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">有关部门，以及共青团、红十字会、社会组织</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">等</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">，明确各单位职责及协同工作流程，形成上下联动、左右协同、责任明确、运行高效的管理机制。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（十）完善应急物资保障方案预案。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">依据灾害影响程度、地域特点及交通状况等，完善本地区应急物资保障方案或预案，细化救援救灾现场应急物资分配结构、数量、顺序以及执行方式，优先保障重灾区救援救灾和群众转移救助需求。特别是针对多灾易灾地区要提前制定应急物资保障现场工作方案，明确救援救灾现场大批量应急物资集中情况下，人员抽调、分工分组、岗位</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">责任以及</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">物资分配、发放保障、</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">管理</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">维护、清理回收、信息统计等工作职责及要求。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">（十一）提升应急物资信息化管理水平。</font></span></b><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各级应急物资储备数据应及时录入国家应急资源管理平台并动态更新，定期组织已录入数据抽查、检查，确保所有在库物资数据准确、账实相符。要做好平台迭代升级，利用物联网、大数据、人工智能等技术，推动实现应急物资调运动态监控、精准调度，不断优化平台定位追踪、库存预警、轮换更新、需求分析、路径优化、配送调度、现场分发等功能。</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">要</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">加强</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">物资信息标准化建设，推动平台间数据共享，鼓励有条件的地区先行先试、推广典型经验。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.1000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">六、</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">保障</font></span></b><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">措施</font></span></b></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">各地要把应急物资保障体系和能力建设纳入防灾减灾救灾年度工作计划、五年规划，通过既有资金渠道给予支持，明确责任分工，定期开展工作评估，对重点地区和单位加强帮扶指导。要加强宣传，不断提高认识、加大投入，营造全社会共同关注、支持、参与应急物资保障工作的良好氛围。</font></span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-autospace:ideograph-numeric;mso-pagination:none;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom:0.0000pt;text-indent:32.0000pt;mso-char-indent-count:2.0000;&#10;text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">附件：</font><font face="宋体" style="" color="#3366ff"><a href="./W020241023541981981375.wps" target="_blank" oldsrc="W020241023541981981375.wps" style=""><font color="#3366ff">1</font></a></font></span><font face="宋体" style="" color="#3366ff"><a href="./W020241023541981981375.wps" uploadpic="U020241023541444145329.wps" target="_blank" oldsrc="W020241023541981981375.wps"><font color="#3366ff"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;background:rgb(255,255,255);mso-shading:rgb(255,255,255);"><font face="宋体">.</font></span><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">地方各级应急物资储备指导目录</font></span></font></a></font></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-bottom: 0pt; text-indent: 80pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体" color="#3366ff"><a href="./W020241023541981997653.wps" target="_blank" oldsrc="W020241023541981997653.wps"><font color="#3366ff">2.家庭应急物资储备指导目录</font></a></font></span></p>
+<font face="宋体" color="#3366ff" style="color: rgb(51, 102, 255);"> </font>
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-bottom: 0pt; text-indent: 80pt; line-height: 28pt;"><font face="宋体" color="#3366ff"><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体" style="" color="#3366ff"><a href="./W020241023541982001544.wps" target="_blank" oldsrc="W020241023541982001544.wps" style=""><font color="#3366ff">3.灾害信息员装备配备指导目录</font></a></font></span></font></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-bottom: 0pt; text-indent: 80pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-bottom: 0pt; text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体" style="">国家防灾减灾救灾委员会</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">办公室</font></span></p>
+<p class="MsoNormal" style="margin-bottom: 0pt; text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">2024年</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">9</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">月</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体">23</font></span><span style="font-family: 宋体; font-size: 16pt;"><font face="宋体" style="">日</font></span></p>
+<style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}@font-face{
+
+
+font-family:"Arial";
+
+
+}@font-face{
+
+
+font-family:"仿宋_GB2312";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin-bottom:8.0000pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+line-height:115%;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:Arial;
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style></font></font>';
+
+    if(Otitle == Ocon){
+        window.open('http://www.mem.gov.cn',"_self")
+    }
+ </script>
+
+
+
+    <div class="fiWrap">
+
+        
+        
+    </div>
+</div>
+
+<script src="../../../../img1/index.js"></script>
+ <!--foot begin-->
+  <!--页尾-->
+  <style>
+    .footer_right {
+      margin-top: 10px;
+      float: right;
+      margin-left: 0px;
+      width: 400px;
+    }
+
+    .footer_right a {
+      float: left;
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+  </style>
+  <!--页尾-->
+<style>
+.footer_right{margin-top: 10px;float: right;margin-left: 0px;width:400px;}
+.footer_right a{float: left;margin-top: 10px;margin-left: 10px;}
+
+</style>
+                <div class="footer_wrap" style='overflow: visible;'>
+                    <div class="footer_box" style='overflow: visible;'>
+                        <div class="footer_left" style='width: 550px;overflow: visible;'>
+                            <div style="height: 19px;overflow: visible;">
+                                <a href="https://www.mem.gov.cn/wzdt/" target="_blank">网站地图</a>
+                                
+                               <!-- <a href="https://www.mem.gov.cn/wzdt/" target="_blank">网站声明</a>-->
+
+                              <!-- <a href="https://www.mem.gov.cn/hd/202110/t20211027_400884.shtml">联系我们
+                                  
+                                </a>-->
+ <span class="fonter_sx">|</span>
+<a href="javascript:void(0);" onclick="return false;" style="position:relative;" onmouseover="$('.weixin_nr02').show();" onmouseout="$('.weixin_nr02').hide();">联系我们
+                                   <div class="weixin_nr02" style="display:none;">
+                                       
+                                        网站技术支持电话: 010-64463685
+                                    </div>
+                                </a>
+                            </div>
+                            <p style="margin-top:20px;"><span>主办单位：应急管理部</span><!--<span style="margin-left: 32px;">承办单位：国家安全生产监督管理总局通信信息中心</span>--></p>
+                            <p><!--<span>协办单位：中国安全生产报社 中国煤炭报社</span>--><!--<span>网站管理员邮箱：</span>--></p>
+                            <p style="height:  25px;width: 535px;line-height: 25px;"><span style="margin-right:10px;">网站标识码bm34000001</span><a span style="margin-right:10px; "; href="https://beian.miit.gov.cn/" target="_blank">京ICP备18056520号-2</span></a><a style="float:right;"href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11040102700086'><img src="../../../../csym/images/P020200903653739863394.png" />京公网安备11040102700086号</a></p>
+                            
+                        </div>
+                        <div class="footer_right" style="width:450px">
+              
+                            <a href="http://bszs.conac.cn/sitename?method=show&id=090FA13E04291598E053012819ACCC31">
+<img src="../../../../csym/images/P020200903653625466559.png" alt="" />
+
+</a>
+         <!--<a style="margin-top: 25px;" href="https://zfwzgl.www.gov.cn/boxpro/custom/pucha">
+<img src="https://www.chinacoal-safety.gov.cn/images/jiucuo_1_1.png" alt="" />
+
+</a>-->
+<a style="margin-top: 25px;" href="javascript:void(0);" onclick="return false;"  id="_span_jiucuo">
+<!--<img src="https://www.chinacoal-safety.gov.cn/images/jiucuo_1_1.png" alt="" />-->
+
+</a>
+<script id="_jiucuo_" sitecode='bm34000001' src='https://zfwzgl.www.gov.cn/exposure/jiucuo.js'></script>
+                            <a href="javascript:void(0);" onclick="return false;" style="margin-top: 0px;margin-left: 13px;" target="_self"><img src="../../../../csym/images/P020200930605328396263.png" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+  <!--foot end-->
+
+<script>
+
+    var date;
+    $(function () {
+      $('.td_lable').each(function () {
+
+        var value = $(this).text();
+        if (value == "发布日期：") {
+          var el = $(this).next();
+          date = el.text();
+          console.log(date);
+        }
+      });
+      var year = date.split('年')[0];
+      var month = date.split('月')[0].slice(-2);
+      var day = date.split('日')[0].slice(-2);
+      
+ 
+       
+      if (year < 2020 || year == 2020 && month < 12 || year == 2020 && month == 12 && day <= 08) {
+        //修改附件格式
+        $('.gk-file').css('display', 'flex');
+        $('.gk-file h2').css('margin', '-3px 0 10px!important');
+        var as = $('.gk-file ul li a');
+        if(as.length==1){}
+        if(as.length>1){
+          for (var i = 0; i < as.length; i++) {
+          var valuei = as.eq(i);
+          var text = valuei.text();
+          if (text.indexOf(i + 1) != 0){
+          valuei.text(i + 1 + ". " + text);
+          }
+        }
+        }
+      } else if(year < 2020 || year == 2020 && month < 12 || year == 2020 && month == 12 && day < 15){
+        $('.gk-file').css('display','none');
+        $('.zw-file1').css('display','flex');
+        
+      }else {
+         $('.gk-file').css('display','none');
+        $('.zw-file2').css('display','flex');
+          }
+
+    })
+
+$(function(){
+     var tr=$('.scy_detail_top tr').eq(3);
+     var td=$(tr).children('td').eq(3);
+     //td.text('有效');
+     
+     //调整日期
+   
+     $('.td_lable').each(function () {
+
+        var value = $(this).text();
+        if (value == "成文日期：" || value=="发布日期：") {
+          var el = $(this).next();
+          var date = el.text();
+          var year = date.split('年')[0];
+          var month = date.split('月')[0].slice(-2);
+          var day = date.split('日')[0].slice(-2);
+          if (parseInt(month) < 10) {
+            month = month.replace("0", "");
+          }
+           if (parseInt(day) < 10) {
+            day = day.replace("0", "");
+          }
+          $(this).next().text((year + "年" + month + "月" + day + "日"));
+         }
+        if(value == "主题分类："){
+          var el = $(this).next();
+          var catalog = el.text();
+          var final = catalog.replace(/;/g,"；");
+          $(this).next().text(final);
+         }
+       })
+
+  
+   })
+$(function(){
+   if($(".gk-file ul li").length == 0){
+      $(".gk-file").css("display","none");
+    }
+   if($('.xglj div li').length==0){
+      $('.xglj').hide();
+    }
+})
+
+
+  </script>
+
+    <!--尾部-->
+
+
+</body>
+
+</html>

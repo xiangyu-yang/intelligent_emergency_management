@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Bot, X, Send, Loader2 } from 'lucide-react';
+import { Bot, X, Send, Loader2, Trash2 } from 'lucide-react';
 import { useChatSessions, ChatSession } from '../hooks/useChatSessions';
 
 interface ChatMessage {
@@ -8,7 +8,7 @@ interface ChatMessage {
 }
 
 function FloatingAssistant() {
-  const { sessions, fetchSessions, fetchSessionDetail } = useChatSessions();
+  const { sessions, fetchSessions, fetchSessionDetail, deleteSession } = useChatSessions();
   
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -176,7 +176,10 @@ function FloatingAssistant() {
     }
   };
 
-  const handleClear = () => {
+  const handleClear = async () => {
+    if (currentSession) {
+      await deleteSession(currentSession.id);
+    }
     setMessages([]);
     setCurrentSession(null);
   };
@@ -224,10 +227,10 @@ function FloatingAssistant() {
               {messages.length > 0 && (
                 <button
                   onClick={handleClear}
-                  className="text-white/70 hover:text-white transition-colors p-1"
-                  title="清空对话"
+                  className="text-white/70 hover:text-red-300 transition-colors p-1"
+                  title="删除会话"
                 >
-                  <X size={16} />
+                  <Trash2 size={16} />
                 </button>
               )}
               <button

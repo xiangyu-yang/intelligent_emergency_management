@@ -7,8 +7,10 @@ import {
   ToolPermission,
 } from '../../ai/toolExecutor.js';
 import { successResponse, errorResponse } from '../../utils/common.js';
+import { ChatSessionDAO, ChatMessageDAO } from '../../db/dao.js';
 import fs from 'fs';
 import path from 'path';
+import dayjs from 'dayjs';
 
 const router = Router();
 
@@ -88,7 +90,7 @@ router.post('/skills/:skillId/read-file', async (req: Request, res: Response) =>
 router.post('/skills/:skillId/run', async (req: Request, res: Response) => {
   try {
     const { skillId } = req.params;
-    const { action, params } = req.body;
+    const { action, params, sessionId } = req.body;
 
     const skillDir = path.join(SKILLS_DIR, skillId);
     if (!fs.existsSync(skillDir)) {
@@ -133,6 +135,35 @@ router.post('/skills/:skillId/run', async (req: Request, res: Response) => {
       default:
         res.json(errorResponse(`不支持的操作: ${action}`, 400));
         return;
+    }
+
+    const timestamp = dayjs().toISOString();
+
+    if (sessionId) {
+      const session = ChatSessionDAO.findById(sessionId);
+      if (session) {
+        ChatMessageDAO.create({
+          sessionId,
+          role: 'user',
+          content: `执行技能操作: ${action}`,
+        });
+
+        if (result.success) {
+          ChatMessageDAO.create({
+            sessionId,
+            role: 'assistant',
+            content: `技能执行结果：\n${result.output}`,
+          });
+        } else {
+          ChatMessageDAO.create({
+            sessionId,
+            role: 'assistant',
+            content: `技能执行失败：${result.error || '操作执行失败'}`,
+          });
+        }
+
+        ChatSessionDAO.incrementMessageCount(sessionId, timestamp);
+      }
     }
 
     if (result.success) {

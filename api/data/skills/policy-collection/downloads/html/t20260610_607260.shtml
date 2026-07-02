@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>中华人民共和国应急管理部公告（2026年第7号）：应急管理部关于国家综合性消防救援队伍2026年度面向社会招录消防员的公告</title>
+    <link rel="stylesheet" href="../../../../images/comStyle.css">
+   <link rel="stylesheet" href="../../../../images/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../../images/style_xxgkml.css">
+<script src="../../../../images/jquery-1_118.7.2.min.js"></script>
+<!--[if IE 6]>
+   <script src="../../../../images/DD_belatedPNG_129.js"></script>
+   <script>
+    DD_belatedPNG.fix("img,.fiWrap_con");
+   </script>
+  <![endif]-->
+
+
+</head>
+
+
+<style>
+.scy_main_l ul > li a.li5 span{width:84px;}
+.dl_hidden dd a{padding-left:68px;background-position-x: 50px;width:170px;}
+.dl_hidden dd a.on{background-position-x: 50px;}
+.dl_hidden dd a:hover{background-position-x: 50px;}
+.yingji_banner{padding-top: 36px;}
+#content p span{font-family:宋体!important; line-height:28pt;}
+#content p {font-family:宋体!important; line-height:28pt;}
+#content h1{font-family:宋体!important; font-weight:600}
+.gk-file h2, .zw-file1 h2, .zw-file2 h2 {margin: 0px 0 10px!important;text-indent: 74px;}
+.scy_detail_bottom h1{border-bottom:none!important;}
+.scy_detail_top{margin:28px 0 0!important;}
+.scy_current {padding-top:20px;}
+.fiBoxCen { background: rgb(32, 117, 174);}
+  </style>
+ 
+<script type="text/javascript">
+function doPrint() {    
+        bdhtml=window.document.body.innerHTML;    
+        sprnstr="<!--startprint-->";    
+        eprnstr="<!--endprint-->";    
+        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
+        window.document.body.innerHTML=prnhtml; 
+        window.print(); 
+}
+</script>
+<body>
+    <!--顶部-->
+    <!--<script>
+			$("#query_btn").click(function(){
+				window.location.href="https://www.mem.gov.cn/was5/web/sousuo/index.html?sw="+$("#iptSword").val()+"&date1=&date2=&stype=0";
+			});
+			</script>
+<SCRIPT LANGUAGE="JavaScript">
+
+	
+	function search_check() {
+		var sword =document.getElementById("iptSword").value.replace(/^\s+|\s+$/g,"");		
+		document.searchform.action = "https://www.mem.gov.cn/was5/web/sousuo/index.html?sw="+sword+"&date1=&date2=&stype=0";
+		document.searchform.submit();
+		//return true;
+	}
+
+</SCRIPT>
+-->
+<SCRIPT LANGUAGE="JavaScript">
+
+	
+	function search_check() {
+		var sword =document.getElementById("iptSword").value.replace(/^\s+|\s+$/g,"");		
+		if(hasIllegalChar(sword )){
+			  alert("输入的字符串包含非法字符!");
+			  return false;
+		}else if(hasIllegalScriptChar(sword)){
+			  alert("输入的字符串包含非法字符");
+			  return false;
+		}else{
+			document.getElementById("sw").value=sword;
+		        document.searchform.submit();
+		}
+		//return true;
+	}
+  
+               function hasIllegalChar(value){
+		 reg=/[`~!@#$%^&*()_+<>?:\"{},.\/;\'[\]]/im;
+		 if(reg.test(value)){
+		  return true;
+		 }
+		}
+
+		function hasIllegalScriptChar(str) {
+		 return new RegExp(".*?script[^>]*?.*?(<\/.*?script.*?>)*", "ig").test(str);
+		}
+
+</SCRIPT>
+<!--百度访问量统计-->
+<!-- mem.gov.cn Baidu tongji analytics -->
+<script>
+/*
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7c3492d683dc7a90fd44bf8bfd57e50c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+*/
+</script>
+
+<style>
+.yingji_NavBox .NavBox ul li{margin-right:55px;}
+.yingji_nav .navBar .tools ul li .input{width:262px;}
+</style>
+<style media="print" type="text/css">
+ .yingji_nav
+{
+  display:none
+}    
+
+
+</style>
+<!--时间 begin-->
+<div class="yingji_nav">
+  <div class="navBar">
+    <div class="time" id="pDate"></div>
+    <div class="tools">
+      <ul>
+        <li class="searchBox cur" style="width:300px">
+          <form name="searchform" method="post" action="/was5/web/search" onSubmit="return search_check();" target="_blank">
+           <input type="hidden" name="channelid" id="channelid" value='201309' />
+	   <input type="hidden" name="perpage" value='15' />
+	   <input type="hidden" name="page" value='1' />
+             <input type="hidden" name="sw" id="sw" value='' />
+           <input type="hidden" name="date1" value='' />
+           <input type="hidden" name="date2" value='' />
+           <input type="hidden" name="stype" value='0' />
+          <img src="../../../../images/search.png" id="query_btn" width="28" height="26" onclick="search_check();" class="sousuoIcon" />
+        
+         <!-- <div class="input" style="display:block;" >请输入检索词</div>-->
+         <input type="text" style="width:262px;display:block;" placeholder="请输入检索词" class="txt" name="iptSword" id="iptSword" value="" />
+          <div class="rbg"></div>
+          </form>
+        </li>
+       
+        <li>
+
+               <a href="#" target="_blank"><img src="../../../../images/weibo.png" width="28" height="26" /></a>
+         
+          <div class="code">
+            <img src="../../../../csym/images/P020200903653496548530.png" width="100%" height="100%" />
+          </div>
+        </li>
+        <li>
+          <a href="#" target="_blank"><img src="../../../../images/weixin.png" width="28" height="26" /></a>
+          <div class="code">
+            <img src="../../../../image/code.jpg" width="100%" height="100%" />
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<!--时间 end-->
+
+
+  <!--banner-->
+  <div class="yingji_banner"><a href="javascript:void(0);" onclick="return false;" target="_blank"><img id="imag" src="../../../../jg/images/P020250415553134787719.png" width="100%" height="100%" /></a></div>
+  <!--nav-->
+  <div class="yingji_NavBox">
+    <div class="NavBox">
+      <ul>
+        <li>
+          <a href="https://www.mem.gov.cn/" class="navList" target="_blank">首页</a>
+        </li>
+        <li>
+          <a href="../../../../jg/" class="navList" target="_blank">机构</a>
+<!--
+          <div class="down">
+                                         
+                                           <a href="../../../../jg/zyzz/" target="_blank">主要职责</a>
+                                         
+                                           <a href="../../../../jg/ldxx/" target="_blank">领导信息</a>
+                                         
+                                           <a href="../../../../jg/nsjg/" target="_blank">内设机构</a>
+                                         
+                                        </div>
+-->
+        </li>
+        <li>
+          <a href="../../../../xw/" class="navList" target="_blank">新闻<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../xw/szzl/" target="_blank">时政要闻</a>
+                                        
+                                            <a href="../../../../xw/yjyw/" target="_blank">应急要闻</a>
+                                        
+ 
+                                            <a href="../../../../xw/yjglbgzdt/" target="_blank">工作动态</a>
+                                        
+                                            <a href="../../../../xw/gdyj/" target="_blank">地方应急</a>
+                                        
+                                            <a href="../../../../xw/jyll/" target="_blank">救援力量</a>
+                                        
+                                            <a href="../../../../xw/zhsgxx/" target="_blank">灾害事故信息</a>
+                                        
+                                            <a href="../../../../xw/xwfbh/" target="_blank">新闻发布会</a>
+                                        
+                                            <a href="../../../../xw/mtxx/" target="_blank">媒体信息</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../" class="navList" target="_blank">公开<i></i></a>
+          <div class="down">
+                                           
+                                            <a href="../../" target="_blank">政府信息公开</a>
+                                        
+                                            <a href="../../../tzgg/" target="_blank">通知公告</a>
+                                        
+                                            <a href="../../../zcjd/" target="_blank">政策解读</a>
+                                        
+                                            <a href="../../../sgcc/" target="_blank">事故及灾害查处</a>
+                                        
+                                            <a href="../../../rsxx/" target="_blank">人事信息</a>
+                                        
+                                            <a href="../../../cwxx/" target="_blank">财务信息</a>
+                                        
+                                            <a href="../../../ghjh/" target="_blank">计划规划</a>
+                                        
+                                            <a href="../../../tjsj/" target="_blank">统计数据</a>
+                                        
+                                            <a href="../../../jytabljggk/" target="_blank">建议提案办理</a>
+                                        
+                                            <a href="../../../gwgg/" target="_blank">原国家安全监管总局文件</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../../fw/" class="navList" target="_blank">服务<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../fw/zffw/" target="_blank">政务服务</a>
+                                        
+                                            <a href="../../../../fw/jsxx/" target="_blank">警示信息</a>
+                                        
+                                            <a href="../../../../fw/flfgbz/" target="_blank">法律法规标准</a>
+                                        
+                                            <a href="../../../../fw/yjya/" target="_blank">应急预案</a>
+                                        
+                                            <a href="../../../../fw/yajzjxzxk/" target="_blank">应急管理部行政许可</a>
+                                        
+                                            <a href="../../../../fw/xzzfgs/" target="_blank">行政执法公示</a>
+                                        
+                                            <a href="../../../../fw/yjpf/" target="_blank">应急普法</a>
+                                        
+                                            <a href="../../../../fw/cxfw/" target="_blank">查询服务</a>
+                                        
+                                            <a href="../../../../fw/ywxt/" target="_blank">业务系统</a>
+                                        
+                                            <a href="../../../../fw/dzzz/" target="_blank">应急管理部电子证照</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../../hd/" class="navList" target="_blank">互动<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../hd/zxft/" target="_blank">在线访谈</a>
+                                        
+                                            <a href="../../../../hd/zqyj/" target="_blank">征求意见</a>
+                                        
+                                            <a href="../../../../hd/hygq/" target="_blank">回应关切</a>
+                                        
+                                            <a href="../../../../hd/gzly/" target="_blank">公众留言</a>
+                                        
+                                            <a href="../../../../hd/tsjb/" target="_blank">国家政务服务投诉与建议</a>
+                                        
+ <!--<a href="https://www.mem.gov.cn/hd/wsxf1/yjwsxf/" target="_blank">网上信访</a>-->
+                                        </div>
+        </li>
+       
+        <li>
+          <a href="../../../../dj/" class="navList" target="_blank">党建<i></i></a>
+ <div class="down">
+                                        
+                                            <a href="../../../../dj/djyw/" target="_blank">党建要闻</a>
+                                        
+                                            <a href="../../../../dj/jcdt_1/" target="_blank">基层党建</a>
+                                        
+                                            <a href="../../../../dj/djjl/" target="_blank">党建交流</a>
+                                        
+                                            <a href="../../../../dj/dflz/" target="_blank">党风廉政</a>
+                                        
+                                            <a href="../../../../dj/xsdt/" target="_blank">巡视工作</a>
+                                        
+                                            <a href="../../../../dj/gwgg/" target="_blank">公文公告</a>
+                                        
+                                            <a href="../../../../dj/gzzd/" target="_blank">规章制度</a>
+                                        
+                                            <a href="../../../../dj/qttz/" target="_blank">群团统战</a>
+                                        
+                                            <a href="../../../../dj/xxyd/" target="_blank">学习园地</a>
+                                        
+                                            <a href="../../../../dj/rdzt/" target="_blank">热点专题</a>
+                                        
+                                        </div>
+                                                </li>
+        <li>
+          <a href="../../../../shjyfw/" class="navList" target="_blank">社会救援服务<i></i></a>
+ <div class="down">
+ 
+                                            <a href="../../../../shjyfw/tzgg_3324/" target="_blank">工作信息</a>
+                                        
+                                            <a href="../../../../shjyfw/dwfc/" target="_blank">队伍风采</a>
+                                        
+        </li>
+        <li>
+          <a href="../../../../kp/" class="navList" target="_blank">应急科普<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../kp/shaq/" target="_blank">生活安全</a>
+                                        
+                                            <a href="../../../../kp/zrzh/" target="_blank">自然灾害</a>
+                                        
+                                            <a href="../../../../kp/sgzn/" target="_blank">安全生产</a>
+                                        
+                                            <a href="../../../../kp/yjkpcg/" target="_blank">应急科普场馆</a>
+                                        
+                                          </div>
+        </li> 
+      </ul>
+    </div>
+  </div>
+    <!--导航-->
+      <!--startprint-->
+    <!--内容-->
+    <div class="scy_box_wrap">
+        <div class="scy_box_nei" style="background-color:#fff">
+            <div class="scy_current"><a href="../../../../">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                    href="https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/">政府信息公开</a>
+            </div>
+         
+            <div class="scy_main scy_main_detail">
+               <div class="scy_detail_top">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                     <tr>
+                      <td class="td_lable">标题：</td>
+                      <td colspan="5">中华人民共和国应急管理部公告（2026年第7号）：应急管理部关于国家综合性消防救援队伍2026年度面向社会招录消防员的公告</td>
+                    </tr>
+                    <tr>
+                      <td class="td_lable">索引号：</td>
+                      <td>3/2026-00053</td>
+                      <td class="td_lable">发文字号：</td>
+                      <td>2026年第7号</td> 
+                      <td class="td_lable">发文单位：</td>
+                      <td>应急管理部</td>          
+                    </tr>
+                    <tr>
+                       <td class="td_lable">所属机构：</td>
+                      <td>队伍建设局</td>
+                      <td class="td_lable">主题分类：</td>
+                      <td>人事信息;消防救援</td>
+                       <td class="td_lable">公文种类：</td>
+                      <td>公告</td>
+                    </tr>
+                    <tr>
+                      <td class="td_lable">成文日期：</td>
+                      <td>2026年06月07日</td>
+                      
+                      <td class="td_lable">发布日期：</td>
+                      <td>2026年06月10日</td>
+                
+                    </tr>
+                  
+                  </table>
+               </div>
+               <div class="scy_detail_bottom" style="margin-top:-20px;padding: 30px 30px 100px 30px;">
+                   
+                  <div id="content">
+                   <div><style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style><style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}@font-face{
+
+
+font-family:"方正小标宋简体";
+
+
+}@font-face{
+
+
+font-family:"Arial Unicode MS";
+
+
+}@font-face{
+
+
+font-family:"仿宋_GB2312";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}p.MsoFooter{
+
+
+mso-style-name:页脚;
+
+
+mso-style-noshow:yes;
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+layout-grid-mode:char;
+
+
+mso-pagination:none;
+
+
+text-align:left;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:9.0000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}p.MsoHeader{
+
+
+mso-style-name:页眉;
+
+
+mso-style-noshow:yes;
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+border-bottom:1.0000pt solid windowtext;
+
+
+mso-border-bottom-alt:0.7500pt solid windowtext;
+
+
+padding:0pt 0pt 1pt 0pt ;
+
+
+layout-grid-mode:char;
+
+
+mso-pagination:none;
+
+
+text-align:center;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:9.0000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style></div>
+<br />
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center">&nbsp;</p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体"><br />
+</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">中华人民共和国应急管理部</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">公</font> <font face="宋体">告</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">2026年 第7号</font></span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;">&nbsp;</span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">应急管理部关于国家综合性消防救援队伍</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">2026年度面向社会招录消防员的公告</font></span></b></p>
+<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;mso-ascii-font-family:Calibri;&#10;mso-hansi-font-family:Calibri;mso-bidi-font-family:'Times New Roman';font-size:10.5000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">为有效履行防范化解重大安全风险、应对处置各类灾害事故的职责使命，根据《国家综合性消防救援队伍消防员招录办法》（人社部发〔</font><font face="宋体">2021〕58号，以下简称《招录办法》）等法规政策，现就国家综合性消防救援队伍2026年面向社会招录消防员相关事项公告如下：</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">一、招录计划与组织</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">经应急管理部、人力资源社会保障部、退役军人事务部批准，此次国家综合性消防救援队伍共招录消防员</font><font face="宋体">17000名，均为男性，其中：高校应届毕业生5667名、退役士兵5667名、社会青年5666名。具体计划见附件1。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家综合性消防救援队伍消防员招录工作办公室统一组织实施招录工作，各省级消防员招录工作办公室负责招录具体工作。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">二、招录条件与范围</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）具有中华人民共和国国籍；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）遵守宪法和法律，拥护中国共产党领导和社会主义制度；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）志愿加入国家综合性消防救援队伍；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（四）年龄为</font><font face="宋体">18周岁以上、22周岁以下，出生时间为2003年9月1日至2008年8月31日。大学专科以上学历人员、解放军和武警部队退役士兵、具有2年以上灭火救援实战经验的政府专职消防队员和政府专职林业扑火队员，年龄可以放宽至24周岁（2001年9月1日以后出生）。对消防救援工作急需的特殊专业人才，经应急管理部批准年龄可以进一步放宽，原则上不超过28周岁（1997年9月1日以后出生）；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（五）具有高中以上文化程度；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（六）身体和心理健康；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（七）具有良好的品行；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（八）法律、法规规定的其他条件。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">高校应届毕业生须为参加全国普通高等学校（含研究生培养单位）招生统一考试，取得全日制大学专科以上学历和相应学位的</font><font face="宋体">2026年应届毕业生。国家统一招生的2024年、2025年普通高等学校毕业生离校时和在择业期内（国家规定择业期为两年）未落实工作单位，其户口、档案、组织关系仍保留在原毕业学校，或者保留在各级毕业生就业主管部门（毕业生就业指导服务中心）、各级人才交流服务机构和各级公共就业服务机构的毕业生，可以按应届毕业生对待。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">退役士兵须为解放军或武警部队服役期满退役士兵，以作战部队退役义务兵为主。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">年龄放宽至</font><font face="宋体">24周岁的政府专职消防队员和政府专职林业扑火队员，须在基层一线灭火救援岗位（按基层站、队战斗班组人员编组认定）工作，具有2年以上直接从事消防救援实战经历。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">三、网上报名与资格审查</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">消防员招录采用网上报名的方式，资格审查采取网上初审、现场复核的方式进行。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）网上注册报名。</font><font face="宋体">2026年6月12日23:00至6月30日18:00，招录对象可登录国家综合性消防救援队伍消防员招录平台（https://xfyzl.119.gov.cn），查询浏览招录信息、注册报名。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象根据本人身份类别，对应选择人员类型（高校应届毕业生、退役士兵或者社会青年），填报个人信息进行账号注册和实名认证。退役士兵招录对象不得隐瞒服役经历选择</font><font face="宋体">“高校应届毕业生”或“社会青年”注册，一经发现取消招录资格。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象凭注册账号、密码登录报名系统进入相应报名通道。按系统提示录入报考意向、调剂志愿、学历经历、表彰奖励等信息，并上传证件照片和居住证、退伍证等图片。报名证件照片包括本人近期</font><font face="宋体">1寸免冠正面彩色照片（须为蓝色或白色背景，295×413像素，jpg或jpeg格式）和身份证照片（横向拍摄身份证正、反面，身份证须整体处于居中位置，不留边框，确保清晰，jpg或jpeg格式），证件照片需经系统工具核验通过后方可上传。具有全日制大学专科以上学历的招录对象须填写所学专业及专业代码（可在消防员招录平台通知公告栏查询）。年龄放宽至24周岁的政府专职消防队员和政府专职林业扑火队员，须提交上级主管单位人事部门出具的2年以上消防救援实战工作经历证明。提供虚假报名信息的，取消招录资格。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象可按照个人意向选择在户籍地省份或经常居住地省份报名。其中，在户籍所在地省份报名的，可根据招录计划选择报考意向；持居住证在经常居住地省份报名的，只可报考当地城乡消防救援队伍或机动消防救援队伍。报名意向栏根据招录计划设有调剂选项，如选择服从调剂，可按个人意向在</font><font face="宋体">“同省跨队伍”（志愿在本省份内城乡消防救援队伍和机动消防救援队伍之间进行调剂）、“同队伍跨省”（志愿在所选队伍内不同省份之间进行调剂）、“跨省跨队伍”（志愿在全国范围内的两支队伍之间进行调剂）选项中进行选择。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">申请特殊专业人才放宽年龄报名的，</font><font face="宋体">6月21日前由本人向省级消防员招录工作办公室提交书面申请和相关证件证书复印件，经省级消防员招录工作办公室组织审核、公示并报应急管理部审批同意后，办理网上注册报名。标准条件和办理程序见附件2。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象也可到国家综合性消防救援队伍各支队、大队、站（中队），领取宣传资料，现场上网填写报名信息。招录对象须凭注册账号、登录密码打印准考证，查询招录进度，请务必牢记。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）网上初审。</font><font face="宋体">2026年6月12日23:00至7月2日18:00，各省级消防员招录工作办公室对招录对象报名信息进行初审，确认招录对象是否具有报名资格。招录对象报名后可登录招录平台查询网上初审结果。历次消防员招录中录用备案后非正当原因擅自离职的招录对象，初审不予通过。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">网上初审前，招录对象可自行修改报名信息或注销注册信息。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">网上初审通过后，报名信息原则上不得修改。招录对象发现报名信息或选择注册人员类型有误确需修改的，须由本人在报名系统中提出申请、说明事由，经省级消防员招录工作办公室审批后，自行修改信息重新提交审核或注销后再次注册报名。对报名信息不完整或选择注册人员类型有误初审未通过的，招录对象应根据报名系统提示，自行修改信息重新提交审核或注销后再次注册报名。初审发现不符合条件范围的，招录对象可在报名系统中提出修改信息申请，详细说明修改事由，报省级消防员招录工作办公室审核、国家综合性消防救援队伍消防员招录工作办公室确认后，自行修改信息重新提交审核或注销后再次注册报名。修改信息申请仅限</font><font face="宋体">1次，招录对象须于6月28日18:00前申报，逾期不再受理。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）现场复核。招录对象根据网上初审结果，按省级消防员招录工作办公室通知要求，由本人携带身份证（居住证）、户口簿、毕业证（学位证）、退伍证、立功受奖等证件证书原件和复印件参加现场复核。年龄放宽至</font><font face="宋体">24周岁的政府专职消防队员和政府专职林业扑火队员，须提供本人2年以上消防救援实战工作经历证明和劳动合同、缴纳社保材料。通过复核的，须认真阅读《国家综合性消防救援队伍2026年度消防员招录知情书》（附件3），并在《国家综合性消防救援队伍消防员招录报名登记表》上签字确认。拒不签字的，取消报名资格。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">报名信息不实或不符合招录条件范围的，复核不予通过。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">四、体格检查与考核测试</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">通过资格审查的招录对象，持身份证、准考证参加体格检查、政治考核、体能测试和岗位适应性测试、心理测试、面试，具体顺序、时间、地点等安排，由各省级消防员招录工作办公室发布。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）体格检查。在指定的市级以上综合性医院进行，参照《应征公民体格检查标准》（陆勤人员）执行，不合格的不予招录。招录对象对体格检查结果有疑问、申请复检的，经省级消防员招录工作办公室同意，可以进行一次复检，体格检查结果以复检结论为准；对可以通过服用药物或其他治疗手段影响检查结果的项目不予复检。基于消防救援职业的特殊要求，对已评定残疾等级和有严重伤病治疗记录等不适宜从事消防救援工作的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）政治考核。参照征兵政治考核要求进行。不符合政治考核有关规定的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）体能测试和岗位适应性测试。按照《国家综合性消防救援队伍</font><font face="宋体">2026年度消防员招录体能测试、岗位适应性测试项目及标准》（附件4）执行，均实行量化评分。其中：体能测试单项有效成绩为1分～15分，总成绩最高40分。岗位适应性测试单项有效成绩为2.5分～10分，总成绩最高40分。体能测试、岗位适应性测试任一单项未取得有效成绩的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（四）心理测试。心理测试采用消防员招录心理测查系统进行，由系统自动评判</font><font face="宋体">“合格”或“不合格”。心理测试不合格的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（五）面试。面试参考事业单位公开招聘人员做法实施，面试实行量化评分，满分</font><font face="宋体">100分，低于60分的为“不合格”。面试不合格的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">五、公示及录用</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）公示。根据高校应届毕业生、退役士兵、社会青年三类招录对象的总成绩和优先录用规则分别排名。总成绩（总分</font><font face="宋体">120分）=体能测试成绩（总分40分）+岗位适应性测试成绩（总分40分）+面试成绩（总分100分）×40%，计算总成绩时四舍五入，保留小数点后两位。综合体格检查、政治考核、心理测试情况，原则上按不超过招录计划120%的数量分类确定拟录用（待补录）人员名单，在招录平台公示栏向社会公示，公示时间为5个工作日。招录对象公示前须签订入队承诺书，拒不签订承诺书的取消录用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">对各项考核测试合格且体能测试总成绩不低于</font><font face="宋体">24分的招录对象，符合下列条件的予以优先录用，按照优先顺序分别为：1.参加全国普通高等学校（含研究生培养单位）招生统一考试且取得全日制大学本科以上学历和相应学位的急需专业（附件5）毕业生，荣立个人三等功以上奖励的退役士兵、政府专职消防队员和政府专职林业扑火队员；2.参加全国普通高等学校（含研究生培养单位）招生统一考试，取得全日制大学本科以上学历和相应学位的非急需专业毕业生，取得全日制大学专科学历的急需专业毕业生。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">同一招录对象符合多项优先录用条件的，取其可享受最高优先顺序的一项条件。同类优先招录对象依据本人总成绩排名从高到低排序，总成绩相同的，依次以体能测试、岗位适应性测试、面试成绩为排序依据，相应成绩高者排名在前。个人三等功以上奖励应为按照《中国人民解放军纪律条令》或《应急管理系统奖励暂行规定》组织实施的立功受奖项目。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">对中共党员、荣获</font><font face="宋体">“三好学生”“优秀团员”等表彰的人员、放宽报名年龄条件的特殊专业人才，同等条件下优先录用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）录用和入职训练。根据公示情况，确定录用人员名单。对没有问题或者反映问题不影响录用的，按规定程序办理录用备案手续；对有严重问题并查有实据的，不予录用；对反映有严重问题，但一时难以查实的，暂缓录用，待查实并作出结论后再决定是否录用。对公示期间主动放弃或不符合录用条件的，可以从公示的待补录人员中按排名顺序补录，办理备案后产生的空缺计划不再补录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">新招录的消防员参加为期一年的入职训练。入职训练</font><font face="宋体">3个月内，组织开展政治考核复查、体格检查复检、心理测试复测。健全重点观察、专项体检、加压测试、病历调查等隐性病发现验证机制，将腰椎间盘突出、半月板损伤、韧带损伤、强直性脊柱炎等影响从事消防救援工作的疾病纳入体格检查复检范围。复查复检复测任何一项不合格的取消录用。根据《招录办法》等有关规定，对入职训练期满考核不合格、本人不愿从事消防救援工作或者有其他不适宜从事消防救援工作情形的，取消录用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">新招录的消防员工作</font><font face="宋体">5年（含入职训练期）内不得辞职，非正当原因擅自离职的，此后不得再次参加消防员招录，并记入个人信用记录。入职训练期间非正当原因擅自离职的，须退还个人工资，补缴体格检查复检费、训练伙食费等。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">六、职业发展和保障</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">新招录的消防员入职训练期满，考核合格并取得相应职业资格等级的，按照《中华人民共和国消防救援衔条例》规定，授予相应的消防救援衔，由录用总队（含北京消防救援机动支队）统一分配。工作满规定年限，根据个人能力素质、现实表现和岗位空缺情况，可按规定比例逐级晋升。优秀业务骨干可通过招生考试择优选拔到中国消防救援学院培养，毕业时按有关政策，实行多种方式就业。具有全日制大学本科以上学历的消防员，根据干部补充需要，符合规定条件的可通过公务员考试择优录用为干部。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">消防员实行与其职务职级序列相衔接、符合消防救援职业特点的工资等待遇保障政策制度。</font><font face="宋体">1年入职训练期内待遇暂按照预备消防士（一档）标准执行。按照有关规定在就业创业、家庭优待、子女入学、住房医疗、交通出行、参观游览等方面享受专门优待政策。实行全程退出机制，经组织批准从国家综合性消防救援队伍退出的消防员，按照有关规定予以妥善安置。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">七、纪律与监督</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">消防员招录坚持信息公开、过程公开、结果公开，主动接受社会监督。此次招录不指定考核选拔辅导用书，不举办也不委托任何机构举办辅导培训班。各省级消防员招录工作办公室分别公布政策咨询和监督电话（附件</font><font face="宋体">6），及时解答有关咨询，受理相关举报投诉并按有关规定调查处理。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家综合性消防救援队伍消防员招录工作办公室监督电话：</font><font face="宋体">010-83933118（工作日工作时间受理）。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left:95.9000pt;mso-para-margin-left:3.0400gd;text-indent:-64.0000pt;&#10;mso-char-indent-count:-4.0000;text-autospace:ideograph-numeric;mso-pagination:none;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">附件：</font><font style="color: rgb(51, 102, 255);" face="宋体"><a href="./W020260610598185097367.xls" oldsrc="W020260610598185097367.xls"><font color="#3366ff">1.国家综合性消防救援队伍2026年度消防员招录计划</font></a></font></span></p>
+<font style="" face="宋体">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185103332.docx" oldsrc="W020260610598185103332.docx"><font color="#3366ff">2.特殊专业人才放宽年龄报名条件和程序</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-left: 47.9pt; text-indent: -16pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185118360.docx" oldsrc="W020260610598185118360.docx"><font color="#3366ff">3.国家综合性消防救援队伍2026年度消防员招录知情书</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <font color="#3366ff"><a href="./W020260610602353576296.docx" oldsrc="W020260610602353576296.docx"><font color="#3366ff">4.国家综合性消防救援队伍2026年度消防员招录体能测试、</a></font></font></span></p>
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体"><a href="./W020260610602353576296.docx" uploadpic="U020260610602330695527.docx" oldsrc="W020260610602353576296.docx">&nbsp; &nbsp; &nbsp;<font color="#3366ff">岗位适应性测试项目及标准</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-left: 47.9pt; text-indent: -16pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185117180.docx" oldsrc="W020260610598185117180.docx"><font color="#3366ff">5.国家综合性消防救援队伍2026年度消防员招录急需专业目录</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185119444.docx" oldsrc="W020260610598185119444.docx"><font color="#3366ff">6.国家综合性消防救援队伍2026年度消防员招录工作联系方式</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;"><font color="#3366ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="宋体" style="">应急管理部</font></span></p>
+<p class="MsoNormal" style="text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="宋体" style="">2026年6月7日</font></span></p>
+<style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style></font></font></font></font></font></font>
+                  </div>
+
+               <!--相关文档--> 
+              <div class="xglj zw-file2" style="display:flex;margin-top:30px">
+                    <h2 style="width:200px;">相关链接：</h2>
+                    <div style=";margin-top:5px">
+                    
+            </div>
+           </div>
+
+               </div>
+ <!--endprint-->
+
+
+<!--附件-->
+
+   
+    <div style="float: right;">
+        <div style="float: left;list-style: none;margin-left: 34px;position: relative;height: 26px;line-height: 26px;font-family: SimSun;font-size: 16px;margin-right: -30px;"><!--<div class="bshare-custom" style="font-size: 16px;line-height: 26px !important;margin-top: -3px;"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone" style="background:url(../../images/P020230426383609099247.jpg)"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"  style="background:url(../../images/P020230426383873866638.jpg)"></a><a title="分享到微信" class="bshare-weixin"  style="background:url(../../images/P020230426383726700133.jpg)"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>--></div>
+        <div style="float: left;list-style: none;margin-left: 34px;position: relative;height: 26px;line-height: 26px;font-family: SimSun;font-size: 16px;"><a href="https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202606/P020260610592814646836.wps">【下 载】</a><a style="cursor:pointer;" onclick="doPrint();" >【打 印】</a><a href="javascript:window.opener=null;window.open('','_self');window.close();">【关 闭】</a></div>
+
+        
+    
+
+     
+   
+<!--附件-->
+            </div>
+        </div>
+    </div>
+<script src="../../../../images/jquery-1.11.0.min.js" type="text/javascript"></script>
+
+
+<script>
+
+      var Otitle = '中华人民共和国应急管理部公告（2026年第7号）：应急管理部关于国家综合性消防救援队伍2026年度面向社会招录消防员的公告';
+      var Ocon = '<div><style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style><style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}@font-face{
+
+
+font-family:"方正小标宋简体";
+
+
+}@font-face{
+
+
+font-family:"Arial Unicode MS";
+
+
+}@font-face{
+
+
+font-family:"仿宋_GB2312";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}p.MsoFooter{
+
+
+mso-style-name:页脚;
+
+
+mso-style-noshow:yes;
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+layout-grid-mode:char;
+
+
+mso-pagination:none;
+
+
+text-align:left;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:9.0000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}p.MsoHeader{
+
+
+mso-style-name:页眉;
+
+
+mso-style-noshow:yes;
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+border-bottom:1.0000pt solid windowtext;
+
+
+mso-border-bottom-alt:0.7500pt solid windowtext;
+
+
+padding:0pt 0pt 1pt 0pt ;
+
+
+layout-grid-mode:char;
+
+
+mso-pagination:none;
+
+
+text-align:center;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:9.0000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style></div>
+<br />
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center">&nbsp;</p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体"><br />
+</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">中华人民共和国应急管理部</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">公</font> <font face="宋体">告</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">2026年 第7号</font></span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;">&nbsp;</span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">应急管理部关于国家综合性消防救援队伍</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">2026年度面向社会招录消防员的公告</font></span></b></p>
+<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;mso-ascii-font-family:Calibri;&#10;mso-hansi-font-family:Calibri;mso-bidi-font-family:'Times New Roman';font-size:10.5000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">为有效履行防范化解重大安全风险、应对处置各类灾害事故的职责使命，根据《国家综合性消防救援队伍消防员招录办法》（人社部发〔</font><font face="宋体">2021〕58号，以下简称《招录办法》）等法规政策，现就国家综合性消防救援队伍2026年面向社会招录消防员相关事项公告如下：</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">一、招录计划与组织</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">经应急管理部、人力资源社会保障部、退役军人事务部批准，此次国家综合性消防救援队伍共招录消防员</font><font face="宋体">17000名，均为男性，其中：高校应届毕业生5667名、退役士兵5667名、社会青年5666名。具体计划见附件1。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家综合性消防救援队伍消防员招录工作办公室统一组织实施招录工作，各省级消防员招录工作办公室负责招录具体工作。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">二、招录条件与范围</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）具有中华人民共和国国籍；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）遵守宪法和法律，拥护中国共产党领导和社会主义制度；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）志愿加入国家综合性消防救援队伍；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（四）年龄为</font><font face="宋体">18周岁以上、22周岁以下，出生时间为2003年9月1日至2008年8月31日。大学专科以上学历人员、解放军和武警部队退役士兵、具有2年以上灭火救援实战经验的政府专职消防队员和政府专职林业扑火队员，年龄可以放宽至24周岁（2001年9月1日以后出生）。对消防救援工作急需的特殊专业人才，经应急管理部批准年龄可以进一步放宽，原则上不超过28周岁（1997年9月1日以后出生）；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（五）具有高中以上文化程度；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（六）身体和心理健康；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（七）具有良好的品行；</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（八）法律、法规规定的其他条件。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">高校应届毕业生须为参加全国普通高等学校（含研究生培养单位）招生统一考试，取得全日制大学专科以上学历和相应学位的</font><font face="宋体">2026年应届毕业生。国家统一招生的2024年、2025年普通高等学校毕业生离校时和在择业期内（国家规定择业期为两年）未落实工作单位，其户口、档案、组织关系仍保留在原毕业学校，或者保留在各级毕业生就业主管部门（毕业生就业指导服务中心）、各级人才交流服务机构和各级公共就业服务机构的毕业生，可以按应届毕业生对待。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">退役士兵须为解放军或武警部队服役期满退役士兵，以作战部队退役义务兵为主。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">年龄放宽至</font><font face="宋体">24周岁的政府专职消防队员和政府专职林业扑火队员，须在基层一线灭火救援岗位（按基层站、队战斗班组人员编组认定）工作，具有2年以上直接从事消防救援实战经历。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">三、网上报名与资格审查</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">消防员招录采用网上报名的方式，资格审查采取网上初审、现场复核的方式进行。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）网上注册报名。</font><font face="宋体">2026年6月12日23:00至6月30日18:00，招录对象可登录国家综合性消防救援队伍消防员招录平台（https://xfyzl.119.gov.cn），查询浏览招录信息、注册报名。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象根据本人身份类别，对应选择人员类型（高校应届毕业生、退役士兵或者社会青年），填报个人信息进行账号注册和实名认证。退役士兵招录对象不得隐瞒服役经历选择</font><font face="宋体">“高校应届毕业生”或“社会青年”注册，一经发现取消招录资格。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象凭注册账号、密码登录报名系统进入相应报名通道。按系统提示录入报考意向、调剂志愿、学历经历、表彰奖励等信息，并上传证件照片和居住证、退伍证等图片。报名证件照片包括本人近期</font><font face="宋体">1寸免冠正面彩色照片（须为蓝色或白色背景，295×413像素，jpg或jpeg格式）和身份证照片（横向拍摄身份证正、反面，身份证须整体处于居中位置，不留边框，确保清晰，jpg或jpeg格式），证件照片需经系统工具核验通过后方可上传。具有全日制大学专科以上学历的招录对象须填写所学专业及专业代码（可在消防员招录平台通知公告栏查询）。年龄放宽至24周岁的政府专职消防队员和政府专职林业扑火队员，须提交上级主管单位人事部门出具的2年以上消防救援实战工作经历证明。提供虚假报名信息的，取消招录资格。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象可按照个人意向选择在户籍地省份或经常居住地省份报名。其中，在户籍所在地省份报名的，可根据招录计划选择报考意向；持居住证在经常居住地省份报名的，只可报考当地城乡消防救援队伍或机动消防救援队伍。报名意向栏根据招录计划设有调剂选项，如选择服从调剂，可按个人意向在</font><font face="宋体">“同省跨队伍”（志愿在本省份内城乡消防救援队伍和机动消防救援队伍之间进行调剂）、“同队伍跨省”（志愿在所选队伍内不同省份之间进行调剂）、“跨省跨队伍”（志愿在全国范围内的两支队伍之间进行调剂）选项中进行选择。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">申请特殊专业人才放宽年龄报名的，</font><font face="宋体">6月21日前由本人向省级消防员招录工作办公室提交书面申请和相关证件证书复印件，经省级消防员招录工作办公室组织审核、公示并报应急管理部审批同意后，办理网上注册报名。标准条件和办理程序见附件2。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">招录对象也可到国家综合性消防救援队伍各支队、大队、站（中队），领取宣传资料，现场上网填写报名信息。招录对象须凭注册账号、登录密码打印准考证，查询招录进度，请务必牢记。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）网上初审。</font><font face="宋体">2026年6月12日23:00至7月2日18:00，各省级消防员招录工作办公室对招录对象报名信息进行初审，确认招录对象是否具有报名资格。招录对象报名后可登录招录平台查询网上初审结果。历次消防员招录中录用备案后非正当原因擅自离职的招录对象，初审不予通过。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">网上初审前，招录对象可自行修改报名信息或注销注册信息。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">网上初审通过后，报名信息原则上不得修改。招录对象发现报名信息或选择注册人员类型有误确需修改的，须由本人在报名系统中提出申请、说明事由，经省级消防员招录工作办公室审批后，自行修改信息重新提交审核或注销后再次注册报名。对报名信息不完整或选择注册人员类型有误初审未通过的，招录对象应根据报名系统提示，自行修改信息重新提交审核或注销后再次注册报名。初审发现不符合条件范围的，招录对象可在报名系统中提出修改信息申请，详细说明修改事由，报省级消防员招录工作办公室审核、国家综合性消防救援队伍消防员招录工作办公室确认后，自行修改信息重新提交审核或注销后再次注册报名。修改信息申请仅限</font><font face="宋体">1次，招录对象须于6月28日18:00前申报，逾期不再受理。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）现场复核。招录对象根据网上初审结果，按省级消防员招录工作办公室通知要求，由本人携带身份证（居住证）、户口簿、毕业证（学位证）、退伍证、立功受奖等证件证书原件和复印件参加现场复核。年龄放宽至</font><font face="宋体">24周岁的政府专职消防队员和政府专职林业扑火队员，须提供本人2年以上消防救援实战工作经历证明和劳动合同、缴纳社保材料。通过复核的，须认真阅读《国家综合性消防救援队伍2026年度消防员招录知情书》（附件3），并在《国家综合性消防救援队伍消防员招录报名登记表》上签字确认。拒不签字的，取消报名资格。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">报名信息不实或不符合招录条件范围的，复核不予通过。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">四、体格检查与考核测试</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">通过资格审查的招录对象，持身份证、准考证参加体格检查、政治考核、体能测试和岗位适应性测试、心理测试、面试，具体顺序、时间、地点等安排，由各省级消防员招录工作办公室发布。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）体格检查。在指定的市级以上综合性医院进行，参照《应征公民体格检查标准》（陆勤人员）执行，不合格的不予招录。招录对象对体格检查结果有疑问、申请复检的，经省级消防员招录工作办公室同意，可以进行一次复检，体格检查结果以复检结论为准；对可以通过服用药物或其他治疗手段影响检查结果的项目不予复检。基于消防救援职业的特殊要求，对已评定残疾等级和有严重伤病治疗记录等不适宜从事消防救援工作的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）政治考核。参照征兵政治考核要求进行。不符合政治考核有关规定的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）体能测试和岗位适应性测试。按照《国家综合性消防救援队伍</font><font face="宋体">2026年度消防员招录体能测试、岗位适应性测试项目及标准》（附件4）执行，均实行量化评分。其中：体能测试单项有效成绩为1分～15分，总成绩最高40分。岗位适应性测试单项有效成绩为2.5分～10分，总成绩最高40分。体能测试、岗位适应性测试任一单项未取得有效成绩的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（四）心理测试。心理测试采用消防员招录心理测查系统进行，由系统自动评判</font><font face="宋体">“合格”或“不合格”。心理测试不合格的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（五）面试。面试参考事业单位公开招聘人员做法实施，面试实行量化评分，满分</font><font face="宋体">100分，低于60分的为“不合格”。面试不合格的，不予招录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">五、公示及录用</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）公示。根据高校应届毕业生、退役士兵、社会青年三类招录对象的总成绩和优先录用规则分别排名。总成绩（总分</font><font face="宋体">120分）=体能测试成绩（总分40分）+岗位适应性测试成绩（总分40分）+面试成绩（总分100分）×40%，计算总成绩时四舍五入，保留小数点后两位。综合体格检查、政治考核、心理测试情况，原则上按不超过招录计划120%的数量分类确定拟录用（待补录）人员名单，在招录平台公示栏向社会公示，公示时间为5个工作日。招录对象公示前须签订入队承诺书，拒不签订承诺书的取消录用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">对各项考核测试合格且体能测试总成绩不低于</font><font face="宋体">24分的招录对象，符合下列条件的予以优先录用，按照优先顺序分别为：1.参加全国普通高等学校（含研究生培养单位）招生统一考试且取得全日制大学本科以上学历和相应学位的急需专业（附件5）毕业生，荣立个人三等功以上奖励的退役士兵、政府专职消防队员和政府专职林业扑火队员；2.参加全国普通高等学校（含研究生培养单位）招生统一考试，取得全日制大学本科以上学历和相应学位的非急需专业毕业生，取得全日制大学专科学历的急需专业毕业生。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">同一招录对象符合多项优先录用条件的，取其可享受最高优先顺序的一项条件。同类优先招录对象依据本人总成绩排名从高到低排序，总成绩相同的，依次以体能测试、岗位适应性测试、面试成绩为排序依据，相应成绩高者排名在前。个人三等功以上奖励应为按照《中国人民解放军纪律条令》或《应急管理系统奖励暂行规定》组织实施的立功受奖项目。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">对中共党员、荣获</font><font face="宋体">“三好学生”“优秀团员”等表彰的人员、放宽报名年龄条件的特殊专业人才，同等条件下优先录用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）录用和入职训练。根据公示情况，确定录用人员名单。对没有问题或者反映问题不影响录用的，按规定程序办理录用备案手续；对有严重问题并查有实据的，不予录用；对反映有严重问题，但一时难以查实的，暂缓录用，待查实并作出结论后再决定是否录用。对公示期间主动放弃或不符合录用条件的，可以从公示的待补录人员中按排名顺序补录，办理备案后产生的空缺计划不再补录。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">新招录的消防员参加为期一年的入职训练。入职训练</font><font face="宋体">3个月内，组织开展政治考核复查、体格检查复检、心理测试复测。健全重点观察、专项体检、加压测试、病历调查等隐性病发现验证机制，将腰椎间盘突出、半月板损伤、韧带损伤、强直性脊柱炎等影响从事消防救援工作的疾病纳入体格检查复检范围。复查复检复测任何一项不合格的取消录用。根据《招录办法》等有关规定，对入职训练期满考核不合格、本人不愿从事消防救援工作或者有其他不适宜从事消防救援工作情形的，取消录用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">新招录的消防员工作</font><font face="宋体">5年（含入职训练期）内不得辞职，非正当原因擅自离职的，此后不得再次参加消防员招录，并记入个人信用记录。入职训练期间非正当原因擅自离职的，须退还个人工资，补缴体格检查复检费、训练伙食费等。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">六、职业发展和保障</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">新招录的消防员入职训练期满，考核合格并取得相应职业资格等级的，按照《中华人民共和国消防救援衔条例》规定，授予相应的消防救援衔，由录用总队（含北京消防救援机动支队）统一分配。工作满规定年限，根据个人能力素质、现实表现和岗位空缺情况，可按规定比例逐级晋升。优秀业务骨干可通过招生考试择优选拔到中国消防救援学院培养，毕业时按有关政策，实行多种方式就业。具有全日制大学本科以上学历的消防员，根据干部补充需要，符合规定条件的可通过公务员考试择优录用为干部。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">消防员实行与其职务职级序列相衔接、符合消防救援职业特点的工资等待遇保障政策制度。</font><font face="宋体">1年入职训练期内待遇暂按照预备消防士（一档）标准执行。按照有关规定在就业创业、家庭优待、子女入学、住房医疗、交通出行、参观游览等方面享受专门优待政策。实行全程退出机制，经组织批准从国家综合性消防救援队伍退出的消防员，按照有关规定予以妥善安置。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">七、纪律与监督</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">消防员招录坚持信息公开、过程公开、结果公开，主动接受社会监督。此次招录不指定考核选拔辅导用书，不举办也不委托任何机构举办辅导培训班。各省级消防员招录工作办公室分别公布政策咨询和监督电话（附件</font><font face="宋体">6），及时解答有关咨询，受理相关举报投诉并按有关规定调查处理。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家综合性消防救援队伍消防员招录工作办公室监督电话：</font><font face="宋体">010-83933118（工作日工作时间受理）。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left:95.9000pt;mso-para-margin-left:3.0400gd;text-indent:-64.0000pt;&#10;mso-char-indent-count:-4.0000;text-autospace:ideograph-numeric;mso-pagination:none;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">附件：</font><font style="color: rgb(51, 102, 255);" face="宋体"><a href="./W020260610598185097367.xls" oldsrc="W020260610598185097367.xls"><font color="#3366ff">1.国家综合性消防救援队伍2026年度消防员招录计划</font></a></font></span></p>
+<font style="" face="宋体">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185103332.docx" oldsrc="W020260610598185103332.docx"><font color="#3366ff">2.特殊专业人才放宽年龄报名条件和程序</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-left: 47.9pt; text-indent: -16pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185118360.docx" oldsrc="W020260610598185118360.docx"><font color="#3366ff">3.国家综合性消防救援队伍2026年度消防员招录知情书</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <font color="#3366ff"><a href="./W020260610602353576296.docx" oldsrc="W020260610602353576296.docx"><font color="#3366ff">4.国家综合性消防救援队伍2026年度消防员招录体能测试、</a></font></font></span></p>
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体"><a href="./W020260610602353576296.docx" uploadpic="U020260610602330695527.docx" oldsrc="W020260610602353576296.docx">&nbsp; &nbsp; &nbsp;<font color="#3366ff">岗位适应性测试项目及标准</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); margin-left: 47.9pt; text-indent: -16pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185117180.docx" oldsrc="W020260610598185117180.docx"><font color="#3366ff">5.国家综合性消防救援队伍2026年度消防员招录急需专业目录</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="font-family: 宋体; font-size: 16pt; color: rgb(51, 102, 255);"><font face="宋体">      <a href="./W020260610598185119444.docx" oldsrc="W020260610598185119444.docx"><font color="#3366ff">6.国家综合性消防救援队伍2026年度消防员招录工作联系方式</font></a></font></span></p>
+<font face="宋体" style="">
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="color: rgb(51, 102, 255); text-indent: 32pt; line-height: 28pt;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;"><font color="#3366ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font face="宋体" style="">应急管理部</font></span></p>
+<p class="MsoNormal" style="text-indent: 32pt; text-align: right; line-height: 28pt;" align="right"><span style="font-family: 宋体; font-size: 16pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="宋体" style="">2026年6月7日</font></span></p>
+<style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style></font></font></font></font></font></font>';
+
+    if(Otitle == Ocon){
+        window.open('http://www.mem.gov.cn',"_self")
+    }
+ </script>
+
+
+
+    <div class="fiWrap">
+
+        
+        
+    </div>
+</div>
+
+<script src="../../../../img1/index.js"></script>
+ <!--foot begin-->
+  <!--页尾-->
+  <style>
+    .footer_right {
+      margin-top: 10px;
+      float: right;
+      margin-left: 0px;
+      width: 400px;
+    }
+
+    .footer_right a {
+      float: left;
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+  </style>
+  <!--页尾-->
+<style>
+.footer_right{margin-top: 10px;float: right;margin-left: 0px;width:400px;}
+.footer_right a{float: left;margin-top: 10px;margin-left: 10px;}
+
+</style>
+                <div class="footer_wrap" style='overflow: visible;'>
+                    <div class="footer_box" style='overflow: visible;'>
+                        <div class="footer_left" style='width: 550px;overflow: visible;'>
+                            <div style="height: 19px;overflow: visible;">
+                                <a href="https://www.mem.gov.cn/wzdt/" target="_blank">网站地图</a>
+                                
+                               <!-- <a href="https://www.mem.gov.cn/wzdt/" target="_blank">网站声明</a>-->
+
+                              <!-- <a href="https://www.mem.gov.cn/hd/202110/t20211027_400884.shtml">联系我们
+                                  
+                                </a>-->
+ <span class="fonter_sx">|</span>
+<a href="javascript:void(0);" onclick="return false;" style="position:relative;" onmouseover="$('.weixin_nr02').show();" onmouseout="$('.weixin_nr02').hide();">联系我们
+                                   <div class="weixin_nr02" style="display:none;">
+                                       
+                                        网站技术支持电话: 010-64463685
+                                    </div>
+                                </a>
+                            </div>
+                            <p style="margin-top:20px;"><span>主办单位：应急管理部</span><!--<span style="margin-left: 32px;">承办单位：国家安全生产监督管理总局通信信息中心</span>--></p>
+                            <p><!--<span>协办单位：中国安全生产报社 中国煤炭报社</span>--><!--<span>网站管理员邮箱：</span>--></p>
+                            <p style="height:  25px;width: 535px;line-height: 25px;"><span style="margin-right:10px;">网站标识码bm34000001</span><a span style="margin-right:10px; "; href="https://beian.miit.gov.cn/" target="_blank">京ICP备18056520号-2</span></a><a style="float:right;"href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11040102700086'><img src="../../../../csym/images/P020200903653739863394.png" />京公网安备11040102700086号</a></p>
+                            
+                        </div>
+                        <div class="footer_right" style="width:450px">
+              
+                            <a href="http://bszs.conac.cn/sitename?method=show&id=090FA13E04291598E053012819ACCC31">
+<img src="../../../../csym/images/P020200903653625466559.png" alt="" />
+
+</a>
+         <!--<a style="margin-top: 25px;" href="https://zfwzgl.www.gov.cn/boxpro/custom/pucha">
+<img src="https://www.chinacoal-safety.gov.cn/images/jiucuo_1_1.png" alt="" />
+
+</a>-->
+<a style="margin-top: 25px;" href="javascript:void(0);" onclick="return false;"  id="_span_jiucuo">
+<!--<img src="https://www.chinacoal-safety.gov.cn/images/jiucuo_1_1.png" alt="" />-->
+
+</a>
+<script id="_jiucuo_" sitecode='bm34000001' src='https://zfwzgl.www.gov.cn/exposure/jiucuo.js'></script>
+                            <a href="javascript:void(0);" onclick="return false;" style="margin-top: 0px;margin-left: 13px;" target="_self"><img src="../../../../csym/images/P020200930605328396263.png" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+  <!--foot end-->
+
+<script>
+
+    var date;
+    $(function () {
+      $('.td_lable').each(function () {
+
+        var value = $(this).text();
+        if (value == "发布日期：") {
+          var el = $(this).next();
+          date = el.text();
+          console.log(date);
+        }
+      });
+      var year = date.split('年')[0];
+      var month = date.split('月')[0].slice(-2);
+      var day = date.split('日')[0].slice(-2);
+      
+ 
+       
+      if (year < 2020 || year == 2020 && month < 12 || year == 2020 && month == 12 && day <= 08) {
+        //修改附件格式
+        $('.gk-file').css('display', 'flex');
+        $('.gk-file h2').css('margin', '-3px 0 10px!important');
+        var as = $('.gk-file ul li a');
+        if(as.length==1){}
+        if(as.length>1){
+          for (var i = 0; i < as.length; i++) {
+          var valuei = as.eq(i);
+          var text = valuei.text();
+          if (text.indexOf(i + 1) != 0){
+          valuei.text(i + 1 + ". " + text);
+          }
+        }
+        }
+      } else if(year < 2020 || year == 2020 && month < 12 || year == 2020 && month == 12 && day < 15){
+        $('.gk-file').css('display','none');
+        $('.zw-file1').css('display','flex');
+        
+      }else {
+         $('.gk-file').css('display','none');
+        $('.zw-file2').css('display','flex');
+          }
+
+    })
+
+$(function(){
+     var tr=$('.scy_detail_top tr').eq(3);
+     var td=$(tr).children('td').eq(3);
+     //td.text('有效');
+     
+     //调整日期
+   
+     $('.td_lable').each(function () {
+
+        var value = $(this).text();
+        if (value == "成文日期：" || value=="发布日期：") {
+          var el = $(this).next();
+          var date = el.text();
+          var year = date.split('年')[0];
+          var month = date.split('月')[0].slice(-2);
+          var day = date.split('日')[0].slice(-2);
+          if (parseInt(month) < 10) {
+            month = month.replace("0", "");
+          }
+           if (parseInt(day) < 10) {
+            day = day.replace("0", "");
+          }
+          $(this).next().text((year + "年" + month + "月" + day + "日"));
+         }
+        if(value == "主题分类："){
+          var el = $(this).next();
+          var catalog = el.text();
+          var final = catalog.replace(/;/g,"；");
+          $(this).next().text(final);
+         }
+       })
+
+  
+   })
+$(function(){
+   if($(".gk-file ul li").length == 0){
+      $(".gk-file").css("display","none");
+    }
+   if($('.xglj div li').length==0){
+      $('.xglj').hide();
+    }
+})
+
+
+  </script>
+
+    <!--尾部-->
+
+
+</body>
+
+</html>

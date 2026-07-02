@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>应急管理部 工业和信息化部关于加快应急管理装备创新发展的指导意见</title>
+    <link rel="stylesheet" href="../../../../images/comStyle.css">
+   <link rel="stylesheet" href="../../../../images/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../../images/style_xxgkml.css">
+<script src="../../../../images/jquery-1_118.7.2.min.js"></script>
+<!--[if IE 6]>
+   <script src="../../../../images/DD_belatedPNG_129.js"></script>
+   <script>
+    DD_belatedPNG.fix("img,.fiWrap_con");
+   </script>
+  <![endif]-->
+
+
+</head>
+
+
+<style>
+.scy_main_l ul > li a.li5 span{width:84px;}
+.dl_hidden dd a{padding-left:68px;background-position-x: 50px;width:170px;}
+.dl_hidden dd a.on{background-position-x: 50px;}
+.dl_hidden dd a:hover{background-position-x: 50px;}
+.yingji_banner{padding-top: 36px;}
+#content p span{font-family:宋体!important; line-height:28pt;}
+#content p {font-family:宋体!important; line-height:28pt;}
+#content h1{font-family:宋体!important; font-weight:600}
+.gk-file h2, .zw-file1 h2, .zw-file2 h2 {margin: 0px 0 10px!important;text-indent: 74px;}
+.scy_detail_bottom h1{border-bottom:none!important;}
+.scy_detail_top{margin:28px 0 0!important;}
+.scy_current {padding-top:20px;}
+.fiBoxCen { background: rgb(32, 117, 174);}
+  </style>
+ 
+<script type="text/javascript">
+function doPrint() {    
+        bdhtml=window.document.body.innerHTML;    
+        sprnstr="<!--startprint-->";    
+        eprnstr="<!--endprint-->";    
+        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);    
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));    
+        window.document.body.innerHTML=prnhtml; 
+        window.print(); 
+}
+</script>
+<body>
+    <!--顶部-->
+    <!--<script>
+			$("#query_btn").click(function(){
+				window.location.href="https://www.mem.gov.cn/was5/web/sousuo/index.html?sw="+$("#iptSword").val()+"&date1=&date2=&stype=0";
+			});
+			</script>
+<SCRIPT LANGUAGE="JavaScript">
+
+	
+	function search_check() {
+		var sword =document.getElementById("iptSword").value.replace(/^\s+|\s+$/g,"");		
+		document.searchform.action = "https://www.mem.gov.cn/was5/web/sousuo/index.html?sw="+sword+"&date1=&date2=&stype=0";
+		document.searchform.submit();
+		//return true;
+	}
+
+</SCRIPT>
+-->
+<SCRIPT LANGUAGE="JavaScript">
+
+	
+	function search_check() {
+		var sword =document.getElementById("iptSword").value.replace(/^\s+|\s+$/g,"");		
+		if(hasIllegalChar(sword )){
+			  alert("输入的字符串包含非法字符!");
+			  return false;
+		}else if(hasIllegalScriptChar(sword)){
+			  alert("输入的字符串包含非法字符");
+			  return false;
+		}else{
+			document.getElementById("sw").value=sword;
+		        document.searchform.submit();
+		}
+		//return true;
+	}
+  
+               function hasIllegalChar(value){
+		 reg=/[`~!@#$%^&*()_+<>?:\"{},.\/;\'[\]]/im;
+		 if(reg.test(value)){
+		  return true;
+		 }
+		}
+
+		function hasIllegalScriptChar(str) {
+		 return new RegExp(".*?script[^>]*?.*?(<\/.*?script.*?>)*", "ig").test(str);
+		}
+
+</SCRIPT>
+<!--百度访问量统计-->
+<!-- mem.gov.cn Baidu tongji analytics -->
+<script>
+/*
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7c3492d683dc7a90fd44bf8bfd57e50c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+*/
+</script>
+
+<style>
+.yingji_NavBox .NavBox ul li{margin-right:55px;}
+.yingji_nav .navBar .tools ul li .input{width:262px;}
+</style>
+<style media="print" type="text/css">
+ .yingji_nav
+{
+  display:none
+}    
+
+
+</style>
+<!--时间 begin-->
+<div class="yingji_nav">
+  <div class="navBar">
+    <div class="time" id="pDate"></div>
+    <div class="tools">
+      <ul>
+        <li class="searchBox cur" style="width:300px">
+          <form name="searchform" method="post" action="/was5/web/search" onSubmit="return search_check();" target="_blank">
+           <input type="hidden" name="channelid" id="channelid" value='201309' />
+	   <input type="hidden" name="perpage" value='15' />
+	   <input type="hidden" name="page" value='1' />
+             <input type="hidden" name="sw" id="sw" value='' />
+           <input type="hidden" name="date1" value='' />
+           <input type="hidden" name="date2" value='' />
+           <input type="hidden" name="stype" value='0' />
+          <img src="../../../../images/search.png" id="query_btn" width="28" height="26" onclick="search_check();" class="sousuoIcon" />
+        
+         <!-- <div class="input" style="display:block;" >请输入检索词</div>-->
+         <input type="text" style="width:262px;display:block;" placeholder="请输入检索词" class="txt" name="iptSword" id="iptSword" value="" />
+          <div class="rbg"></div>
+          </form>
+        </li>
+       
+        <li>
+
+               <a href="#" target="_blank"><img src="../../../../images/weibo.png" width="28" height="26" /></a>
+         
+          <div class="code">
+            <img src="../../../../csym/images/P020200903653496548530.png" width="100%" height="100%" />
+          </div>
+        </li>
+        <li>
+          <a href="#" target="_blank"><img src="../../../../images/weixin.png" width="28" height="26" /></a>
+          <div class="code">
+            <img src="../../../../image/code.jpg" width="100%" height="100%" />
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<!--时间 end-->
+
+
+  <!--banner-->
+  <div class="yingji_banner"><a href="javascript:void(0);" onclick="return false;" target="_blank"><img id="imag" src="../../../../jg/images/P020250415553134787719.png" width="100%" height="100%" /></a></div>
+  <!--nav-->
+  <div class="yingji_NavBox">
+    <div class="NavBox">
+      <ul>
+        <li>
+          <a href="https://www.mem.gov.cn/" class="navList" target="_blank">首页</a>
+        </li>
+        <li>
+          <a href="../../../../jg/" class="navList" target="_blank">机构</a>
+<!--
+          <div class="down">
+                                         
+                                           <a href="../../../../jg/zyzz/" target="_blank">主要职责</a>
+                                         
+                                           <a href="../../../../jg/ldxx/" target="_blank">领导信息</a>
+                                         
+                                           <a href="../../../../jg/nsjg/" target="_blank">内设机构</a>
+                                         
+                                        </div>
+-->
+        </li>
+        <li>
+          <a href="../../../../xw/" class="navList" target="_blank">新闻<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../xw/szzl/" target="_blank">时政要闻</a>
+                                        
+                                            <a href="../../../../xw/yjyw/" target="_blank">应急要闻</a>
+                                        
+ 
+                                            <a href="../../../../xw/yjglbgzdt/" target="_blank">工作动态</a>
+                                        
+                                            <a href="../../../../xw/gdyj/" target="_blank">地方应急</a>
+                                        
+                                            <a href="../../../../xw/jyll/" target="_blank">救援力量</a>
+                                        
+                                            <a href="../../../../xw/zhsgxx/" target="_blank">灾害事故信息</a>
+                                        
+                                            <a href="../../../../xw/xwfbh/" target="_blank">新闻发布会</a>
+                                        
+                                            <a href="../../../../xw/mtxx/" target="_blank">媒体信息</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../" class="navList" target="_blank">公开<i></i></a>
+          <div class="down">
+                                           
+                                            <a href="../../" target="_blank">政府信息公开</a>
+                                        
+                                            <a href="../../../tzgg/" target="_blank">通知公告</a>
+                                        
+                                            <a href="../../../zcjd/" target="_blank">政策解读</a>
+                                        
+                                            <a href="../../../sgcc/" target="_blank">事故及灾害查处</a>
+                                        
+                                            <a href="../../../rsxx/" target="_blank">人事信息</a>
+                                        
+                                            <a href="../../../cwxx/" target="_blank">财务信息</a>
+                                        
+                                            <a href="../../../ghjh/" target="_blank">计划规划</a>
+                                        
+                                            <a href="../../../tjsj/" target="_blank">统计数据</a>
+                                        
+                                            <a href="../../../jytabljggk/" target="_blank">建议提案办理</a>
+                                        
+                                            <a href="../../../gwgg/" target="_blank">原国家安全监管总局文件</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../../fw/" class="navList" target="_blank">服务<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../fw/zffw/" target="_blank">政务服务</a>
+                                        
+                                            <a href="../../../../fw/jsxx/" target="_blank">警示信息</a>
+                                        
+                                            <a href="../../../../fw/flfgbz/" target="_blank">法律法规标准</a>
+                                        
+                                            <a href="../../../../fw/yjya/" target="_blank">应急预案</a>
+                                        
+                                            <a href="../../../../fw/yajzjxzxk/" target="_blank">应急管理部行政许可</a>
+                                        
+                                            <a href="../../../../fw/xzzfgs/" target="_blank">行政执法公示</a>
+                                        
+                                            <a href="../../../../fw/yjpf/" target="_blank">应急普法</a>
+                                        
+                                            <a href="../../../../fw/cxfw/" target="_blank">查询服务</a>
+                                        
+                                            <a href="../../../../fw/ywxt/" target="_blank">业务系统</a>
+                                        
+                                            <a href="../../../../fw/dzzz/" target="_blank">应急管理部电子证照</a>
+                                        
+                                        </div>
+        </li>
+        <li>
+          <a href="../../../../hd/" class="navList" target="_blank">互动<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../hd/zxft/" target="_blank">在线访谈</a>
+                                        
+                                            <a href="../../../../hd/zqyj/" target="_blank">征求意见</a>
+                                        
+                                            <a href="../../../../hd/hygq/" target="_blank">回应关切</a>
+                                        
+                                            <a href="../../../../hd/gzly/" target="_blank">公众留言</a>
+                                        
+                                            <a href="../../../../hd/tsjb/" target="_blank">国家政务服务投诉与建议</a>
+                                        
+ <!--<a href="https://www.mem.gov.cn/hd/wsxf1/yjwsxf/" target="_blank">网上信访</a>-->
+                                        </div>
+        </li>
+       
+        <li>
+          <a href="../../../../dj/" class="navList" target="_blank">党建<i></i></a>
+ <div class="down">
+                                        
+                                            <a href="../../../../dj/djyw/" target="_blank">党建要闻</a>
+                                        
+                                            <a href="../../../../dj/jcdt_1/" target="_blank">基层党建</a>
+                                        
+                                            <a href="../../../../dj/djjl/" target="_blank">党建交流</a>
+                                        
+                                            <a href="../../../../dj/dflz/" target="_blank">党风廉政</a>
+                                        
+                                            <a href="../../../../dj/xsdt/" target="_blank">巡视工作</a>
+                                        
+                                            <a href="../../../../dj/gwgg/" target="_blank">公文公告</a>
+                                        
+                                            <a href="../../../../dj/gzzd/" target="_blank">规章制度</a>
+                                        
+                                            <a href="../../../../dj/qttz/" target="_blank">群团统战</a>
+                                        
+                                            <a href="../../../../dj/xxyd/" target="_blank">学习园地</a>
+                                        
+                                            <a href="../../../../dj/rdzt/" target="_blank">热点专题</a>
+                                        
+                                        </div>
+                                                </li>
+        <li>
+          <a href="../../../../shjyfw/" class="navList" target="_blank">社会救援服务<i></i></a>
+ <div class="down">
+ 
+                                            <a href="../../../../shjyfw/tzgg_3324/" target="_blank">工作信息</a>
+                                        
+                                            <a href="../../../../shjyfw/dwfc/" target="_blank">队伍风采</a>
+                                        
+        </li>
+        <li>
+          <a href="../../../../kp/" class="navList" target="_blank">应急科普<i></i></a>
+          <div class="down">
+                                        
+                                            <a href="../../../../kp/shaq/" target="_blank">生活安全</a>
+                                        
+                                            <a href="../../../../kp/zrzh/" target="_blank">自然灾害</a>
+                                        
+                                            <a href="../../../../kp/sgzn/" target="_blank">安全生产</a>
+                                        
+                                            <a href="../../../../kp/yjkpcg/" target="_blank">应急科普场馆</a>
+                                        
+                                          </div>
+        </li> 
+      </ul>
+    </div>
+  </div>
+    <!--导航-->
+      <!--startprint-->
+    <!--内容-->
+    <div class="scy_box_wrap">
+        <div class="scy_box_nei" style="background-color:#fff">
+            <div class="scy_current"><a href="../../../../">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                    href="https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/">政府信息公开</a>
+            </div>
+         
+            <div class="scy_main scy_main_detail">
+               <div class="scy_detail_top">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                     <tr>
+                      <td class="td_lable">标题：</td>
+                      <td colspan="5">应急管理部 工业和信息化部关于加快应急管理装备创新发展的指导意见</td>
+                    </tr>
+                    <tr>
+                      <td class="td_lable">索引号：</td>
+                      <td>3/2026-00012</td>
+                      <td class="td_lable">发文字号：</td>
+                      <td>应急〔2026〕5号</td> 
+                      <td class="td_lable">发文单位：</td>
+                      <td>应急管理部</td>          
+                    </tr>
+                    <tr>
+                       <td class="td_lable">所属机构：</td>
+                      <td>科技和信息化司</td>
+                      <td class="td_lable">主题分类：</td>
+                      <td>科技和信息化</td>
+                       <td class="td_lable">公文种类：</td>
+                      <td>意见</td>
+                    </tr>
+                    <tr>
+                      <td class="td_lable">成文日期：</td>
+                      <td>2026年01月22日</td>
+                      
+                      <td class="td_lable">发布日期：</td>
+                      <td>2026年01月27日</td>
+                
+                    </tr>
+                  
+                  </table>
+               </div>
+               <div class="scy_detail_bottom" style="margin-top:-20px;padding: 30px 30px 100px 30px;">
+                   
+                  <div id="content">
+                   <div>&nbsp;</div>
+<div>&nbsp;</div>
+<p class="p" style="margin-top:0.0000pt;margin-bottom:0.0000pt;text-autospace:ideograph-numeric;&#10;mso-pagination:widow-orphan;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center">&nbsp;</p>
+<p class="p" style="margin-top:0.0000pt;margin-bottom:0.0000pt;text-autospace:ideograph-numeric;&#10;mso-pagination:widow-orphan;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:0.0000pt;"><font face="宋体">应急管理部</font> <font face="宋体">工业和信息化部</font></span></b></p>
+<p class="p" style="margin-top:0.0000pt;margin-bottom:0.0000pt;text-autospace:ideograph-numeric;&#10;mso-pagination:widow-orphan;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:0.0000pt;"><font face="宋体">关于加快应急管理装备创新发展的指导意见</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急〔</font><font face="宋体">2026〕5号</font></span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家消防救援局、国家矿山安全监察局、中国地震局，各省、自治区、直辖市及新疆生产建设兵团应急管理厅（局）、工业和信息化主管部门：</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急管理装备是赋能应急管理新质生产力的重要支撑，是推进应急管理体系和能力现代化的重要保障，是发展安全应急装备战略性新兴产业的重要内容。为加快应急管理装备创新发展，强化应急管理装备技术支撑，推动安全应急装备产业高质量发展，制定本指导意见。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">一、总体要求</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">坚持以习近平新时代中国特色社会主义思想为指导，全面贯彻党的二十大和二十届历次全会精神，深入学习贯彻习近平总书记关于新质生产力及应急管理的重要论述，坚持人民至上、生命至上，以提升应急管理装备现代化水平为主线，以改革创新为动力，强化关键核心技术装备研发应用，统筹推进应急管理装备建设和安全应急装备产业发展，加快形成新质生产力，赋能应急管理新质战斗力，为全面提升应急管理能力提供有力支撑。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">坚持需求牵引、实战导向。瞄准应急管理装备实战急需和痛点难题，精准施策发力，牢牢把握问题导向、目标导向、结果导向相统一。坚持系统谋划、体系建设。聚焦完善应急管理装备创新发展体系，强化顶层设计，做好前瞻布局，急用先行、梯次推进应急管理装备现代化建设。坚持创新驱动、科技赋能。充分发挥创新第一动力作用，推进原创性、引领性创新，深入开展关键共性技术和</font><font face="宋体">“卡脖子”难题攻关，不断提升应急管理装备自主创新能力，为可持续高质量发展蓄势赋能。坚持统筹引导、协同联动。加大政府引导带动力度，激发社会各方创新资源活力，凝聚发展合力，构建“政产学研用”一体化发展新格局。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">到</font><font face="宋体">2027年底，攻克20项以上关键核心技术，研发20种以上重点创新装备，推广30种以上先进技术装备，应急管理装备创新发展体系进一步完善，装备产业发展规模和质量稳步提升，应急管理装备智能化、轻型化、标准化水平显著提升，实战支撑能力明显增强。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">二、推进急需技术装备科研创新</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）夯实装备科研基础。面向安全生产、防灾减灾救灾、应急救援等领域，健全常态化装备科研攻关需求征集机制，加大装备科研攻关需求征集凝练力度，建立装备科研攻关需求库，持续动态更新完善，精准、及时、全面掌握一线实战需求，系统评估研发需求急迫性和难易度，明确攻关途径，同时大力推进装备预研，强化技术储备，从源头上提升装备科研创新质效。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）加强重点装备攻关。组织实施国家重点研发计划有关重点专项、省部级重点科研项目、</font><font face="宋体">“揭榜挂帅”项目、孵化专项等项目，开展重点装备研发攻关，鼓励产学研用一体化联合攻关，探索政府采购合作创新采购模式，推动国防工业科技成果向应急管理领域转化，持续加大科技含量足、创新水平高、性能指标优、应用前景好的“高、精、特、专”装备及效率较高、价格低廉、先进适用的“小、快、轻、智”装备供给力度。推进应急管理装备与人工智能、5G、大数据、物联网、卫星互联网、北斗和先进计算等新技术融合创新。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）开展新型装备实战验证。建立常态化应急管理装备实战测试验证机制，制定应急管理装备实战测试验证规范，明确不同类型装备测试指标、测试流程和评分细则，综合采用模拟场景测试、演习演练检验、实战救援验证等分级分类测试方式，鼓励相关单位及救援队伍在装备采购前开展装备测试，推动装备产品迭代升级，加快实战能力提升。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（四）推进通用主战装备统型。完善应急管理装备型谱，进一步优化装备体系结构。针对应急管理装备型号繁杂、互通困难等问题，围绕需求迫切、覆盖面广的通用主战装备组织开展统型工作，实现装备性能、功能、接口等统一规范，提升装备标准化、通用化、系列化水平，增强装备协同效能。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">三、强化先进适用装备推广应用</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（五）加强装备配备应用。根据应急救援队伍职能，加大先进适用技术装备列装应用力度，加快构建现代化装备体系。国家综合性消防救援队伍以及工程救援、安全生产等国家专业应急救援队伍加快配齐配足通用主战装备，同时加强</font><font face="宋体">“高、精、特、专”装备配备，增强应急救援攻坚克难能力和“三断”（断路、断网、断电）等极端场景下应急指挥通信保障能力，提升无人化、智能化、高端化水平；地方专业救援队伍、社会应急力量、基层综合应急救援队伍等救援力量加强“小、快、轻、智”装备配备，提升日常风险防范、第一时间先期处置等能力。加快国家区域应急救援中心装备建设，提升区域性灾害事故应急处置能力。推进应急指挥部装备配备，提升调度指挥、会商研判、业务保障等能力。基层灾害信息员加强灾害现场灾情采集获取、灾害损失评估、人员安全防护等相关装备配备，提升灾害现场态势感知和分析研判能力。加强应急物资保障队伍和受灾群众安置救助类装备建设，提升灾害救助能力。加强一体化、便携化、智能化监管执法装备和执法保障装备配备，提升安全生产风险隐患排查治理能力。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（六）加强安全生产设备更新。聚焦矿山、危险化学品、工贸等重点行业领域，制定落后技术装备淘汰目录，持续推进</font><font face="宋体">“机械化换人、自动化减人、智能化无人”，加大无人智能设备应用力度。组织开展安全生产领域大规模设备更新，加强工业领域先进安全应急装备更新配备，淘汰落后工艺和设备，着力提升本质安全水平。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（七）强化先进技术装备推广。发布应急管理先进适用技术装备推广目录，指导推动先进适用技术装备规模化实战应用。依托重大演习演练活动，加大先进适用技术装备宣传推广力度。建立应急管理装备创新成果库，组织评选年度重大应急管理装备成果。鼓励各地推广应用先进适用技术装备。借助</font><font face="宋体">“一带一路”自然灾害防治和应急管理国际合作机制，推动重点创新装备走出国门，强化海外推广应用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">四、强化支撑力量建设</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（八）加快科技创新平台建设。加强对国家矿山安全技术创新中心的支持。持续优化完善应急管理部重点实验室支撑体系，深入推进现有重点实验室对口联系服务业务部门、动态调整机制，引导装备相关实验室聚焦应急管理业务需求加强科技创新。启动应急管理部技术创新中心布局，建设安全应急装备制造业创新中心、产业技术基础公共服务平台、中试平台和孵化器，强化创新资源对接，推动先进适用成果转化与产业化。推动建设实战测试验证基地，提升新型装备专业化测试验证能力。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（九）加强人才队伍建设。鼓励有条件的高等院校设立应急管理、装备技术等相关专业，加强应急管理装备相关学科建设。鼓励地方人民政府、科研院所、企事业单位等与高等院校合作共建人才培养基地，定向培养专业人才。依托应急管理系统培训，定期组织开展新技术、新装备专题培训。针对应急管理装备创新发展关键领域，鼓励各地通过政策优惠引进国内外高层次人才，强化科研领军人才队伍建设。强化应急管理装备领域专家支撑，邀请科研院所、高等院校、企事业单位等单位技术专家参与装备规划、技术论证等。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">五、强化标准规范支撑</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（十）加强装备标准供给。制定完善装备标准体系建设指南，推进装备标准体系化建设。鼓励科研院所、高等院校、企事业单位、社会组织等单位加强应急管理装备相关企业标准、团体标准制修订，支持参与应急管理行业标准制修订，鼓励国内优势单位积极研制国际标准。组织研制应急管理装备分级分类标准，形成科学、系统的分类体系，提升装备研制的针对性，提高装备实战性能。加大应急管理装备配备标准研制力度，引导用户单位强化先进适用装备配备应用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">六、推动装备产业发展</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（十一）强化需求牵引。建设专业交流和供需对接平台，打造安全应急装备供需对接大数据资源池，举办中国国际应急管理展览会、中国安全应急产业大会、安全应急装备</font><font face="宋体">“区域行”活动等，鼓励各地深化场景对接，细分专业赛道，创新产研对接、产需对接活动载体，以场景创新推动新技术、新装备落地应用，形成需求引领供给、供给创造需求的良性循环。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（十二）培优产业生态。凝聚科研院所、高等院校、企事业单位等优势社会资源，加强</font><font face="宋体">“政产学研用”全方位协同创新，推动国有资本和民营资本向应急管理装备创新发展集中。推动培育一批安全应急特色明显、创新能力强的高新技术企业、专精特新“小巨人”企业、制造业单项冠军企业。推动建设一批龙头企业、“链主”企业，促进安全应急装备领域先进制造业集群和特色园区提质升级，引领带动相关产业发展。发挥行业协会、产业联盟、装备创新联盟等桥梁纽带作用，统筹协调安全应急装备产业各方力量。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">七、强化组织实施</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">健全应急管理装备科研攻关、实战验证、先进推广、统型列装等工作机制，完善部际、部省协同工作机制，深化部际合作，强化部省联动，全面谋划、统筹推进，凝聚应急管理装备发展工作合力。推动完善政府、市场、社会等多元化资金投入机制，拓宽资金筹措渠道，引导地方资金和社会资本加大投入力度，推动装备建设和产业发展。推动将符合条件的应急管理装备创新成果优先纳入应急管理先进适用技术装备推广目录、首台（套）重大技术装备推广应用指导目录、先进安全应急装备推广目录、安全应急装备应用推广典型案例名单、应急通信指导性产品目录等。加强频谱资源保障工作，制定安全应急领域无线电频率使用规划和管理办法，及时查处相关无线电有害干扰。鼓励地方制定针对性政策措施，持续加大政策供给和要素保障力度。</font></span></p>
+<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:right;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;" align="right"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急管理部</font> <font face="宋体">工业和信息化部</font></span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:right;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;" align="right"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">2026年1月22日</font></span></p>
+<style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}p.p{
+
+
+mso-style-name:"普通\(网站\)";
+
+
+margin-top:5.0000pt;
+
+
+margin-right:0.0000pt;
+
+
+margin-bottom:5.0000pt;
+
+
+margin-left:0.0000pt;
+
+
+mso-margin-top-alt:auto;
+
+
+mso-margin-bottom-alt:auto;
+
+
+mso-pagination:none;
+
+
+text-align:left;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:12.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style>
+                  </div>
+
+               <!--相关文档--> 
+              <div class="xglj zw-file2" style="display:flex;margin-top:30px">
+                    <h2 style="width:200px;">相关链接：</h2>
+                    <div style=";margin-top:5px">
+                    
+            </div>
+           </div>
+
+               </div>
+ <!--endprint-->
+
+
+<!--附件-->
+
+   
+    <div style="float: right;">
+        <div style="float: left;list-style: none;margin-left: 34px;position: relative;height: 26px;line-height: 26px;font-family: SimSun;font-size: 16px;margin-right: -30px;"><!--<div class="bshare-custom" style="font-size: 16px;line-height: 26px !important;margin-top: -3px;"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone" style="background:url(../../images/P020230426383609099247.jpg)"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"  style="background:url(../../images/P020230426383873866638.jpg)"></a><a title="分享到微信" class="bshare-weixin"  style="background:url(../../images/P020230426383726700133.jpg)"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>--></div>
+        <div style="float: left;list-style: none;margin-left: 34px;position: relative;height: 26px;line-height: 26px;font-family: SimSun;font-size: 16px;"><a href="https://www.mem.gov.cn/gk/zfxxgkpt/fdzdgknr/202601/P020260127371404627799.wps">【下 载】</a><a style="cursor:pointer;" onclick="doPrint();" >【打 印】</a><a href="javascript:window.opener=null;window.open('','_self');window.close();">【关 闭】</a></div>
+
+        
+    
+
+     
+   
+<!--附件-->
+            </div>
+        </div>
+    </div>
+<script src="../../../../images/jquery-1.11.0.min.js" type="text/javascript"></script>
+
+
+<script>
+
+      var Otitle = '应急管理部 工业和信息化部关于加快应急管理装备创新发展的指导意见';
+      var Ocon = '<div>&nbsp;</div>
+<div>&nbsp;</div>
+<p class="p" style="margin-top:0.0000pt;margin-bottom:0.0000pt;text-autospace:ideograph-numeric;&#10;mso-pagination:widow-orphan;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center">&nbsp;</p>
+<p class="p" style="margin-top:0.0000pt;margin-bottom:0.0000pt;text-autospace:ideograph-numeric;&#10;mso-pagination:widow-orphan;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:0.0000pt;"><font face="宋体">应急管理部</font> <font face="宋体">工业和信息化部</font></span></b></p>
+<p class="p" style="margin-top:0.0000pt;margin-bottom:0.0000pt;text-autospace:ideograph-numeric;&#10;mso-pagination:widow-orphan;text-align:center;line-height:32.0000pt;&#10;mso-line-height-rule:exactly;" align="center"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:22.0000pt;mso-font-kerning:0.0000pt;"><font face="宋体">关于加快应急管理装备创新发展的指导意见</font></span></b></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急〔</font><font face="宋体">2026〕5号</font></span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:center;&#10;line-height:32.0000pt;mso-line-height-rule:exactly;" align="center"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;line-height:28.0000pt;&#10;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">国家消防救援局、国家矿山安全监察局、中国地震局，各省、自治区、直辖市及新疆生产建设兵团应急管理厅（局）、工业和信息化主管部门：</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急管理装备是赋能应急管理新质生产力的重要支撑，是推进应急管理体系和能力现代化的重要保障，是发展安全应急装备战略性新兴产业的重要内容。为加快应急管理装备创新发展，强化应急管理装备技术支撑，推动安全应急装备产业高质量发展，制定本指导意见。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">一、总体要求</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">坚持以习近平新时代中国特色社会主义思想为指导，全面贯彻党的二十大和二十届历次全会精神，深入学习贯彻习近平总书记关于新质生产力及应急管理的重要论述，坚持人民至上、生命至上，以提升应急管理装备现代化水平为主线，以改革创新为动力，强化关键核心技术装备研发应用，统筹推进应急管理装备建设和安全应急装备产业发展，加快形成新质生产力，赋能应急管理新质战斗力，为全面提升应急管理能力提供有力支撑。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">坚持需求牵引、实战导向。瞄准应急管理装备实战急需和痛点难题，精准施策发力，牢牢把握问题导向、目标导向、结果导向相统一。坚持系统谋划、体系建设。聚焦完善应急管理装备创新发展体系，强化顶层设计，做好前瞻布局，急用先行、梯次推进应急管理装备现代化建设。坚持创新驱动、科技赋能。充分发挥创新第一动力作用，推进原创性、引领性创新，深入开展关键共性技术和</font><font face="宋体">“卡脖子”难题攻关，不断提升应急管理装备自主创新能力，为可持续高质量发展蓄势赋能。坚持统筹引导、协同联动。加大政府引导带动力度，激发社会各方创新资源活力，凝聚发展合力，构建“政产学研用”一体化发展新格局。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">到</font><font face="宋体">2027年底，攻克20项以上关键核心技术，研发20种以上重点创新装备，推广30种以上先进技术装备，应急管理装备创新发展体系进一步完善，装备产业发展规模和质量稳步提升，应急管理装备智能化、轻型化、标准化水平显著提升，实战支撑能力明显增强。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">二、推进急需技术装备科研创新</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（一）夯实装备科研基础。面向安全生产、防灾减灾救灾、应急救援等领域，健全常态化装备科研攻关需求征集机制，加大装备科研攻关需求征集凝练力度，建立装备科研攻关需求库，持续动态更新完善，精准、及时、全面掌握一线实战需求，系统评估研发需求急迫性和难易度，明确攻关途径，同时大力推进装备预研，强化技术储备，从源头上提升装备科研创新质效。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（二）加强重点装备攻关。组织实施国家重点研发计划有关重点专项、省部级重点科研项目、</font><font face="宋体">“揭榜挂帅”项目、孵化专项等项目，开展重点装备研发攻关，鼓励产学研用一体化联合攻关，探索政府采购合作创新采购模式，推动国防工业科技成果向应急管理领域转化，持续加大科技含量足、创新水平高、性能指标优、应用前景好的“高、精、特、专”装备及效率较高、价格低廉、先进适用的“小、快、轻、智”装备供给力度。推进应急管理装备与人工智能、5G、大数据、物联网、卫星互联网、北斗和先进计算等新技术融合创新。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（三）开展新型装备实战验证。建立常态化应急管理装备实战测试验证机制，制定应急管理装备实战测试验证规范，明确不同类型装备测试指标、测试流程和评分细则，综合采用模拟场景测试、演习演练检验、实战救援验证等分级分类测试方式，鼓励相关单位及救援队伍在装备采购前开展装备测试，推动装备产品迭代升级，加快实战能力提升。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（四）推进通用主战装备统型。完善应急管理装备型谱，进一步优化装备体系结构。针对应急管理装备型号繁杂、互通困难等问题，围绕需求迫切、覆盖面广的通用主战装备组织开展统型工作，实现装备性能、功能、接口等统一规范，提升装备标准化、通用化、系列化水平，增强装备协同效能。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">三、强化先进适用装备推广应用</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（五）加强装备配备应用。根据应急救援队伍职能，加大先进适用技术装备列装应用力度，加快构建现代化装备体系。国家综合性消防救援队伍以及工程救援、安全生产等国家专业应急救援队伍加快配齐配足通用主战装备，同时加强</font><font face="宋体">“高、精、特、专”装备配备，增强应急救援攻坚克难能力和“三断”（断路、断网、断电）等极端场景下应急指挥通信保障能力，提升无人化、智能化、高端化水平；地方专业救援队伍、社会应急力量、基层综合应急救援队伍等救援力量加强“小、快、轻、智”装备配备，提升日常风险防范、第一时间先期处置等能力。加快国家区域应急救援中心装备建设，提升区域性灾害事故应急处置能力。推进应急指挥部装备配备，提升调度指挥、会商研判、业务保障等能力。基层灾害信息员加强灾害现场灾情采集获取、灾害损失评估、人员安全防护等相关装备配备，提升灾害现场态势感知和分析研判能力。加强应急物资保障队伍和受灾群众安置救助类装备建设，提升灾害救助能力。加强一体化、便携化、智能化监管执法装备和执法保障装备配备，提升安全生产风险隐患排查治理能力。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（六）加强安全生产设备更新。聚焦矿山、危险化学品、工贸等重点行业领域，制定落后技术装备淘汰目录，持续推进</font><font face="宋体">“机械化换人、自动化减人、智能化无人”，加大无人智能设备应用力度。组织开展安全生产领域大规模设备更新，加强工业领域先进安全应急装备更新配备，淘汰落后工艺和设备，着力提升本质安全水平。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（七）强化先进技术装备推广。发布应急管理先进适用技术装备推广目录，指导推动先进适用技术装备规模化实战应用。依托重大演习演练活动，加大先进适用技术装备宣传推广力度。建立应急管理装备创新成果库，组织评选年度重大应急管理装备成果。鼓励各地推广应用先进适用技术装备。借助</font><font face="宋体">“一带一路”自然灾害防治和应急管理国际合作机制，推动重点创新装备走出国门，强化海外推广应用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">四、强化支撑力量建设</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（八）加快科技创新平台建设。加强对国家矿山安全技术创新中心的支持。持续优化完善应急管理部重点实验室支撑体系，深入推进现有重点实验室对口联系服务业务部门、动态调整机制，引导装备相关实验室聚焦应急管理业务需求加强科技创新。启动应急管理部技术创新中心布局，建设安全应急装备制造业创新中心、产业技术基础公共服务平台、中试平台和孵化器，强化创新资源对接，推动先进适用成果转化与产业化。推动建设实战测试验证基地，提升新型装备专业化测试验证能力。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（九）加强人才队伍建设。鼓励有条件的高等院校设立应急管理、装备技术等相关专业，加强应急管理装备相关学科建设。鼓励地方人民政府、科研院所、企事业单位等与高等院校合作共建人才培养基地，定向培养专业人才。依托应急管理系统培训，定期组织开展新技术、新装备专题培训。针对应急管理装备创新发展关键领域，鼓励各地通过政策优惠引进国内外高层次人才，强化科研领军人才队伍建设。强化应急管理装备领域专家支撑，邀请科研院所、高等院校、企事业单位等单位技术专家参与装备规划、技术论证等。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">五、强化标准规范支撑</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（十）加强装备标准供给。制定完善装备标准体系建设指南，推进装备标准体系化建设。鼓励科研院所、高等院校、企事业单位、社会组织等单位加强应急管理装备相关企业标准、团体标准制修订，支持参与应急管理行业标准制修订，鼓励国内优势单位积极研制国际标准。组织研制应急管理装备分级分类标准，形成科学、系统的分类体系，提升装备研制的针对性，提高装备实战性能。加大应急管理装备配备标准研制力度，引导用户单位强化先进适用装备配备应用。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">六、推动装备产业发展</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（十一）强化需求牵引。建设专业交流和供需对接平台，打造安全应急装备供需对接大数据资源池，举办中国国际应急管理展览会、中国安全应急产业大会、安全应急装备</font><font face="宋体">“区域行”活动等，鼓励各地深化场景对接，细分专业赛道，创新产研对接、产需对接活动载体，以场景创新推动新技术、新装备落地应用，形成需求引领供给、供给创造需求的良性循环。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">（十二）培优产业生态。凝聚科研院所、高等院校、企事业单位等优势社会资源，加强</font><font face="宋体">“政产学研用”全方位协同创新，推动国有资本和民营资本向应急管理装备创新发展集中。推动培育一批安全应急特色明显、创新能力强的高新技术企业、专精特新“小巨人”企业、制造业单项冠军企业。推动建设一批龙头企业、“链主”企业，促进安全应急装备领域先进制造业集群和特色园区提质升级，引领带动相关产业发展。发挥行业协会、产业联盟、装备创新联盟等桥梁纽带作用，统筹协调安全应急装备产业各方力量。</font></span></p>
+<p class="MsoNormal" style="text-indent:32.1000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><b><span style="mso-spacerun:'yes';font-family:宋体;font-weight:bold;&#10;font-size:16.0000pt;mso-font-kerning:1.0000pt;"><font face="宋体">七、强化组织实施</font></span></b></p>
+<p class="MsoNormal" style="text-indent:32.0000pt;mso-char-indent-count:2.0000;text-autospace:ideograph-numeric;&#10;mso-pagination:none;line-height:28.0000pt;mso-line-height-rule:exactly;"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">健全应急管理装备科研攻关、实战验证、先进推广、统型列装等工作机制，完善部际、部省协同工作机制，深化部际合作，强化部省联动，全面谋划、统筹推进，凝聚应急管理装备发展工作合力。推动完善政府、市场、社会等多元化资金投入机制，拓宽资金筹措渠道，引导地方资金和社会资本加大投入力度，推动装备建设和产业发展。推动将符合条件的应急管理装备创新成果优先纳入应急管理先进适用技术装备推广目录、首台（套）重大技术装备推广应用指导目录、先进安全应急装备推广目录、安全应急装备应用推广典型案例名单、应急通信指导性产品目录等。加强频谱资源保障工作，制定安全应急领域无线电频率使用规划和管理办法，及时查处相关无线电有害干扰。鼓励地方制定针对性政策措施，持续加大政策供给和要素保障力度。</font></span></p>
+<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;">&nbsp;</span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:right;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;" align="right"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">应急管理部</font> <font face="宋体">工业和信息化部</font></span></p>
+<p class="MsoNormal" style="text-autospace:ideograph-numeric;mso-pagination:none;text-align:right;&#10;line-height:28.0000pt;mso-line-height-rule:exactly;" align="right"><span style="mso-spacerun:'yes';font-family:宋体;font-size:16.0000pt;&#10;mso-font-kerning:1.0000pt;"><font face="宋体">2026年1月22日</font></span></p>
+<style type="text/css">
+
+@font-face{
+
+
+font-family:"Times New Roman";
+
+
+}@font-face{
+
+
+font-family:"宋体";
+
+
+}@font-face{
+
+
+font-family:"Calibri";
+
+
+}p.MsoNormal{
+
+
+mso-style-name:正文;
+
+
+mso-style-parent:"";
+
+
+margin:0pt;
+
+
+margin-bottom:.0001pt;
+
+
+mso-pagination:none;
+
+
+text-align:justify;
+
+
+text-justify:inter-ideograph;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:10.5000pt;
+
+
+mso-font-kerning:1.0000pt;
+
+
+}p.p{
+
+
+mso-style-name:"普通\(网站\)";
+
+
+margin-top:5.0000pt;
+
+
+margin-right:0.0000pt;
+
+
+margin-bottom:5.0000pt;
+
+
+margin-left:0.0000pt;
+
+
+mso-margin-top-alt:auto;
+
+
+mso-margin-bottom-alt:auto;
+
+
+mso-pagination:none;
+
+
+text-align:left;
+
+
+font-family:Calibri;
+
+
+mso-fareast-font-family:宋体;
+
+
+mso-bidi-font-family:'Times New Roman';
+
+
+font-size:12.0000pt;
+
+
+}span.msoIns{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:underline;
+
+
+text-underline:single;
+
+
+color:blue;
+
+
+}span.msoDel{
+
+
+mso-style-type:export-only;
+
+
+mso-style-name:"";
+
+
+text-decoration:line-through;
+
+
+color:red;
+
+
+}div.Section0{page:Section0;}</style>';
+
+    if(Otitle == Ocon){
+        window.open('http://www.mem.gov.cn',"_self")
+    }
+ </script>
+
+
+
+    <div class="fiWrap">
+
+        
+        
+    </div>
+</div>
+
+<script src="../../../../img1/index.js"></script>
+ <!--foot begin-->
+  <!--页尾-->
+  <style>
+    .footer_right {
+      margin-top: 10px;
+      float: right;
+      margin-left: 0px;
+      width: 400px;
+    }
+
+    .footer_right a {
+      float: left;
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+  </style>
+  <!--页尾-->
+<style>
+.footer_right{margin-top: 10px;float: right;margin-left: 0px;width:400px;}
+.footer_right a{float: left;margin-top: 10px;margin-left: 10px;}
+
+</style>
+                <div class="footer_wrap" style='overflow: visible;'>
+                    <div class="footer_box" style='overflow: visible;'>
+                        <div class="footer_left" style='width: 550px;overflow: visible;'>
+                            <div style="height: 19px;overflow: visible;">
+                                <a href="https://www.mem.gov.cn/wzdt/" target="_blank">网站地图</a>
+                                
+                               <!-- <a href="https://www.mem.gov.cn/wzdt/" target="_blank">网站声明</a>-->
+
+                              <!-- <a href="https://www.mem.gov.cn/hd/202110/t20211027_400884.shtml">联系我们
+                                  
+                                </a>-->
+ <span class="fonter_sx">|</span>
+<a href="javascript:void(0);" onclick="return false;" style="position:relative;" onmouseover="$('.weixin_nr02').show();" onmouseout="$('.weixin_nr02').hide();">联系我们
+                                   <div class="weixin_nr02" style="display:none;">
+                                       
+                                        网站技术支持电话: 010-64463685
+                                    </div>
+                                </a>
+                            </div>
+                            <p style="margin-top:20px;"><span>主办单位：应急管理部</span><!--<span style="margin-left: 32px;">承办单位：国家安全生产监督管理总局通信信息中心</span>--></p>
+                            <p><!--<span>协办单位：中国安全生产报社 中国煤炭报社</span>--><!--<span>网站管理员邮箱：</span>--></p>
+                            <p style="height:  25px;width: 535px;line-height: 25px;"><span style="margin-right:10px;">网站标识码bm34000001</span><a span style="margin-right:10px; "; href="https://beian.miit.gov.cn/" target="_blank">京ICP备18056520号-2</span></a><a style="float:right;"href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11040102700086'><img src="../../../../csym/images/P020200903653739863394.png" />京公网安备11040102700086号</a></p>
+                            
+                        </div>
+                        <div class="footer_right" style="width:450px">
+              
+                            <a href="http://bszs.conac.cn/sitename?method=show&id=090FA13E04291598E053012819ACCC31">
+<img src="../../../../csym/images/P020200903653625466559.png" alt="" />
+
+</a>
+         <!--<a style="margin-top: 25px;" href="https://zfwzgl.www.gov.cn/boxpro/custom/pucha">
+<img src="https://www.chinacoal-safety.gov.cn/images/jiucuo_1_1.png" alt="" />
+
+</a>-->
+<a style="margin-top: 25px;" href="javascript:void(0);" onclick="return false;"  id="_span_jiucuo">
+<!--<img src="https://www.chinacoal-safety.gov.cn/images/jiucuo_1_1.png" alt="" />-->
+
+</a>
+<script id="_jiucuo_" sitecode='bm34000001' src='https://zfwzgl.www.gov.cn/exposure/jiucuo.js'></script>
+                            <a href="javascript:void(0);" onclick="return false;" style="margin-top: 0px;margin-left: 13px;" target="_self"><img src="../../../../csym/images/P020200930605328396263.png" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+  <!--foot end-->
+
+<script>
+
+    var date;
+    $(function () {
+      $('.td_lable').each(function () {
+
+        var value = $(this).text();
+        if (value == "发布日期：") {
+          var el = $(this).next();
+          date = el.text();
+          console.log(date);
+        }
+      });
+      var year = date.split('年')[0];
+      var month = date.split('月')[0].slice(-2);
+      var day = date.split('日')[0].slice(-2);
+      
+ 
+       
+      if (year < 2020 || year == 2020 && month < 12 || year == 2020 && month == 12 && day <= 08) {
+        //修改附件格式
+        $('.gk-file').css('display', 'flex');
+        $('.gk-file h2').css('margin', '-3px 0 10px!important');
+        var as = $('.gk-file ul li a');
+        if(as.length==1){}
+        if(as.length>1){
+          for (var i = 0; i < as.length; i++) {
+          var valuei = as.eq(i);
+          var text = valuei.text();
+          if (text.indexOf(i + 1) != 0){
+          valuei.text(i + 1 + ". " + text);
+          }
+        }
+        }
+      } else if(year < 2020 || year == 2020 && month < 12 || year == 2020 && month == 12 && day < 15){
+        $('.gk-file').css('display','none');
+        $('.zw-file1').css('display','flex');
+        
+      }else {
+         $('.gk-file').css('display','none');
+        $('.zw-file2').css('display','flex');
+          }
+
+    })
+
+$(function(){
+     var tr=$('.scy_detail_top tr').eq(3);
+     var td=$(tr).children('td').eq(3);
+     //td.text('有效');
+     
+     //调整日期
+   
+     $('.td_lable').each(function () {
+
+        var value = $(this).text();
+        if (value == "成文日期：" || value=="发布日期：") {
+          var el = $(this).next();
+          var date = el.text();
+          var year = date.split('年')[0];
+          var month = date.split('月')[0].slice(-2);
+          var day = date.split('日')[0].slice(-2);
+          if (parseInt(month) < 10) {
+            month = month.replace("0", "");
+          }
+           if (parseInt(day) < 10) {
+            day = day.replace("0", "");
+          }
+          $(this).next().text((year + "年" + month + "月" + day + "日"));
+         }
+        if(value == "主题分类："){
+          var el = $(this).next();
+          var catalog = el.text();
+          var final = catalog.replace(/;/g,"；");
+          $(this).next().text(final);
+         }
+       })
+
+  
+   })
+$(function(){
+   if($(".gk-file ul li").length == 0){
+      $(".gk-file").css("display","none");
+    }
+   if($('.xglj div li').length==0){
+      $('.xglj').hide();
+    }
+})
+
+
+  </script>
+
+    <!--尾部-->
+
+
+</body>
+
+</html>
