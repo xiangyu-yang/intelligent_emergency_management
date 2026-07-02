@@ -5,7 +5,7 @@ import { SystemConfigDAO } from '../db/dao.js';
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
   content: string;
-  reasoning?: string;
+  reasoning?: string | null;
 }
 
 interface LLMConfig {
@@ -327,6 +327,225 @@ export async function pullModel(modelName: string, apiBaseUrl: string): Promise<
   }
 }
 
+export interface ToolCall {
+  name: string;
+  arguments: Record<string, any>;
+}
+
+function findJsonInText(content: string): string | null {
+  const jsonBlocks: string[] = [];
+  let depth = 0;
+  let start = -1;
+  
+  for (let i = 0; i < content.length; i++) {
+    if (content[i] === '{') {
+      if (depth === 0) {
+        start = i;
+      }
+      depth++;
+    } else if (content[i] === '}') {
+      depth--;
+      if (depth === 0 && start >= 0) {
+        jsonBlocks.push(content.substring(start, i + 1));
+        start = -1;
+      }
+    }
+  }
+  
+  if (jsonBlocks.length > 0) {
+    return jsonBlocks[jsonBlocks.length - 1];
+  }
+  
+  return null;
+}
+
+function parseFunctionCall(content: string): ToolCall | null {
+  const functionCallRegex = /(execute_policy_collection|execute_weather_query|execute_emergency_plan|read_downloaded_file)\s*\(\s*([^)]*)\s*\)/;
+  const match = content.match(functionCallRegex);
+  
+  if (!match) {
+    return null;
+  }
+  
+  const toolName = match[1];
+  const argsStr = match[2];
+  
+  const args: Record<string, any> = {} as Record<string, any>;
+  const argPairs = argsStr.split(/,\s*/);
+  
+  for (const pair of argPairs) {
+    if (!pair.trim()) continue;
+    
+    const [key, value] = pair.split('=').map(s => s.trim());
+    if (key && value !== undefined) {
+      let parsedValue: any = value;
+      
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        parsedValue = value.slice(1, -1);
+      } else if (!isNaN(Number(value))) {
+        parsedValue = Number(value);
+      } else if (value.toLowerCase() === 'true') {
+        parsedValue = true;
+      } else if (value.toLowerCase() === 'false') {
+        parsedValue = false;
+      }
+      
+      args[key] = parsedValue;
+    }
+  }
+  
+  return {
+    name: toolName,
+    arguments: args,
+  };
+}
+
+function parseBracketToolCall(content: string): ToolCall | null {
+  const bracketRegex = /\[调用工具\]\s*(execute_policy_collection|execute_weather_query|execute_emergency_plan|read_downloaded_file)/;
+  const toolNameMatch = content.match(bracketRegex);
+  
+  if (!toolNameMatch) {
+    return null;
+  }
+  
+  const toolName = toolNameMatch[1];
+  const args: Record<string, any> = {} as Record<string, any>;
+  
+  const paramLines = content.split('\n').filter(line => line.trim().startsWith('- '));
+  
+  for (const line of paramLines) {
+    const trimmed = line.trim().substring(2);
+    const colonIndex = trimmed.indexOf(':');
+    
+    if (colonIndex > 0) {
+      const key = trimmed.substring(0, colonIndex).trim();
+      const valueStr = trimmed.substring(colonIndex + 1).trim();
+      
+      let value: any = valueStr;
+      
+      if ((valueStr.startsWith('"') && valueStr.endsWith('"')) || (valueStr.startsWith("'") && valueStr.endsWith("'"))) {
+        value = valueStr.slice(1, -1);
+      } else if (!isNaN(Number(valueStr))) {
+        value = Number(valueStr);
+      } else if (valueStr.toLowerCase() === 'true') {
+        value = true;
+      } else if (valueStr.toLowerCase() === 'false') {
+        value = false;
+      }
+      
+      if (!args[key]) {
+        args[key] = value;
+      }
+    }
+  }
+  
+  return {
+    name: toolName,
+    arguments: args,
+  };
+}
+
+export function parseToolCall(content: string): ToolCall | null {
+  try {
+    const trimmedContent = content.trim();
+    
+    const bracketCall = parseBracketToolCall(trimmedContent);
+    if (bracketCall) {
+      return bracketCall;
+    }
+    
+    const functionCall = parseFunctionCall(trimmedContent);
+    if (functionCall) {
+      return functionCall;
+    }
+    
+    let jsonString: string | null = null;
+    
+    const jsonMatch = trimmedContent.match(/```json\s*([\s\S]*?)\s*```/);
+    if (jsonMatch) {
+      jsonString = jsonMatch[1];
+    } else if (trimmedContent.startsWith('{') && trimmedContent.endsWith('}')) {
+      jsonString = trimmedContent;
+    } else {
+      jsonString = findJsonInText(trimmedContent);
+    }
+    
+    if (!jsonString) {
+      return null;
+    }
+    
+    const json = JSON.parse(jsonString);
+    
+    if (json.name && json.arguments) {
+      return {
+        name: json.name,
+        arguments: json.arguments,
+      };
+    }
+    
+    if (json.tool_code && json.params) {
+      return {
+        name: json.tool_code,
+        arguments: json.params,
+      };
+    }
+    
+    if (json.tool_code && json.arguments) {
+      return {
+        name: json.tool_code,
+        arguments: json.arguments,
+      };
+    }
+    
+    if (json.skillId || json.keyword || json.category || json.url) {
+      const toolNameMatch = trimmedContent.match(/execute_policy_collection|execute_weather_query|execute_emergency_plan|read_downloaded_file/);
+      const toolName = toolNameMatch ? toolNameMatch[0] : 'execute_policy_collection';
+      return {
+        name: toolName,
+        arguments: json,
+      };
+    }
+    
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+const toolCallInstruction = `
+
+## 工具调用规则
+
+当你需要调用技能工具时，**必须**按照以下格式输出，不能使用其他格式：
+
+\`\`\`json
+{
+  "tool_code": "工具名称",
+  "params": {
+    "参数名": "参数值"
+  }
+}
+\`\`\`
+
+可用工具列表：
+1. **execute_policy_collection** - 搜索应急政策文件
+   - 参数：skillId(必填，值为"policy-collection"), keyword(可选，搜索关键词), category(可选，分类), url(可选，网址)
+   
+2. **read_downloaded_file** - 读取下载的文件内容
+   - 参数：skillId(必填，值为"policy-collection"), filePath(必填，文件路径)
+
+3. **execute_weather_query** - 查询天气信息
+   - 参数：skillId(必填，值为"weather"), city(必填，城市名)
+
+4. **execute_emergency_plan** - 执行应急预案
+   - 参数：skillId(必填，值为"emergency"), planId(可选，预案ID)
+
+**注意事项：**
+- 调用工具时，只输出JSON代码块，不要输出任何其他解释性文字
+- 参数值必须用双引号括起来
+- 确保JSON格式正确，没有语法错误
+- 如果不需要调用工具，直接回答用户问题即可`;
+
 export function getSystemPrompt(scenario: string): string {
   const prompts: Record<string, string> = {
     general: `你是一个智能应急管理助手，专门为应急管理领域提供专业的智能问答服务。
@@ -337,7 +556,7 @@ export function getSystemPrompt(scenario: string): string {
 3. 帮助用户理解和应对各种突发事件
 4. 根据知识库内容提供准确的信息
 
-请用简洁、专业、易懂的语言回答问题。`,
+请用简洁、专业、易懂的语言回答问题。` + toolCallInstruction,
 
     qna: `你是一个智能应急问答助手，专门回答应急管理相关的问题。
 
@@ -350,7 +569,7 @@ export function getSystemPrompt(scenario: string): string {
 回答格式：
 - 问题分析：简要说明问题的核心
 - 解决方案：提供具体的应对措施
-- 注意事项：提醒关键的安全要点`,
+- 注意事项：提醒关键的安全要点` + toolCallInstruction,
 
     data_query: `你是一个智能应急数据分析助手，擅长处理和分析应急管理数据。
 
@@ -364,7 +583,7 @@ export function getSystemPrompt(scenario: string): string {
 - 数据概览：提供关键指标的统计信息
 - 趋势分析：分析数据的变化趋势
 - 风险预警：识别潜在风险
-- 建议措施：基于数据提出改进建议`,
+- 建议措施：基于数据提出改进建议` + toolCallInstruction,
 
     dispatch: `你是一个智能应急调度助手，负责协助应急资源的调度和分配。
 
@@ -378,7 +597,7 @@ export function getSystemPrompt(scenario: string): string {
 - 需求评估：分析事件的资源需求
 - 资源配置：推荐资源种类和数量
 - 调度方案：制定资源调配计划
-- 协同建议：协调多方力量`,
+- 协同建议：协调多方力量` + toolCallInstruction,
 
     report: `你是一个智能应急报告助手，负责生成各类应急报告。
 
@@ -394,7 +613,7 @@ export function getSystemPrompt(scenario: string): string {
 【处置措施】
 【进展情况】
 【存在问题】
-【下一步计划】`,
+【下一步计划】` + toolCallInstruction,
   };
 
   return prompts[scenario] || prompts.general;

@@ -67,7 +67,8 @@ intelligent_emergency_management/
 │       │   ├── FilePreview.tsx   # 文件预览组件
 │       │   ├── FloatingAssistant.tsx # 悬浮助手组件
 │       │   ├── Layout.tsx        # 布局组件
-│       │   └── Nav.tsx           # 导航组件
+│       │   ├── Nav.tsx           # 导航组件
+│       │   └── ToolCallConfirmationCard.tsx # 工具调用确认卡片
 │       ├── hooks/                # 自定义Hooks
 │       │   └── useChatSessions.ts # 会话管理Hook
 │       ├── pages/                # 页面组件

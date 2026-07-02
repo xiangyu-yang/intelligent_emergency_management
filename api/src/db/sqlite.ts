@@ -264,6 +264,7 @@ function createTables() {
       sessionId TEXT NOT NULL,
       role TEXT NOT NULL,
       content TEXT NOT NULL,
+      reasoning TEXT,
       createdAt TEXT NOT NULL,
       FOREIGN KEY (sessionId) REFERENCES chat_sessions(id) ON DELETE CASCADE
     );
@@ -284,6 +285,17 @@ function addMissingColumns() {
       console.log('[DB] Added charCount column to rag_documents');
     } catch (e) {
       console.warn('[DB] Failed to add charCount column:', e);
+    }
+  }
+
+  try {
+    db.prepare("SELECT reasoning FROM chat_messages LIMIT 1").run();
+  } catch {
+    try {
+      db.exec("ALTER TABLE chat_messages ADD COLUMN reasoning TEXT");
+      console.log('[DB] Added reasoning column to chat_messages');
+    } catch (e) {
+      console.warn('[DB] Failed to add reasoning column:', e);
     }
   }
 }

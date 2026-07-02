@@ -509,6 +509,7 @@ export interface ChatMessage extends BaseEntity {
   sessionId: string;
   role: 'user' | 'assistant';
   content: string;
+  reasoning?: string;
 }
 
 const chatSessionFields = [
@@ -576,7 +577,7 @@ class ChatSessionDAOImpl extends BaseDAO<ChatSession> {
 }
 
 const chatMessageFields = [
-  'id', 'sessionId', 'role', 'content', 'createdAt'
+  'id', 'sessionId', 'role', 'content', 'reasoning', 'createdAt'
 ];
 
 class ChatMessageDAOImpl extends BaseDAO<ChatMessage> {

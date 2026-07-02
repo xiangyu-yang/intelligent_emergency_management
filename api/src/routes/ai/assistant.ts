@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
-import { chatWithLLM, checkLLMStatus, getSystemPrompt, llmConfig, getDefaultConfig, ensureModelLoaded } from '../../ai/llm.js';
+import { chatWithLLM, checkLLMStatus, getSystemPrompt, llmConfig, getDefaultConfig, ensureModelLoaded, parseToolCall, ToolCall } from '../../ai/llm.js';
 import { SystemConfigDAO, ChatSessionDAO, ChatMessageDAO } from '../../db/dao.js';
 import { successResponse, errorResponse } from '../../utils/common.js';
 import dayjs from 'dayjs';
@@ -8,6 +8,112 @@ import fs from 'fs';
 import path from 'path';
 
 const SKILLS_DIR = path.join(process.cwd(), 'data', 'skills');
+
+import { executeSkillScript, readSkillFile, ToolExecutionResult } from '../../ai/toolExecutor.js';
+
+function getToolDescription(toolName: string): string {
+  const descriptions: Record<string, string> = {
+    execute_policy_collection: '搜索应急管理相关政策文件',
+    read_downloaded_file: '读取下载的文件内容',
+    execute_weather_query: '查询天气信息',
+    execute_emergency_plan: '执行应急预案',
+  };
+  return descriptions[toolName] || '执行技能操作';
+}
+
+function removeJsonFromText(content: string): string {
+  let result = content;
+  
+  const markdownMatch = result.match(/```json\s*([\s\S]*?)\s*```/);
+  if (markdownMatch) {
+    result = result.replace(markdownMatch[0], '');
+  }
+  
+  const bashMatch = result.match(/```bash\s*([\s\S]*?)\s*```/);
+  if (bashMatch) {
+    result = result.replace(bashMatch[0], '');
+  }
+  
+  const toolMatch = result.match(/```\s*([\s\S]*?)\s*```/);
+  if (toolMatch) {
+    result = result.replace(toolMatch[0], '');
+  }
+  
+  const functionCallRegex = /(execute_policy_collection|execute_weather_query|execute_emergency_plan|read_downloaded_file)\s*\(\s*[^)]*\s*\)/g;
+  result = result.replace(functionCallRegex, '');
+  
+  const bracketToolRegex = /\[调用工具\]\s*(execute_policy_collection|execute_weather_query|execute_emergency_plan|read_downloaded_file)/g;
+  result = result.replace(bracketToolRegex, '');
+  
+  result = result.replace(/^- .*$/gm, '');
+  
+  result = result.replace(/^参数：$/gm, '');
+  
+  const jsonBlocks: string[] = [];
+  let depth = 0;
+  let start = -1;
+  
+  for (let i = 0; i < result.length; i++) {
+    if (result[i] === '{') {
+      if (depth === 0) {
+        start = i;
+      }
+      depth++;
+    } else if (result[i] === '}') {
+      depth--;
+      if (depth === 0 && start >= 0) {
+        jsonBlocks.push(result.substring(start, i + 1));
+        start = -1;
+      }
+    }
+  }
+  
+  for (const block of jsonBlocks) {
+    result = result.replace(block, '');
+  }
+  
+  result = result.replace(/\*\([^)]*\)\*/g, '');
+  
+  result = result.replace(/\n{2,}/g, '\n\n');
+  
+  return result.trim();
+}
+
+async function executeToolCall(toolCall: ToolCall): Promise<ToolExecutionResult> {
+  const { name, arguments: args } = toolCall;
+  const skillId = args.skillId || 'policy-collection';
+
+  const skillDir = path.join(SKILLS_DIR, skillId);
+  if (!fs.existsSync(skillDir)) {
+    return { success: false, error: `技能不存在: ${skillId}` };
+  }
+
+  let result: ToolExecutionResult;
+
+  switch (name) {
+    case 'execute_policy_collection':
+      const keyword = args.keyword || '';
+      const category = args.category || '';
+      const searchArgs: string[] = [];
+      if (keyword) searchArgs.push(`--keyword="${keyword}"`);
+      if (category) searchArgs.push(`--category="${category}"`);
+      result = await executeSkillScript(skillId, 'search_policies.py', searchArgs);
+      break;
+
+    case 'read_downloaded_file':
+      const filePath = args.filePath || '';
+      if (!filePath) {
+        return { success: false, error: '请指定文件路径' };
+      }
+      result = await readSkillFile(skillId, filePath);
+      break;
+
+    default:
+      return { success: false, error: `不支持的工具: ${name}` };
+  }
+
+  return result;
+}
 
 function getSkillInstruction(skillId: string): string {
   try {
@@ -34,7 +140,7 @@ const chatSchema = z.object({
     z.object({
       role: z.enum(['user', 'assistant']),
       content: z.string(),
-      reasoning: z.string().optional(),
+      reasoning: z.string().nullable().optional(),
     })
   ).optional(),
   scenario: z.enum(['general', 'qna', 'data_query', 'dispatch', 'report']).optional(),
@@ -178,15 +284,37 @@ router.post('/chat', async (req: Request, res: Response) => {
           }
           res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string, done: chunk.done })}\n\n`);
         }
+
+        const toolCall = parseToolCall(assistantContent);
+        let finalContent = assistantContent;
+        let detectedToolCall = null;
+        
+        if (toolCall) {
+          detectedToolCall = toolCall;
+          finalContent = removeJsonFromText(assistantContent);
+          if (!finalContent) {
+            finalContent = '已检测到技能调用，请确认执行。';
+          }
+          res.write(`data: ${JSON.stringify({ 
+            toolCall: { 
+              name: toolCall.name, 
+              arguments: toolCall.arguments,
+              description: getToolDescription(toolCall.name)
+            }, 
+            displayContent: finalContent,
+            sessionId: sessionId as string 
+          })}\n\n`);
+        }
         
         ChatMessageDAO.create({
           sessionId: sessionId as string,
           role: 'assistant',
-          content: assistantContent,
+          content: finalContent,
+          reasoning: assistantReasoning,
         });
         ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-        const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
+        const sessionTitle = finalContent.length > 20 ? finalContent.substring(0, 20) + '...' : finalContent;
         if (session.messageCount === 1) {
           ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
@@ -199,20 +327,35 @@ router.post('/chat', async (req: Request, res: Response) => {
       }
     } else {
       const response = await chatWithLLM(messages, false, systemPrompt, body.enableDeepThinking) as { content: string; reasoning?: string };
+
+      const toolCall = parseToolCall(response.content);
+      let finalContent = response.content;
+      let finalReasoning = response.reasoning;
+      
+      if (toolCall) {
+        const toolResult = await executeToolCall(toolCall);
+        if (toolResult.success) {
+          finalContent = `工具执行结果（${toolCall.name}）：\n${toolResult.output}`;
+        } else {
+          finalContent = `工具执行失败（${toolCall.name}）：${toolResult.error}`;
+        }
+        finalReasoning = undefined;
+      }
       
       ChatMessageDAO.create({
         sessionId: sessionId as string,
         role: 'assistant',
-        content: response.content,
+        content: finalContent,
+        reasoning: finalReasoning,
       });
       ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-      const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
+      const sessionTitle = finalContent.length > 20 ? finalContent.substring(0, 20) + '...' : finalContent;
       if (session.messageCount === 1) {
         ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response.content, reasoning: response.reasoning, sessionId: sessionId as string }));
+      res.json(successResponse({ content: finalContent, reasoning: response.reasoning, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -285,15 +428,37 @@ router.post('/qna', async (req: Request, res: Response) => {
           }
           res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string })}\n\n`);
         }
+
+        const toolCall = parseToolCall(assistantContent);
+        let finalContent = assistantContent;
+        let detectedToolCall = null;
+        
+        if (toolCall) {
+          detectedToolCall = toolCall;
+          finalContent = removeJsonFromText(assistantContent);
+          if (!finalContent) {
+            finalContent = '已检测到技能调用，请确认执行。';
+          }
+          res.write(`data: ${JSON.stringify({ 
+            toolCall: { 
+              name: toolCall.name, 
+              arguments: toolCall.arguments,
+              description: getToolDescription(toolCall.name)
+            }, 
+            displayContent: finalContent,
+            sessionId: sessionId as string 
+          })}\n\n`);
+        }
         
         ChatMessageDAO.create({
           sessionId: sessionId as string,
           role: 'assistant',
-          content: assistantContent,
+          content: finalContent,
+          reasoning: assistantReasoning,
         });
         ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-        const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
+        const sessionTitle = finalContent.length > 20 ? finalContent.substring(0, 20) + '...' : finalContent;
         if (session.messageCount === 1) {
           ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
@@ -306,20 +471,35 @@ router.post('/qna', async (req: Request, res: Response) => {
       }
     } else {
       const response = await chatWithLLM(messages, false, systemPrompt) as { content: string; reasoning?: string };
+
+      const toolCall = parseToolCall(response.content);
+      let finalContent = response.content;
+      let finalReasoning = response.reasoning;
+      
+      if (toolCall) {
+        const toolResult = await executeToolCall(toolCall);
+        if (toolResult.success) {
+          finalContent = `工具执行结果（${toolCall.name}）：\n${toolResult.output}`;
+        } else {
+          finalContent = `工具执行失败（${toolCall.name}）：${toolResult.error}`;
+        }
+        finalReasoning = undefined;
+      }
       
       ChatMessageDAO.create({
         sessionId: sessionId as string,
         role: 'assistant',
-        content: response.content,
+        content: finalContent,
+        reasoning: finalReasoning,
       });
       ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-      const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
+      const sessionTitle = finalContent.length > 20 ? finalContent.substring(0, 20) + '...' : finalContent;
       if (session.messageCount === 1) {
         ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response.content, sessionId: sessionId as string }));
+      res.json(successResponse({ content: finalContent, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -392,15 +572,37 @@ router.post('/data-query', async (req: Request, res: Response) => {
           }
           res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string })}\n\n`);
         }
+
+        const toolCall = parseToolCall(assistantContent);
+        let finalContent = assistantContent;
+        let detectedToolCall = null;
+        
+        if (toolCall) {
+          detectedToolCall = toolCall;
+          finalContent = removeJsonFromText(assistantContent);
+          if (!finalContent) {
+            finalContent = '已检测到技能调用，请确认执行。';
+          }
+          res.write(`data: ${JSON.stringify({ 
+            toolCall: { 
+              name: toolCall.name, 
+              arguments: toolCall.arguments,
+              description: getToolDescription(toolCall.name)
+            }, 
+            displayContent: finalContent,
+            sessionId: sessionId as string 
+          })}\n\n`);
+        }
         
         ChatMessageDAO.create({
           sessionId: sessionId as string,
           role: 'assistant',
-          content: assistantContent,
+          content: finalContent,
+          reasoning: assistantReasoning,
         });
         ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-        const sessionTitle = assistantContent.length > 20 ? assistantContent.substring(0, 20) + '...' : assistantContent;
+        const sessionTitle = finalContent.length > 20 ? finalContent.substring(0, 20) + '...' : finalContent;
         if (session.messageCount === 1) {
           ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
         }
@@ -413,20 +615,35 @@ router.post('/data-query', async (req: Request, res: Response) => {
       }
     } else {
       const response = await chatWithLLM(messages, false, systemPrompt) as { content: string; reasoning?: string };
+
+      const toolCall = parseToolCall(response.content);
+      let finalContent = response.content;
+      let finalReasoning = response.reasoning;
+      
+      if (toolCall) {
+        const toolResult = await executeToolCall(toolCall);
+        if (toolResult.success) {
+          finalContent = `工具执行结果（${toolCall.name}）：\n${toolResult.output}`;
+        } else {
+          finalContent = `工具执行失败（${toolCall.name}）：${toolResult.error}`;
+        }
+        finalReasoning = undefined;
+      }
       
       ChatMessageDAO.create({
         sessionId: sessionId as string,
         role: 'assistant',
-        content: response.content,
+        content: finalContent,
+        reasoning: finalReasoning,
       });
       ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
-      const sessionTitle = response.content.length > 20 ? response.content.substring(0, 20) + '...' : response.content;
+      const sessionTitle = finalContent.length > 20 ? finalContent.substring(0, 20) + '...' : finalContent;
       if (session.messageCount === 1) {
         ChatSessionDAO.update(sessionId as string, { title: sessionTitle });
       }
 
-      res.json(successResponse({ content: response.content, sessionId: sessionId as string }));
+      res.json(successResponse({ content: finalContent, sessionId: sessionId as string }));
     }
   } catch (err: any) {
     if (err instanceof z.ZodError) {
@@ -483,16 +700,21 @@ router.post('/dispatch', async (req: Request, res: Response) => {
         const stream = await chatWithLLM(messages, true, systemPrompt);
         
         let assistantContent = '';
+        let assistantReasoning = '';
         
         for await (const chunk of stream as AsyncGenerator<{ content: string; reasoning?: string; done: boolean }>) {
           assistantContent += chunk.content;
-          res.write(`data: ${JSON.stringify({ content: chunk.content, sessionId: sessionId as string })}\n\n`);
+          if (chunk.reasoning) {
+            assistantReasoning += chunk.reasoning;
+          }
+          res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string })}\n\n`);
         }
         
         ChatMessageDAO.create({
           sessionId: sessionId as string,
           role: 'assistant',
           content: assistantContent,
+          reasoning: assistantReasoning,
         });
         ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
@@ -514,6 +736,7 @@ router.post('/dispatch', async (req: Request, res: Response) => {
         sessionId: sessionId as string,
         role: 'assistant',
         content: response.content,
+        reasoning: response.reasoning,
       });
       ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
@@ -579,16 +802,21 @@ router.post('/report', async (req: Request, res: Response) => {
         const stream = await chatWithLLM(messages, true, systemPrompt);
         
         let assistantContent = '';
+        let assistantReasoning = '';
         
         for await (const chunk of stream as AsyncGenerator<{ content: string; reasoning?: string; done: boolean }>) {
           assistantContent += chunk.content;
-          res.write(`data: ${JSON.stringify({ content: chunk.content, sessionId: sessionId as string })}\n\n`);
+          if (chunk.reasoning) {
+            assistantReasoning += chunk.reasoning;
+          }
+          res.write(`data: ${JSON.stringify({ content: chunk.content, reasoning: chunk.reasoning, sessionId: sessionId as string })}\n\n`);
         }
         
         ChatMessageDAO.create({
           sessionId: sessionId as string,
           role: 'assistant',
           content: assistantContent,
+          reasoning: assistantReasoning,
         });
         ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 
@@ -610,6 +838,7 @@ router.post('/report', async (req: Request, res: Response) => {
         sessionId: sessionId as string,
         role: 'assistant',
         content: response.content,
+        reasoning: response.reasoning,
       });
       ChatSessionDAO.incrementMessageCount(sessionId as string, dayjs().toISOString());
 

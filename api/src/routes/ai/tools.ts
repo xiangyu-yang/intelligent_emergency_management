@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import { z } from 'zod';
 import {
   executeSkillScript,
   readSkillFile,
@@ -168,6 +169,82 @@ router.post('/skills/:skillId/run', async (req: Request, res: Response) => {
 
     if (result.success) {
       res.json(successResponse(result.output, '操作执行成功'));
+    } else {
+      res.json(errorResponse(result.error || '操作执行失败', 500));
+    }
+  } catch (err: any) {
+    res.json(errorResponse(err.message || '执行操作失败', 500));
+  }
+});
+
+router.post('/execute', async (req: Request, res: Response) => {
+  try {
+    const schema = z.object({
+      toolName: z.string(),
+      arguments: z.record(z.string(), z.any()),
+      sessionId: z.string(),
+    });
+    const body = schema.parse(req.body);
+
+    const { toolName, arguments: args, sessionId } = body;
+
+    const session = ChatSessionDAO.findById(sessionId);
+    if (!session) {
+      res.json(errorResponse('会话不存在', 404));
+      return;
+    }
+
+    let result: ToolExecutionResult;
+
+    switch (toolName) {
+      case 'execute_policy_collection':
+        const keyword = args.keyword || '';
+        const category = args.category || '';
+        const searchArgs: string[] = [];
+        if (keyword) searchArgs.push(`--keyword="${keyword}"`);
+        if (category) searchArgs.push(`--category="${category}"`);
+        result = await executeSkillScript('policy-collection', 'search_policies.py', searchArgs);
+        break;
+
+      case 'read_downloaded_file':
+        const filePath = args.filePath || '';
+        if (!filePath) {
+          result = { success: false, error: '请指定文件路径' };
+        } else {
+          result = await readSkillFile('policy-collection', filePath);
+        }
+        break;
+
+      default:
+        result = { success: false, error: `不支持的工具: ${toolName}` };
+    }
+
+    const timestamp = dayjs().toISOString();
+
+    ChatMessageDAO.create({
+      sessionId,
+      role: 'user',
+      content: `执行技能操作: ${toolName}`,
+    });
+
+    if (result.success) {
+      ChatMessageDAO.create({
+        sessionId,
+        role: 'assistant',
+        content: `技能执行结果：\n${result.output}`,
+      });
+    } else {
+      ChatMessageDAO.create({
+        sessionId,
+        role: 'assistant',
+        content: `技能执行失败：${result.error || '操作执行失败'}`,
+      });
+    }
+
+    ChatSessionDAO.incrementMessageCount(sessionId, timestamp);
+
+    if (result.success) {
+      res.json(successResponse({ output: result.output }, '操作执行成功'));
     } else {
       res.json(errorResponse(result.error || '操作执行失败', 500));
     }

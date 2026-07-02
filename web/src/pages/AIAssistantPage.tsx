@@ -25,11 +25,17 @@ import {
   AlertCircle,
 } from 'lucide-react';
 import { useChatSessions, ChatSession, ChatMessage } from '../hooks/useChatSessions';
+import ToolCallConfirmationCard from '../components/ToolCallConfirmationCard';
 
 interface ChatMessageDisplay {
   role: 'user' | 'assistant';
   content: string;
   reasoning?: string;
+  toolCall?: {
+    name: string;
+    arguments: Record<string, any>;
+    description: string;
+  };
 }
 
 interface SkillItem {
@@ -109,6 +115,7 @@ function AIAssistantPage() {
   
   const [selectedFeature, setSelectedFeature] = useState<FeatureCard | null>(null);
   const [selectedSession, setSelectedSession] = useState<ChatSession | null>(null);
+  const [currentChatSessionId, setCurrentChatSessionId] = useState<string>('');
   const [messages, setMessages] = useState<ChatMessageDisplay[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -304,13 +311,85 @@ function AIAssistantPage() {
     }
   };
 
+  const [toolCallExecuting, setToolCallExecuting] = useState(false);
+
+  const handleConfirmToolCall = async (toolCall: { name: string; arguments: Record<string, any>; description: string }, sessionId: string) => {
+    setToolCallExecuting(true);
+    
+    try {
+      const response = await fetch('/api/ai/tools/execute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          toolName: toolCall.name,
+          arguments: toolCall.arguments,
+          sessionId,
+        }),
+      });
+      const data = await response.json();
+      
+      setMessages((prev) => {
+        const lastIndex = prev.length - 1;
+        if (lastIndex >= 0 && prev[lastIndex].role === 'assistant' && prev[lastIndex].toolCall) {
+          return [
+            ...prev.slice(0, lastIndex),
+            { role: 'assistant', content: prev[lastIndex].content, reasoning: prev[lastIndex].reasoning },
+            {
+              role: 'user',
+              content: `执行技能操作: ${toolCall.name}`,
+            },
+            {
+              role: 'assistant',
+              content: data.code === 0 ? `技能执行结果：\n${data.data.output}` : `技能执行失败：${data.message}`,
+            },
+          ];
+        }
+        return prev;
+      });
+      
+      await fetchSessions();
+    } catch (error: any) {
+      setMessages((prev) => {
+        const lastIndex = prev.length - 1;
+        if (lastIndex >= 0 && prev[lastIndex].role === 'assistant' && prev[lastIndex].toolCall) {
+          return [
+            ...prev.slice(0, lastIndex),
+            { role: 'assistant', content: prev[lastIndex].content, reasoning: prev[lastIndex].reasoning },
+            {
+              role: 'assistant',
+              content: `技能执行错误：${error.message}`,
+            },
+          ];
+        }
+        return prev;
+      });
+    } finally {
+      setToolCallExecuting(false);
+    }
+  };
+
+  const handleCancelToolCall = () => {
+    setMessages((prev) => {
+      const lastIndex = prev.length - 1;
+      if (lastIndex >= 0 && prev[lastIndex].role === 'assistant' && prev[lastIndex].toolCall) {
+        return [
+          ...prev.slice(0, lastIndex),
+          { role: 'assistant', content: prev[lastIndex].content, reasoning: prev[lastIndex].reasoning },
+        ];
+      }
+      return prev;
+    });
+  };
+
   const handleSelectSession = useCallback(async (session: ChatSession) => {
     setSelectedSession(session);
+    setCurrentChatSessionId(session.id);
     const detail = await fetchSessionDetail(session.id);
     if (detail) {
       const displayMessages: ChatMessageDisplay[] = detail.messages.map((msg: ChatMessage) => ({
         role: msg.role,
         content: msg.content,
+        reasoning: msg.reasoning,
       }));
       setMessages(displayMessages);
       
@@ -323,6 +402,7 @@ function AIAssistantPage() {
 
   const handleCreateNewSession = useCallback(() => {
     setSelectedSession(null);
+    setCurrentChatSessionId('');
     setMessages([]);
     setSelectedFeature(null);
   }, []);
@@ -331,6 +411,7 @@ function AIAssistantPage() {
     await deleteSession(sessionId);
     if (selectedSession?.id === sessionId) {
       setSelectedSession(null);
+      setCurrentChatSessionId('');
       setMessages([]);
     }
     setShowDeleteConfirm(null);
@@ -408,9 +489,30 @@ function AIAssistantPage() {
               const json = JSON.parse(data);
               if (json.sessionId) {
                 currentSessionId = json.sessionId;
+                setCurrentChatSessionId(json.sessionId);
               }
               if (json.error) {
                 throw new Error(json.error);
+              }
+              if (json.toolCall) {
+                setMessages((prev) => {
+                  const lastIndex = prev.length - 1;
+                  if (lastIndex >= 0 && prev[lastIndex].role === 'assistant') {
+                    return [
+                      ...prev.slice(0, lastIndex),
+                      { 
+                        role: 'assistant', 
+                        content: json.displayContent || prev[lastIndex].content, 
+                        reasoning: prev[lastIndex].reasoning,
+                        toolCall: json.toolCall 
+                      },
+                    ];
+                  }
+                  return [...prev, { role: 'assistant', content: json.displayContent || '', toolCall: json.toolCall }];
+                });
+                
+                
+                continue;
               }
               if (json.content) {
                 assistantContent += json.content;
@@ -791,6 +893,15 @@ function AIAssistantPage() {
                           </p>
                         )}
                       </div>
+                    )}
+                    {message.toolCall && (
+                      <ToolCallConfirmationCard
+                        toolCall={message.toolCall}
+                        sessionId={currentChatSessionId || selectedSession?.id || ''}
+                        onConfirm={handleConfirmToolCall}
+                        onCancel={handleCancelToolCall}
+                        isExecuting={toolCallExecuting}
+                      />
                     )}
                   </div>
                   </div>

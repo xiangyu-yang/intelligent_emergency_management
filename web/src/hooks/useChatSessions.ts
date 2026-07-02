@@ -16,6 +16,7 @@ export interface ChatMessage {
   sessionId: string;
   role: 'user' | 'assistant';
   content: string;
+  reasoning?: string;
   createdAt: string;
 }
 
